@@ -1,0 +1,49 @@
+<?php
+
+namespace App\Models;
+
+use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * Class Subject
+ * @package App\Models
+ * @version September 23, 2019, 9:51 am UTC
+ *
+ * @property string hubungi_kami
+ */
+class Subject extends Model
+{
+    use SoftDeletes;
+
+    public $table = 'subjects';
+    
+
+    protected $dates = ['deleted_at'];
+
+
+    public $fillable = [
+        'hubungi_kami'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'hubungi_kami' => 'string'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        'hubungi_kami' => 'required'
+    ];
+
+    
+}
