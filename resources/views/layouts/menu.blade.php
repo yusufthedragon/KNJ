@@ -19,3 +19,7 @@
     <a href="{!! route('donasis.index') !!}"><i class="fa fa-edit"></i><span>Donasi</span></a>
 </li>
 
+<li class="{{ Request::is('artikels*') ? 'active' : '' }}">
+    <a href="{!! route('artikels.index') !!}"><i class="fa fa-edit"></i><span>Artikel</span></a>
+</li>
+

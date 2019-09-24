@@ -24,3 +24,5 @@ Route::resource('profiles', 'ProfileController');
 Route::resource('followers', 'FollowersController');
 
 Route::resource('donasis', 'DonasiController');
+
+Route::resource('artikels', 'ArtikelController');
