@@ -11,3 +11,7 @@
     <a href="{!! route('profiles.index') !!}"><i class="fa fa-edit"></i><span>Profiles</span></a>
 </li>
 
+<li class="{{ Request::is('followers*') ? 'active' : '' }}">
+    <a href="{!! route('followers.index') !!}"><i class="fa fa-edit"></i><span>Followers</span></a>
+</li>
+

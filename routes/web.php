@@ -20,3 +20,5 @@ Route::resource('users', 'UserController');
 Route::resource('subjects', 'SubjectController');
 
 Route::resource('profiles', 'ProfileController');
+
+Route::resource('followers', 'FollowersController');

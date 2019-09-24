@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property string name
  * @property string email
+ * @property string role
  * @property string|\Carbon\Carbon email_verified_at
  * @property string password
  * @property string remember_token
@@ -32,7 +33,7 @@ class User extends Authenticatable
     public $fillable = [
         'name',
         'email',
-        'role_id',
+        'role',
         'password',
         'email_verified_at',
         'password'
@@ -46,7 +47,7 @@ class User extends Authenticatable
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'role_id' => 'integer',
+        'role_id' => 'string',
         'email' => 'string',
         'password' => 'string'
     ];
