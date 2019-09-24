@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
+    <link href="{{ asset('fileinput/css/fileinput.css') }}" media="all" rel="stylesheet" type="text/css" />
     @yield('css')
 </head>
 
@@ -98,7 +99,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © {{ date('Y') }} <a href="#">Ketimbang Bacot Jakarta</a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -160,6 +161,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+
+    <script src="{{ asset('fileinput/js/plugins/piexif.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('fileinput/js/plugins/sortable.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('fileinput/js/plugins/purify.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('fileinput/js/fileinput.min.js') }}"></script>
 
     @yield('scripts')
 </body>

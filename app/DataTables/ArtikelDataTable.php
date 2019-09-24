@@ -18,7 +18,10 @@ class ArtikelDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'artikels.datatables_actions');
+        return $dataTable->addColumn('action', 'artikels.datatables_actions')
+        ->editColumn('cover', function ($artikel) {
+            return '<a href="'.asset('cover/'.$artikel->cover).'" target="_blank"><img width="50" height="50" src="'.asset('cover/'.$artikel->cover).'"></a>';
+        })->rawColumns(['cover', 'action']);
     }
 
     /**
@@ -68,7 +71,6 @@ class ArtikelDataTable extends DataTable
             'judul',
             'jenis',
             'deskripsi',
-            'gambar',
             'cover'
         ];
     }

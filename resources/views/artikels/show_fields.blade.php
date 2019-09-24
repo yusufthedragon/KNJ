@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $artikel->id !!}</p>
-</div>
-
 <!-- Judul Field -->
 <div class="form-group">
     {!! Form::label('judul', 'Judul:') !!}
@@ -25,13 +19,20 @@
 <!-- Gambar Field -->
 <div class="form-group">
     {!! Form::label('gambar', 'Gambar:') !!}
-    <p>{!! $artikel->gambar !!}</p>
+    <br>
+    @php
+    $gambars = explode('|', $artikel->gambar);
+    @endphp
+    @foreach ($gambars as $gambar)
+    <img width="200" height="200" src="{{ asset('gambar/'.$gambar) }}">&emsp;
+    @endforeach
 </div>
 
 <!-- Cover Field -->
 <div class="form-group">
     {!! Form::label('cover', 'Cover:') !!}
-    <p>{!! $artikel->cover !!}</p>
+    <br>
+    <img width="200" height="200" src="{{ asset('cover/'.$artikel->cover) }}">
 </div>
 
 <!-- Created At Field -->

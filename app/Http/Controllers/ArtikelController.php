@@ -10,6 +10,8 @@ use App\Repositories\ArtikelRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class ArtikelController extends AppBaseController
 {
@@ -52,6 +54,27 @@ class ArtikelController extends AppBaseController
     public function store(CreateArtikelRequest $request)
     {
         $input = $request->all();
+
+        $cover = $request->file('cover');
+        $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
+
+        if (! File::isDirectory(public_path('cover'))) {
+            File::makeDirectory(public_path('cover'), 0755, true);
+        }
+
+        $request->file('cover')->move(public_path('cover'), $coverName);
+
+        if (! File::isDirectory(public_path('gambar'))) {
+            File::makeDirectory(public_path('gambar'), 0755, true);
+        }
+
+        foreach ($input['gambar'] as $key => $gambar) {
+            $gambarName[$key] = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gambar->getClientOriginalExtension();
+            $gambar->move(public_path('gambar'), $gambarName[$key]);
+        }
+
+        $input['cover'] = $coverName;
+        $input['gambar'] = implode('|', $gambarName);
 
         $artikel = $this->artikelRepository->create($input);
 
@@ -111,6 +134,7 @@ class ArtikelController extends AppBaseController
     public function update($id, UpdateArtikelRequest $request)
     {
         $artikel = $this->artikelRepository->find($id);
+        dd($request->all());
 
         if (empty($artikel)) {
             Flash::error('Artikel not found');

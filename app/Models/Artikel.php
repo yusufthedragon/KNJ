@@ -57,9 +57,8 @@ class Artikel extends Model
         'judul' => 'required',
         'jenis' => 'required',
         'deskripsi' => 'required',
-        'gambar' => 'required|mimes:jpg,png,jpeg|max:2048',
+        'gambar' => 'required',
+        'gambar.*' => 'mimes:jpg,png,jpeg|max:2048',
         'cover' => 'required|mimes:jpg,png,jpeg|max:2048'
     ];
-
-    
 }
