@@ -3,6 +3,7 @@
 /public/storage
 /public/artikel
 /public/project
+/public/about_us
 /storage/*.key
 /vendor
 /.idea

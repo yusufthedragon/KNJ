@@ -32,3 +32,5 @@ Route::resource('contacts', 'ContactController');
 Route::resource('divisis', 'DivisiController');
 
 Route::resource('projects', 'ProjectController');
+
+Route::resource('aboutuses', 'AboutUsController');

@@ -1,0 +1,43 @@
+@extends('layouts.app')
+
+@section('content')
+    <section class="content-header">
+        <h1>
+            About Us
+        </h1>
+    </section>
+    <div class="content">
+        @include('adminlte-templates::common.errors')
+        <div class="box box-primary">
+
+            <div class="box-body">
+                <div class="row">
+                    {!! Form::open(['route' => 'aboutuses.store', 'enctype' => 'multipart/form-data']) !!}
+
+                        @include('aboutuses.fields')
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $("#gambar").fileinput({
+                'showUpload': false,
+                'showClose': false,
+                'previewFileAny': false,
+                'removeFromPreviewOnError': true,
+                'dropZoneEnabled': false,
+                'fileActionSettings': {
+                    'showDrag': false,
+                    'indicatorNew': '',
+                    'indicatorNewTitle': '',
+                }
+            });
+        });
+    </script>
+@endsection

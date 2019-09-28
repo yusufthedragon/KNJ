@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Project;
+use App\Models\AboutUs;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class ProjectDataTable extends DataTable
+class AboutUsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,19 +18,19 @@ class ProjectDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'projects.datatables_actions')
-        ->editColumn('cover', function ($project) {
-            return '<a href="'.asset('project/cover/'.$project->cover).'" target="_blank"><img width="50" height="50" src="'.asset('project/cover/'.$project->cover).'"></a>';
-        })->rawColumns(['cover', 'action']);
+        return $dataTable->addColumn('action', 'aboutuses.datatables_actions')
+        ->editColumn('gambar', function ($aboutUs) {
+            return '<a href="'.asset('about_us/gambar/'.$aboutUs->gambar).'" target="_blank"><img width="50" height="50" src="'.asset('about_us/gambar/'.$aboutUs->gambar).'"></a>';
+        })->rawColumns(['gambar', 'action']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Project $model
+     * @param \App\Models\AboutUs $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Project $model)
+    public function query(AboutUs $model)
     {
         return $model->newQuery();
     }
@@ -70,10 +70,7 @@ class ProjectDataTable extends DataTable
         return [
             'judul',
             'deskripsi',
-            'cover',
-            'kode_donasi',
-            'daftar_solia',
-            'timeline'
+            'gambar'
         ];
     }
 
@@ -84,6 +81,6 @@ class ProjectDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'projectsdatatable_' . time();
+        return 'aboutusesdatatable_' . time();
     }
 }
