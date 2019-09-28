@@ -8,13 +8,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Artikel
  * @package App\Models
- * @version September 24, 2019, 7:26 am UTC
+ * @version September 28, 2019, 3:51 pm WIB
  *
  * @property string judul
- * @property string jenis
  * @property string deskripsi
- * @property string gambar
+ * @property string wilayah
  * @property string cover
+ * @property string gallery
+ * @property string nama_solia
+ * @property integer usia
+ * @property string pekerjaan
+ * @property string alamat
  */
 class Artikel extends Model
 {
@@ -28,10 +32,14 @@ class Artikel extends Model
 
     public $fillable = [
         'judul',
-        'jenis',
         'deskripsi',
-        'gambar',
-        'cover'
+        'wilayah',
+        'cover',
+        'gallery',
+        'nama_solia',
+        'usia',
+        'pekerjaan',
+        'alamat'
     ];
 
     /**
@@ -42,23 +50,13 @@ class Artikel extends Model
     protected $casts = [
         'id' => 'integer',
         'judul' => 'string',
-        'jenis' => 'string',
         'deskripsi' => 'string',
-        'gambar' => 'string',
-        'cover' => 'string'
-    ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'judul' => 'required',
-        'jenis' => 'required',
-        'deskripsi' => 'required',
-        'gambar' => 'required',
-        'gambar.*' => 'mimes:jpg,png,jpeg|max:2048',
-        'cover' => 'required|mimes:jpg,png,jpeg|max:2048'
+        'wilayah' => 'string',
+        'cover' => 'string',
+        'gallery' => 'string',
+        'nama_solia' => 'string',
+        'usia' => 'integer',
+        'pekerjaan' => 'string',
+        'alamat' => 'string'
     ];
 }

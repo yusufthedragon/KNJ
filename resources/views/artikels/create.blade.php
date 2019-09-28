@@ -14,7 +14,7 @@
                 <div class="row">
                     {!! Form::open(['route' => 'artikels.store', 'enctype' => 'multipart/form-data']) !!}
 
-                        @include('artikels.create_fields')
+                        @include('artikels.fields_create')
 
                     {!! Form::close() !!}
                 </div>
@@ -25,7 +25,7 @@
 
 @section('scripts')
     <script>
-        var gambar_id = 1;
+        let gallery_id = 1;
 
         $(document).ready(function() {
             $("#cover").fileinput({
@@ -41,7 +41,7 @@
                 }
             });
 
-            $("#input_0").fileinput({
+            $("#gallery_0").fileinput({
                 'showUpload': false,
                 'showClose': false,
                 'previewFileAny': false,
@@ -55,19 +55,19 @@
             });
         });
 
-        $(document).on('click', '#add_gambar', function() {
+        $(document).on('click', '#add_gallery', function() {
             var html = '';
-            html += `<div class="form-group col-sm-4 gambar_${gambar_id}">` +
-                `<input id="input_${gambar_id}" name="gambar[]" type="file">`+
-            `</div>` +
-            `<div class="form-group col-sm-8 gambar_${gambar_id}">` +
-                `<button type="button" data-id="${gambar_id}" class="btn btn-danger delete_gambar">Hapus</button>` +
-            `</div>` +
-            `<div class="clearfix gambar_0"></div>`;
 
-            $('#gambars').append(html);
+            html += `<div class="form-group col-sm-10 gallery_${gallery_id}">` +
+                `<input type="file" name="gallery[]" id="gambar_${gallery_id}">` +
+            `</div>` +
+            `<div class="col-sm-2 gallery_${gallery_id}">` +
+                `<button type="button" id="remove_gallery" data-id="${gallery_id}" class="btn btn-danger">Hapus</button>` +
+            `</div>`;
 
-            $("#input_" + gambar_id).fileinput({
+            $("#galleries").append(html);
+
+            $("#gambar_" + gallery_id).fileinput({
                 'showUpload': false,
                 'showClose': false,
                 'previewFileAny': false,
@@ -80,13 +80,14 @@
                 }
             });
 
-            gambar_id++;
+            gallery_id++;
         });
 
-        $(document).on('click', '.delete_gambar', function() {
+        $(document).on('click', '#remove_gallery', function() {
             var id = $(this).data('id');
-            
-            $('.gambar_' + id).remove();
+
+            $('.gallery_' + id).remove();
         });
     </script>
 @endsection
+

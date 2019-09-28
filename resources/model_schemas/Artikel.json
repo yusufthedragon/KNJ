@@ -22,17 +22,6 @@
         "inIndex": true
     },
     {
-        "name": "jenis",
-        "dbType": "string,255",
-        "htmlType": "select,Info",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
         "name": "deskripsi",
         "dbType": "text",
         "htmlType": "textarea",
@@ -44,10 +33,10 @@
         "inIndex": true
     },
     {
-        "name": "gambar",
-        "dbType": "text",
-        "htmlType": "file",
-        "validations": "required|mimes:jpg,png,jpeg|max:2048",
+        "name": "wilayah",
+        "dbType": "string,200",
+        "htmlType": "text",
+        "validations": "required",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -58,7 +47,62 @@
         "name": "cover",
         "dbType": "text",
         "htmlType": "file",
-        "validations": "required|mimes:jpg,png,jpeg|max:2048",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "gallery",
+        "dbType": "text",
+        "htmlType": "file",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "nama_solia",
+        "dbType": "string,255",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "usia",
+        "dbType": "integer",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "pekerjaan",
+        "dbType": "string,255",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "alamat",
+        "dbType": "text",
+        "htmlType": "textarea",
+        "validations": "required",
         "searchable": true,
         "fillable": true,
         "primary": false,

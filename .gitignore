@@ -4,6 +4,7 @@
 /public/artikel
 /public/project
 /public/about_us
+/public/kepengurusan
 /storage/*.key
 /vendor
 /.idea

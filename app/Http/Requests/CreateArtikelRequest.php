@@ -3,11 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Artikel;
 
 class CreateArtikelRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +23,13 @@ class CreateArtikelRequest extends FormRequest
      */
     public function rules()
     {
-        return Artikel::$rules;
+        return [
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'wilayah' => 'required',
+            'cover' => 'required|max:2048|mimes:jpg,png,jpeg',
+            'gallery' => 'required',
+            'gallery.*' => 'max:2048|mimes:jpg,png,jpeg'
+        ];
     }
 }

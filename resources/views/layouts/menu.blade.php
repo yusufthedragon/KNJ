@@ -11,10 +11,6 @@
     <a href="{!! route('profiles.index') !!}"><i class="fa fa-edit"></i><span>Profile</span></a>
 </li>
 
-<li class="{{ Request::is('artikels*') ? 'active' : '' }}">
-    <a href="{!! route('artikels.index') !!}"><i class="fa fa-edit"></i><span>Artikel</span></a>
-</li>
-
 <li class="{{ Request::is('contacts*') ? 'active' : '' }}">
     <a href="{!! route('contacts.index') !!}"><i class="fa fa-edit"></i><span>Contacts</span></a>
 </li>
@@ -41,5 +37,9 @@
 
 <li class="{{ Request::is('donasis*') ? 'active' : '' }}">
     <a href="{!! route('donasis.index') !!}"><i class="fa fa-edit"></i><span>Donasis</span></a>
+</li>
+
+<li class="{{ Request::is('artikels*') ? 'active' : '' }}">
+    <a href="{!! route('artikels.index') !!}"><i class="fa fa-edit"></i><span>Artikels</span></a>
 </li>
 

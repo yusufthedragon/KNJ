@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($artikel, ['route' => ['artikels.update', $artikel->id], 'method' => 'patch']) !!}
+                   {!! Form::model($artikel, ['route' => ['artikels.update', $artikel->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
-                        @include('artikels.edit_fields')
+                        @include('artikels.fields_edit')
 
                    {!! Form::close() !!}
                </div>
@@ -24,17 +24,17 @@
 
 @section('scripts')
     <script>
-        var gambar_id = 1;
+        var gallery_id = {{ count($galleries) }} + 1;
 
         $(document).ready(function() {
             $("#cover").fileinput({
-                'initialPreview': '{{ asset('cover/'.$artikel->cover) }}',
+                'initialPreview': '{{ asset('artikel/cover/'.$artikel->cover) }}',
                 'initialPreviewAsData': true,
                 'initialPreviewConfig': {
                     'type': "image",
                     'filetype': "image/png",
                     'caption': "{{ $artikel->judul }}",
-                    'url': "{{ asset('cover/'.$artikel->cover) }}"
+                    'url': "{{ asset('artikel/cover/'.$artikel->cover) }}"
                 },
                 'initialCaption': "{{ $artikel->judul }}",
                 'initialPreviewFileType': 'image',
@@ -53,18 +53,15 @@
                 }
             });
 
-            @php
-            $gambars = explode('|', $artikel->gambar);
-            @endphp
-            @foreach ($gambars as $key => $gambar)
-                $("#input_{{ $key }}").fileinput({
-                    'initialPreview': '{{ asset('gambar/'.$gambar) }}',
+            @foreach ($galleries as $key => $gallery)
+                $("#gallery_{{ $key }}").fileinput({
+                    'initialPreview': '{{ asset('artikel/gallery/'.$gallery) }}',
                     'initialPreviewAsData': true,
                     'initialPreviewConfig': {
                         'type': "image",
                         'filetype': "image/png",
                         'caption': "{{ $artikel->judul }}",
-                        'url': "{{ asset('gambar/'.$gambar) }}"
+                        'url': "{{ asset('artikel/gallery/'.$gallery) }}"
                     },
                     'initialCaption': "{{ $artikel->judul }}",
                     'initialPreviewFileType': 'image',
@@ -85,19 +82,19 @@
             @endforeach
         });
 
-        $(document).on('click', '#add_gambar', function() {
+        $(document).on('click', '#add_gallery', function() {
             var html = '';
-            html += `<div class="form-group col-sm-4 gambar_${gambar_id}">` +
-                `<input id="input_${gambar_id}" name="gambar[]" type="file">`+
-            `</div>` +
-            `<div class="form-group col-sm-8 gambar_${gambar_id}">` +
-                `<button type="button" data-id="${gambar_id}" class="btn btn-danger delete_gambar">Hapus</button>` +
-            `</div>` +
-            `<div class="clearfix gambar_0"></div>`;
 
-            $('#gambars').append(html);
+            html += `<div class="form-group col-sm-10 gallery_${gallery_id}">` +
+                `<input type="file" name="gallery[]" id="gambar_${gallery_id}">` +
+            `</div>` +
+            `<div class="col-sm-2 gallery_${gallery_id}">` +
+                `<button type="button" id="remove_gallery" data-id="${gallery_id}" class="btn btn-danger">Hapus</button>` +
+            `</div>`;
 
-            $("#input_" + gambar_id).fileinput({
+            $("#galleries").append(html);
+
+            $("#gambar_" + gallery_id).fileinput({
                 'showUpload': false,
                 'showClose': false,
                 'previewFileAny': false,
@@ -110,13 +107,14 @@
                 }
             });
 
-            gambar_id++;
+            gallery_id++;
         });
 
-        $(document).on('click', '.delete_gambar', function() {
+        $(document).on('click', '#remove_gallery', function() {
             var id = $(this).data('id');
-            
-            $('.gambar_' + id).remove();
+
+            $('.gallery_' + id).remove();
+            $('#delete_gallery_' + id).val('true');
         });
     </script>
 @endsection

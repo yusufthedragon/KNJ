@@ -21,8 +21,6 @@ Route::resource('subjects', 'SubjectController');
 
 Route::resource('profiles', 'ProfileController');
 
-Route::resource('artikels', 'ArtikelController');
-
 Route::resource('contacts', 'ContactController');
 
 Route::resource('divisis', 'DivisiController');
@@ -36,3 +34,5 @@ Route::resource('kepengurusans', 'KepengurusanController');
 Route::resource('followers', 'FollowersController');
 
 Route::resource('donasis', 'DonasiController');
+
+Route::resource('artikels', 'ArtikelController');

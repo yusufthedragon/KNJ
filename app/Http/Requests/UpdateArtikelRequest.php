@@ -3,11 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Artikel;
 
 class UpdateArtikelRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +23,10 @@ class UpdateArtikelRequest extends FormRequest
      */
     public function rules()
     {
-        return Artikel::$rules;
+        return [
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'wilayah' => 'required'
+        ];
     }
 }

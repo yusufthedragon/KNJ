@@ -1,13 +1,13 @@
+<!-- Id Field -->
+<div class="form-group">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{!! $artikel->id !!}</p>
+</div>
+
 <!-- Judul Field -->
 <div class="form-group">
     {!! Form::label('judul', 'Judul:') !!}
     <p>{!! $artikel->judul !!}</p>
-</div>
-
-<!-- Jenis Field -->
-<div class="form-group">
-    {!! Form::label('jenis', 'Jenis:') !!}
-    <p>{!! $artikel->jenis !!}</p>
 </div>
 
 <!-- Deskripsi Field -->
@@ -16,23 +16,46 @@
     <p>{!! $artikel->deskripsi !!}</p>
 </div>
 
-<!-- Gambar Field -->
+<!-- Wilayah Field -->
 <div class="form-group">
-    {!! Form::label('gambar', 'Gambar:') !!}
-    <br>
-    @php
-    $gambars = explode('|', $artikel->gambar);
-    @endphp
-    @foreach ($gambars as $gambar)
-    <img width="200" height="200" src="{{ asset('gambar/'.$gambar) }}">&emsp;
-    @endforeach
+    {!! Form::label('wilayah', 'Wilayah:') !!}
+    <p>{!! $artikel->wilayah !!}</p>
 </div>
 
 <!-- Cover Field -->
 <div class="form-group">
     {!! Form::label('cover', 'Cover:') !!}
-    <br>
-    <img width="200" height="200" src="{{ asset('cover/'.$artikel->cover) }}">
+    <p>{!! $artikel->cover !!}</p>
+</div>
+
+<!-- Gallery Field -->
+<div class="form-group">
+    {!! Form::label('gallery', 'Gallery:') !!}
+    <p>{!! $artikel->gallery !!}</p>
+</div>
+
+<!-- Nama Solia Field -->
+<div class="form-group">
+    {!! Form::label('nama_solia', 'Nama Solia:') !!}
+    <p>{!! $artikel->nama_solia !!}</p>
+</div>
+
+<!-- Usia Field -->
+<div class="form-group">
+    {!! Form::label('usia', 'Usia:') !!}
+    <p>{!! $artikel->usia !!}</p>
+</div>
+
+<!-- Pekerjaan Field -->
+<div class="form-group">
+    {!! Form::label('pekerjaan', 'Pekerjaan:') !!}
+    <p>{!! $artikel->pekerjaan !!}</p>
+</div>
+
+<!-- Alamat Field -->
+<div class="form-group">
+    {!! Form::label('alamat', 'Alamat:') !!}
+    <p>{!! $artikel->alamat !!}</p>
 </div>
 
 <!-- Created At Field -->

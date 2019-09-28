@@ -16,10 +16,14 @@ class CreateArtikelsTable extends Migration
         Schema::create('artikels', function (Blueprint $table) {
             $table->increments('id');
             $table->text('judul');
-            $table->string('jenis', 255);
             $table->text('deskripsi');
-            $table->text('gambar');
+            $table->string('wilayah', 200);
             $table->text('cover');
+            $table->text('gallery');
+            $table->string('nama_solia', 255);
+            $table->integer('usia');
+            $table->string('pekerjaan', 255);
+            $table->text('alamat');
             $table->timestamps();
             $table->softDeletes();
         });

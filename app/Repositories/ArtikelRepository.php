@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class ArtikelRepository
  * @package App\Repositories
- * @version September 24, 2019, 7:26 am UTC
+ * @version September 28, 2019, 3:51 pm WIB
 */
 
 class ArtikelRepository extends BaseRepository
@@ -18,10 +18,14 @@ class ArtikelRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'judul',
-        'jenis',
         'deskripsi',
-        'gambar',
-        'cover'
+        'wilayah',
+        'cover',
+        'gallery',
+        'nama_solia',
+        'usia',
+        'pekerjaan',
+        'alamat'
     ];
 
     /**

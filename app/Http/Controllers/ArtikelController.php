@@ -58,23 +58,24 @@ class ArtikelController extends AppBaseController
         $cover = $request->file('cover');
         $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
 
-        if (! File::isDirectory(public_path('cover'))) {
-            File::makeDirectory(public_path('cover'), 0755, true);
+        if (! File::isDirectory(public_path('artikel/cover'))) {
+            File::makeDirectory(public_path('artikel/cover'), 0755, true);
         }
 
-        $request->file('cover')->move(public_path('cover'), $coverName);
+        $request->file('cover')->move(public_path('artikel/cover'), $coverName);
 
-        if (! File::isDirectory(public_path('gambar'))) {
-            File::makeDirectory(public_path('gambar'), 0755, true);
+        if (! File::isDirectory(public_path('artikel/gallery'))) {
+            File::makeDirectory(public_path('artikel/gallery'), 0755, true);
         }
 
-        foreach ($input['gambar'] as $key => $gambar) {
-            $gambarName[$key] = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gambar->getClientOriginalExtension();
-            $gambar->move(public_path('gambar'), $gambarName[$key]);
+        foreach ($input['gallery'] as $key => $gallery) {
+            $galleryName[$key] = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gallery->getClientOriginalExtension();
+            $gallery->move(public_path('artikel/gallery'), $galleryName[$key]);
         }
 
         $input['cover'] = $coverName;
-        $input['gambar'] = implode('|', $gambarName);
+        $input['gallery'] = implode('|', $galleryName);
+        $input['usia'] = intval($request->usia);
 
         $artikel = $this->artikelRepository->create($input);
 
@@ -120,7 +121,9 @@ class ArtikelController extends AppBaseController
             return redirect(route('artikels.index'));
         }
 
-        return view('artikels.edit')->with('artikel', $artikel);
+        $galleries = explode('|', $artikel->gallery);
+
+        return view('artikels.edit', get_defined_vars());
     }
 
     /**
@@ -134,7 +137,6 @@ class ArtikelController extends AppBaseController
     public function update($id, UpdateArtikelRequest $request)
     {
         $artikel = $this->artikelRepository->find($id);
-        dd($request->all());
 
         if (empty($artikel)) {
             Flash::error('Artikel not found');
@@ -142,7 +144,51 @@ class ArtikelController extends AppBaseController
             return redirect(route('artikels.index'));
         }
 
-        $artikel = $this->artikelRepository->update($request->all(), $id);
+        $input = $request->all();
+
+        $cover = $request->file('cover');
+
+        if ($cover !== null) {
+            $this->validate($request, [
+                'cover' => 'max:2048|mimes:jpg,png,jpeg'
+            ]);
+
+            $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
+
+            $request->file('cover')->move(public_path('artikel/cover'), $coverName);
+            $input['cover'] = $coverName;
+            File::delete('artikel/cover/' . $artikel->cover);
+        }
+
+        $galleries = explode('|', $artikel->gallery);
+
+        if (isset($input['gallery']) && count($input['gallery'])) {
+            $this->validate($request, [
+                'gallery.*' => 'max:2048|mimes:jpg,png,jpeg'
+            ]);
+
+            foreach ($input['gallery'] as $key => $gallery) {
+                if (isset($galleries[$key])) {
+                    File::delete('artikel/gallery/' . $galleries[$key]);
+                }
+
+                $galleryName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gallery->getClientOriginalExtension();
+                $gallery->move(public_path('artikel/gallery'), $galleryName);
+                $galleries[$key] = $galleryName;
+            }
+        }
+
+        foreach ($input['delete_gallery'] as $key => $delete_gallery) {
+            if ($delete_gallery == "true" && $key > 0) {
+                File::delete('artikel/gallery/' . $galleries[$key]);
+                unset($galleries[$key]);
+            }
+        }
+
+        $input['gallery'] = implode('|', $galleries);
+        $input['usia'] = intval($request->usia);
+
+        $artikel = $this->artikelRepository->update($input, $id);
 
         Flash::success('Artikel updated successfully.');
 
