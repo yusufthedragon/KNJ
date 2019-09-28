@@ -23,3 +23,11 @@
     <a href="{!! route('artikels.index') !!}"><i class="fa fa-edit"></i><span>Artikel</span></a>
 </li>
 
+<li class="{{ Request::is('contacts*') ? 'active' : '' }}">
+    <a href="{!! route('contacts.index') !!}"><i class="fa fa-edit"></i><span>Contacts</span></a>
+</li>
+
+<li class="{{ Request::is('divisis*') ? 'active' : '' }}">
+    <a href="{!! route('divisis.index') !!}"><i class="fa fa-edit"></i><span>Divisis</span></a>
+</li>
+
