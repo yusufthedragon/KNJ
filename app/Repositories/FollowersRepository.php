@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
+use App\Models\Followers;
 use App\Repositories\BaseRepository;
 
 /**
  * Class FollowersRepository
  * @package App\Repositories
- * @version September 24, 2019, 4:34 am UTC
+ * @version September 28, 2019, 2:01 pm WIB
 */
 
 class FollowersRepository extends BaseRepository
@@ -17,10 +17,18 @@ class FollowersRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'name',
+        'nama',
+        'domisili',
+        'jenis_kelamin',
+        'no_telepon',
         'email',
-        'role_id',
-        'password'
+        'password',
+        'status_member',
+        'foto',
+        'divisi_id',
+        'nama_divisi',
+        'tanggal_lahir',
+        'alamat'
     ];
 
     /**
@@ -38,6 +46,6 @@ class FollowersRepository extends BaseRepository
      **/
     public function model()
     {
-        return User::class;
+        return Followers::class;
     }
 }

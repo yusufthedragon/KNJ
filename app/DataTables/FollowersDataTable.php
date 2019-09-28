@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Followers;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -24,13 +24,12 @@ class FollowersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\User $model
+     * @param \App\Models\Followers $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Followers $model)
     {
-        $data = $model->newQuery();
-        return $data->whereIn('role', ['donatur', 'followers']);
+        return $model->newQuery();
     }
 
     /**
@@ -46,7 +45,7 @@ class FollowersDataTable extends DataTable
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
                 'dom'       => 'Bfrtip',
-                'stateSave' => true, 
+                'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -65,9 +64,11 @@ class FollowersDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
+            'nama',
             'email',
-
+            'nama_divisi',
+            'domisili',
+            'foto'
         ];
     }
 

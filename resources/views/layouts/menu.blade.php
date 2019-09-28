@@ -11,10 +11,6 @@
     <a href="{!! route('profiles.index') !!}"><i class="fa fa-edit"></i><span>Profile</span></a>
 </li>
 
-<li class="{{ Request::is('followers*') ? 'active' : '' }}">
-    <a href="{!! route('followers.index') !!}"><i class="fa fa-edit"></i><span>Follower</span></a>
-</li>
-
 <li class="{{ Request::is('donasis*') ? 'active' : '' }}">
     <a href="{!! route('donasis.index') !!}"><i class="fa fa-edit"></i><span>Donasi</span></a>
 </li>
@@ -41,5 +37,9 @@
 
 <li class="{{ Request::is('kepengurusans*') ? 'active' : '' }}">
     <a href="{!! route('kepengurusans.index') !!}"><i class="fa fa-edit"></i><span>Kepengurusans</span></a>
+</li>
+
+<li class="{{ Request::is('followers*') ? 'active' : '' }}">
+    <a href="{!! route('followers.index') !!}"><i class="fa fa-edit"></i><span>Followers</span></a>
 </li>
 
