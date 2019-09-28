@@ -4,10 +4,6 @@
     <a href="{!! route('users.index') !!}"><i class="fa fa-edit"></i><span>User</span></a>
 </li>
 
-<li class="{{ Request::is('profiles*') ? 'active' : '' }}">
-    <a href="{!! route('profiles.index') !!}"><i class="fa fa-edit"></i><span>Profile</span></a>
-</li>
-
 <li class="{{ Request::is('contacts*') ? 'active' : '' }}">
     <a href="{!! route('contacts.index') !!}"><i class="fa fa-edit"></i><span>Contacts</span></a>
 </li>

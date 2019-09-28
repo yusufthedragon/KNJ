@@ -17,8 +17,6 @@ Route::get('/', 'HomeController@index');
 
 Route::resource('users', 'UserController');
 
-Route::resource('profiles', 'ProfileController');
-
 Route::resource('contacts', 'ContactController');
 
 Route::resource('divisis', 'DivisiController');
