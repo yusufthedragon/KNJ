@@ -17,8 +17,6 @@ Route::get('/', 'HomeController@index');
 
 Route::resource('users', 'UserController');
 
-Route::resource('subjects', 'SubjectController');
-
 Route::resource('profiles', 'ProfileController');
 
 Route::resource('contacts', 'ContactController');
