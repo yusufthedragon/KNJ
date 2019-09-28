@@ -65,16 +65,14 @@ class DonasiDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'jenis',
             'nama',
             'bank',
+            'tanggal_transfer',
+            'bukti_transfer',
             'nominal',
-            'bukti',
-            'no_urut_solia',
-            'catatan',
-            'no_hp',
+            'no_telepon',
             'email',
-            'tanggal'
+            'catatan'
         ];
     }
 

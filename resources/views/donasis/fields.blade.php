@@ -1,9 +1,3 @@
-<!-- Jenis Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('jenis', 'Jenis:') !!}
-    {!! Form::select('jenis', ['Biasa' => 'Biasa', 'Amanah' => 'Amanah', 'Project' => 'Project'], null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Nama Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nama', 'Nama:') !!}
@@ -16,35 +10,38 @@
     {!! Form::text('bank', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Tanggal Transfer Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('tanggal_transfer', 'Tanggal Transfer:') !!}
+    {!! Form::date('tanggal_transfer', null, ['class' => 'form-control','id'=>'tanggal_transfer']) !!}
+</div>
+
+@section('scripts')
+    <script type="text/javascript">
+        $('#tanggal_transfer').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            useCurrent: false
+        })
+    </script>
+@endsection
+
+<!-- Bukti Transfer Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('bukti_transfer', 'Bukti Transfer:') !!}
+    {!! Form::file('bukti_transfer') !!}
+</div>
+<div class="clearfix"></div>
+
 <!-- Nominal Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nominal', 'Nominal:') !!}
     {!! Form::text('nominal', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Bukti Field -->
+<!-- No Telepon Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('bukti', 'Bukti:') !!}
-    {!! Form::file('bukti') !!}
-</div>
-<div class="clearfix"></div>
-
-<!-- No Urut Solia Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('no_urut_solia', 'No Urut Solia:') !!}
-    {!! Form::text('no_urut_solia', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Catatan Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('catatan', 'Catatan:') !!}
-    {!! Form::textarea('catatan', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- No Hp Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('no_hp', 'No Hp:') !!}
-    {!! Form::text('no_hp', null, ['class' => 'form-control']) !!}
+    {!! Form::label('no_telepon', 'No Telepon:') !!}
+    {!! Form::text('no_telepon', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Email Field -->
@@ -53,10 +50,10 @@
     {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Tanggal Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tanggal', 'Tanggal:') !!}
-    {!! Form::text('tanggal', null, ['class' => 'form-control']) !!}
+<!-- Catatan Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('catatan', 'Catatan:') !!}
+    {!! Form::textarea('catatan', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

@@ -8,16 +8,14 @@ use Faker\Generator as Faker;
 $factory->define(Donasi::class, function (Faker $faker) {
 
     return [
-        'jenis' => $faker->word,
-        'nama' => $faker->text,
-        'bank' => $faker->text,
+        'nama' => $faker->word,
+        'bank' => $faker->word,
+        'tanggal_transfer' => $faker->word,
+        'bukti_transfer' => $faker->text,
         'nominal' => $faker->word,
-        'bukti' => $faker->text,
-        'no_urut_solia' => $faker->randomDigitNotNull,
-        'catatan' => $faker->text,
-        'no_hp' => $faker->word,
+        'no_telepon' => $faker->word,
         'email' => $faker->word,
-        'tanggal' => $faker->word,
+        'catatan' => $faker->text,
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')
     ];

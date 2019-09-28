@@ -11,19 +11,8 @@
         "inIndex": false
     },
     {
-        "name": "jenis",
-        "dbType": "string,100",
-        "htmlType": "select,Biasa,Amanah,Project",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
         "name": "nama",
-        "dbType": "text",
+        "dbType": "string,255",
         "htmlType": "text",
         "validations": "required",
         "searchable": true,
@@ -34,8 +23,30 @@
     },
     {
         "name": "bank",
-        "dbType": "text",
+        "dbType": "string,255",
         "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "tanggal_transfer",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "bukti_transfer",
+        "dbType": "text",
+        "htmlType": "file",
         "validations": "required",
         "searchable": true,
         "fillable": true,
@@ -55,10 +66,10 @@
         "inIndex": true
     },
     {
-        "name": "bukti",
-        "dbType": "text",
-        "htmlType": "file",
-        "validations": "required|mimes:jpg,png,jpeg|max:2048",
+        "name": "no_telepon",
+        "dbType": "string,255",
+        "htmlType": "text",
+        "validations": "required",
         "searchable": true,
         "fillable": true,
         "primary": false,
@@ -66,8 +77,8 @@
         "inIndex": true
     },
     {
-        "name": "no_urut_solia",
-        "dbType": "integer,3",
+        "name": "email",
+        "dbType": "string,255",
         "htmlType": "text",
         "validations": "required",
         "searchable": true,
@@ -80,39 +91,6 @@
         "name": "catatan",
         "dbType": "text",
         "htmlType": "textarea",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "no_hp",
-        "dbType": "string,255",
-        "htmlType": "text",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "email",
-        "dbType": "string,255",
-        "htmlType": "text",
-        "validations": "required|unique:users,email",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "tanggal",
-        "dbType": "string,255",
-        "htmlType": "text",
         "validations": "required",
         "searchable": true,
         "fillable": true,

@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 /**
  * Class DonasiRepository
  * @package App\Repositories
- * @version September 24, 2019, 7:18 am UTC
+ * @version September 28, 2019, 3:38 pm WIB
 */
 
 class DonasiRepository extends BaseRepository
@@ -17,16 +17,14 @@ class DonasiRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'jenis',
         'nama',
         'bank',
+        'tanggal_transfer',
+        'bukti_transfer',
         'nominal',
-        'bukti',
-        'no_urut_solia',
-        'catatan',
-        'no_hp',
+        'no_telepon',
         'email',
-        'tanggal'
+        'catatan'
     ];
 
     /**

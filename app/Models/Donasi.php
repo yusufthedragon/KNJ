@@ -8,18 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Donasi
  * @package App\Models
- * @version September 24, 2019, 7:18 am UTC
+ * @version September 28, 2019, 3:38 pm WIB
  *
- * @property string jenis
  * @property string nama
  * @property string bank
+ * @property string tanggal_transfer
+ * @property string bukti_transfer
  * @property integer nominal
- * @property string bukti
- * @property integer no_urut_solia
- * @property string catatan
- * @property string no_hp
+ * @property string no_telepon
  * @property string email
- * @property string tanggal
+ * @property string catatan
  */
 class Donasi extends Model
 {
@@ -32,16 +30,14 @@ class Donasi extends Model
 
 
     public $fillable = [
-        'jenis',
         'nama',
         'bank',
+        'tanggal_transfer',
+        'bukti_transfer',
         'nominal',
-        'bukti',
-        'no_urut_solia',
-        'catatan',
-        'no_hp',
+        'no_telepon',
         'email',
-        'tanggal'
+        'catatan'
     ];
 
     /**
@@ -51,16 +47,14 @@ class Donasi extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'jenis' => 'string',
         'nama' => 'string',
         'bank' => 'string',
+        'tanggal_transfer' => 'date',
+        'bukti_transfer' => 'string',
         'nominal' => 'integer',
-        'bukti' => 'string',
-        'no_urut_solia' => 'integer',
-        'catatan' => 'string',
-        'no_hp' => 'string',
+        'no_telepon' => 'string',
         'email' => 'string',
-        'tanggal' => 'string'
+        'catatan' => 'string'
     ];
 
     /**
@@ -69,15 +63,14 @@ class Donasi extends Model
      * @var array
      */
     public static $rules = [
-        'jenis' => 'required',
         'nama' => 'required',
         'bank' => 'required',
+        'tanggal_transfer' => 'required',
+        'bukti_transfer' => 'required',
         'nominal' => 'required',
-        'bukti' => 'required|mimes:jpg,png,jpeg|max:2048',
-        'no_urut_solia' => 'required',
-        'catatan' => 'required',
-        'email' => 'required|unique:users,email',
-        'tanggal' => 'required'
+        'no_telepon' => 'required',
+        'email' => 'required',
+        'catatan' => 'required'
     ];
 
     

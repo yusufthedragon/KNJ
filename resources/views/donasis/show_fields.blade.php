@@ -4,12 +4,6 @@
     <p>{!! $donasi->id !!}</p>
 </div>
 
-<!-- Jenis Field -->
-<div class="form-group">
-    {!! Form::label('jenis', 'Jenis:') !!}
-    <p>{!! $donasi->jenis !!}</p>
-</div>
-
 <!-- Nama Field -->
 <div class="form-group">
     {!! Form::label('nama', 'Nama:') !!}
@@ -22,34 +16,28 @@
     <p>{!! $donasi->bank !!}</p>
 </div>
 
+<!-- Tanggal Transfer Field -->
+<div class="form-group">
+    {!! Form::label('tanggal_transfer', 'Tanggal Transfer:') !!}
+    <p>{!! $donasi->tanggal_transfer !!}</p>
+</div>
+
+<!-- Bukti Transfer Field -->
+<div class="form-group">
+    {!! Form::label('bukti_transfer', 'Bukti Transfer:') !!}
+    <p>{!! $donasi->bukti_transfer !!}</p>
+</div>
+
 <!-- Nominal Field -->
 <div class="form-group">
     {!! Form::label('nominal', 'Nominal:') !!}
     <p>{!! $donasi->nominal !!}</p>
 </div>
 
-<!-- Bukti Field -->
+<!-- No Telepon Field -->
 <div class="form-group">
-    {!! Form::label('bukti', 'Bukti:') !!}
-    <p>{!! $donasi->bukti !!}</p>
-</div>
-
-<!-- No Urut Solia Field -->
-<div class="form-group">
-    {!! Form::label('no_urut_solia', 'No Urut Solia:') !!}
-    <p>{!! $donasi->no_urut_solia !!}</p>
-</div>
-
-<!-- Catatan Field -->
-<div class="form-group">
-    {!! Form::label('catatan', 'Catatan:') !!}
-    <p>{!! $donasi->catatan !!}</p>
-</div>
-
-<!-- No Hp Field -->
-<div class="form-group">
-    {!! Form::label('no_hp', 'No Hp:') !!}
-    <p>{!! $donasi->no_hp !!}</p>
+    {!! Form::label('no_telepon', 'No Telepon:') !!}
+    <p>{!! $donasi->no_telepon !!}</p>
 </div>
 
 <!-- Email Field -->
@@ -58,10 +46,10 @@
     <p>{!! $donasi->email !!}</p>
 </div>
 
-<!-- Tanggal Field -->
+<!-- Catatan Field -->
 <div class="form-group">
-    {!! Form::label('tanggal', 'Tanggal:') !!}
-    <p>{!! $donasi->tanggal !!}</p>
+    {!! Form::label('catatan', 'Catatan:') !!}
+    <p>{!! $donasi->catatan !!}</p>
 </div>
 
 <!-- Created At Field -->

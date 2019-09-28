@@ -15,16 +15,19 @@ class CreateDonasisTable extends Migration
     {
         Schema::create('donasis', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('jenis', 100);
-            $table->text('nama');
-            $table->text('bank');
+            $table->string('nama', 255);
+            $table->string('bank', 255);
+            $table->date('tanggal_transfer');
+            $table->text('bukti_transfer');
             $table->biginteger('nominal');
-            $table->text('bukti');
-            $table->string('no_urut_solia', 3);
-            $table->text('catatan');
-            $table->string('no_hp', 255);
+            $table->integer('jenis_donasi');
+            $table->string('no_telepon', 255);
             $table->string('email', 255);
-            $table->string('tanggal', 255);
+            $table->text('catatan');
+            $table->text('daftar_solia');
+            $table->integer('project_id');
+            $table->text('nama_project');
+            $table->integer('status_persetujuan');
             $table->timestamps();
             $table->softDeletes();
         });
