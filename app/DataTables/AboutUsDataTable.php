@@ -18,7 +18,7 @@ class AboutUsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'aboutuses.datatables_actions')
+        return $dataTable->addColumn('action', 'about_us.datatables_actions')
         ->editColumn('gambar', function ($aboutUs) {
             return '<a href="'.asset('about_us/gambar/'.$aboutUs->gambar).'" target="_blank"><img width="50" height="50" src="'.asset('about_us/gambar/'.$aboutUs->gambar).'"></a>';
         })->rawColumns(['gambar', 'action']);
@@ -81,6 +81,6 @@ class AboutUsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'aboutusesdatatable_' . time();
+        return 'about_usdatatable_' . time();
     }
 }

@@ -10,8 +10,8 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
-                    @include('aboutuses.show_fields')
-                    <a href="{!! route('aboutuses.index') !!}" class="btn btn-default">Back</a>
+                    @include('about_us.show_fields')
+                    <a href="{!! route('about-us.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

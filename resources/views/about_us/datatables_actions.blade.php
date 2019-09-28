@@ -1,9 +1,9 @@
-{!! Form::open(['route' => ['aboutuses.destroy', $id], 'method' => 'delete']) !!}
+{!! Form::open(['route' => ['about-us.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('aboutuses.show', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('about-us.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
-    <a href="{{ route('aboutuses.edit', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('about-us.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>
     </a>
     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [

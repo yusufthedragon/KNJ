@@ -31,7 +31,7 @@ class AboutUsController extends AppBaseController
      */
     public function index(AboutUsDataTable $aboutUsDataTable)
     {
-        return $aboutUsDataTable->render('aboutuses.index');
+        return $aboutUsDataTable->render('about_us.index');
     }
 
     /**
@@ -41,7 +41,7 @@ class AboutUsController extends AppBaseController
      */
     public function create()
     {
-        return view('aboutuses.create');
+        return view('about_us.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class AboutUsController extends AppBaseController
 
         Flash::success('About Us saved successfully.');
 
-        return redirect(route('aboutuses.index'));
+        return redirect(route('about-us.index'));
     }
 
     /**
@@ -86,10 +86,10 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('aboutuses.index'));
+            return redirect(route('about-us.index'));
         }
 
-        return view('aboutuses.show')->with('aboutUs', $aboutUs);
+        return view('about_us.show')->with('aboutUs', $aboutUs);
     }
 
     /**
@@ -106,10 +106,10 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('aboutuses.index'));
+            return redirect(route('about-us.index'));
         }
 
-        return view('aboutuses.edit')->with('aboutUs', $aboutUs);
+        return view('about_us.edit')->with('aboutUs', $aboutUs);
     }
 
     /**
@@ -127,7 +127,7 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('aboutuses.index'));
+            return redirect(route('about-us.index'));
         }
 
         $input = $request->all();
@@ -145,7 +145,7 @@ class AboutUsController extends AppBaseController
 
         Flash::success('About Us updated successfully.');
 
-        return redirect(route('aboutuses.index'));
+        return redirect(route('about-us.index'));
     }
 
     /**
@@ -162,13 +162,13 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('aboutuses.index'));
+            return redirect(route('about-us.index'));
         }
 
         $this->aboutUsRepository->delete($id);
 
         Flash::success('About Us deleted successfully.');
 
-        return redirect(route('aboutuses.index'));
+        return redirect(route('about-us.index'));
     }
 }

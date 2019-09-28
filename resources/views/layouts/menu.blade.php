@@ -23,8 +23,8 @@
     <a href="{!! route('projects.index') !!}"><i class="fa fa-edit"></i><span>Projects</span></a>
 </li>
 
-<li class="{{ Request::is('aboutuses*') ? 'active' : '' }}">
-    <a href="{!! route('aboutuses.index') !!}"><i class="fa fa-edit"></i><span>Aboutuses</span></a>
+<li class="{{ Request::is('about-us*') ? 'active' : '' }}">
+    <a href="{!! route('about-us.index') !!}"><i class="fa fa-edit"></i><span>About Us</span></a>
 </li>
 
 <li class="{{ Request::is('kepengurusans*') ? 'active' : '' }}">
