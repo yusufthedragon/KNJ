@@ -29,7 +29,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('role', 'admin');
     }
 
     /**
@@ -65,7 +65,7 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name',
+            'nama',
             'email'
         ];
     }

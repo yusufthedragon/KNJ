@@ -1,7 +1,7 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+    {!! Form::label('nama', 'Nama:') !!}
+    {!! Form::text('nama', null, ['placeholder' => 'Nama', 'class' => 'form-control']) !!}
 </div>
 
 <!-- Email Field -->

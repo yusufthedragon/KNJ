@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Followers;
+use App\Models\User;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -24,12 +24,12 @@ class FollowersDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Followers $model
+     * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Followers $model)
+    public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('role', 'followers');
     }
 
     /**

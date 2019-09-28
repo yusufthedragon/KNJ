@@ -12,12 +12,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @version September 23, 2019, 6:00 am UTC
  *
- * @property string name
+ * @property string nama
  * @property string email
+ * @property string domisili
+ * @property string jenis_kelamin
+ * @property string no_telepon
  * @property string role
  * @property string|\Carbon\Carbon email_verified_at
  * @property string password
  * @property string remember_token
+ * @property string foto
+ * @property int divisi_id
+ * @property string nama_divisi
+ * @property string tanggal_lahir
+ * @property string alamat
  */
 class User extends Authenticatable
 {
@@ -31,12 +39,19 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'name',
+        'nama',
         'email',
+        'domisili',
+        'jenis_kelamin',
+        'no_telepon',
         'role',
-        'password',
         'email_verified_at',
-        'password'
+        'password',
+        'foto',
+        'divisi_id',
+        'nama_divisi',
+        'tanggal_lahir',
+        'alamat'
     ];
 
     /**
@@ -46,10 +61,18 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'role_id' => 'string',
+        'nama' => 'string',
+        'role' => 'string',
         'email' => 'string',
-        'password' => 'string'
+        'password' => 'string',
+        'domisili' => 'string',
+        'jenis_kelamin' => 'string',
+        'no_telepon' => 'string',
+        'foto' => 'string',
+        'divisi_id' => 'integer',
+        'nama_divisi' => 'string',
+        'tanggal_lahir' => 'string',
+        'alamat' => 'string'
     ];
 
     public function setPasswordAttribute($password)

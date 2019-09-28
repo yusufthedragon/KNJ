@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Followers;
+use App\Models\User;
 use App\Repositories\BaseRepository;
 
 /**
@@ -46,6 +46,6 @@ class FollowersRepository extends BaseRepository
      **/
     public function model()
     {
-        return Followers::class;
+        return User::class;
     }
 }
