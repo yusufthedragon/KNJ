@@ -1,8 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
-/public/cover
-/public/gambar
+/public/artikel
+/public/project
 /storage/*.key
 /vendor
 /.idea
