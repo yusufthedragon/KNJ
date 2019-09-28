@@ -39,3 +39,7 @@
     <a href="{!! route('aboutuses.index') !!}"><i class="fa fa-edit"></i><span>Aboutuses</span></a>
 </li>
 
+<li class="{{ Request::is('kepengurusans*') ? 'active' : '' }}">
+    <a href="{!! route('kepengurusans.index') !!}"><i class="fa fa-edit"></i><span>Kepengurusans</span></a>
+</li>
+

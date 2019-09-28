@@ -34,3 +34,5 @@ Route::resource('divisis', 'DivisiController');
 Route::resource('projects', 'ProjectController');
 
 Route::resource('aboutuses', 'AboutUsController');
+
+Route::resource('kepengurusans', 'KepengurusanController');
