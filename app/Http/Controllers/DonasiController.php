@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\DonasiDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateDonasiRequest;
-use App\Http\Requests\UpdateDonasiRequest;
+use App\Models\Project;
 use App\Repositories\DonasiRepository;
+use Carbon\Carbon;
 use Flash;
-use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Response;
 
 class DonasiController extends AppBaseController
@@ -29,17 +30,7 @@ class DonasiController extends AppBaseController
      */
     public function index(DonasiDataTable $donasiDataTable)
     {
-        return $donasiDataTable->render('donasis.index');
-    }
-
-    /**
-     * Show the form for creating a new Donasi.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('donasis.create');
+        return $donasiDataTable->render('donasi.index');
     }
 
     /**
@@ -53,11 +44,45 @@ class DonasiController extends AppBaseController
     {
         $input = $request->all();
 
+        $bukti = $request->file('bukti_transfer');
+        $buktiName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $bukti->getClientOriginalExtension();
+
+        if (! File::isDirectory(public_path('donasi/bukti'))) {
+            File::makeDirectory(public_path('donasi/bukti'), 0755, true);
+        }
+
+        $request->file('bukti_transfer')->move(public_path('donasi/bukti'), $buktiName);
+
+        $input['bukti_transfer'] = $buktiName;
+        $input['tanggal_transfer'] = Carbon::parse($request->tanggal_transfer)->format('Y-m-d');
+        $input['nominal'] = str_replace(',', '', $request->nominal);
+
+        if ($request->jenis_donasi == 'Project') {
+            $project = Project::find($request->project_id);
+            $input['nama_project'] = $project->judul;
+        } elseif ($request->jenis_donasi == 'Amanah') {
+            $daftar_solia = array();
+
+            foreach ($request->nomor_solia as $key => $solia) {
+                $daftar_solia[$key] = [
+                    'nominal' => $request->nominal_solia[$key],
+                    'nomor' => $request->nomor_solia[$key]
+                ];
+            }
+            
+            $input['daftar_solia'] = json_encode($daftar_solia);
+        }
+
         $donasi = $this->donasiRepository->create($input);
+        $donatur = $this->donasiRepository->createDonatur($input);
+
+        $donasi->update([
+            'user_id' => $donatur->id
+        ]);
 
         Flash::success('Donasi saved successfully.');
 
-        return redirect(route('donasis.index'));
+        return redirect(route('thanks.page'));
     }
 
     /**
@@ -71,81 +96,33 @@ class DonasiController extends AppBaseController
     {
         $donasi = $this->donasiRepository->find($id);
 
-        if (empty($donasi)) {
+        if (empty($donasi) || $donasi->status_persetujuan != 0) {
             Flash::error('Donasi not found');
 
-            return redirect(route('donasis.index'));
+            return redirect(route('donasi.index'));
         }
 
-        return view('donasis.show')->with('donasi', $donasi);
+        return view('donasi.show')->with('donasi', $donasi);
     }
 
-    /**
-     * Show the form for editing the specified Donasi.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
+    public function approvingDonasi(Request $request, $id)
     {
+        $this->validate($request, [
+            'status' => 'required|in:-1,1'
+        ]);
+
         $donasi = $this->donasiRepository->find($id);
 
         if (empty($donasi)) {
             Flash::error('Donasi not found');
 
-            return redirect(route('donasis.index'));
+            return redirect(route('donasi.index'));
         }
 
-        return view('donasis.edit')->with('donasi', $donasi);
-    }
+        $update['status_persetujuan'] = $request->status;
 
-    /**
-     * Update the specified Donasi in storage.
-     *
-     * @param  int              $id
-     * @param UpdateDonasiRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateDonasiRequest $request)
-    {
-        $donasi = $this->donasiRepository->find($id);
+        $donasi = $this->donasiRepository->update($update, $id);
 
-        if (empty($donasi)) {
-            Flash::error('Donasi not found');
-
-            return redirect(route('donasis.index'));
-        }
-
-        $donasi = $this->donasiRepository->update($request->all(), $id);
-
-        Flash::success('Donasi updated successfully.');
-
-        return redirect(route('donasis.index'));
-    }
-
-    /**
-     * Remove the specified Donasi from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        $donasi = $this->donasiRepository->find($id);
-
-        if (empty($donasi)) {
-            Flash::error('Donasi not found');
-
-            return redirect(route('donasis.index'));
-        }
-
-        $this->donasiRepository->delete($id);
-
-        Flash::success('Donasi deleted successfully.');
-
-        return redirect(route('donasis.index'));
+        return redirect(route('donasi.index'));
     }
 }

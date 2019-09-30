@@ -28,8 +28,8 @@
     <a href="{!! route('followers.index') !!}"><i class="fa fa-edit"></i><span>Followers</span></a>
 </li>
 
-<li class="{{ Request::is('donasis*') ? 'active' : '' }}">
-    <a href="{!! route('donasis.index') !!}"><i class="fa fa-edit"></i><span>Donasis</span></a>
+<li class="{{ Request::is('donasi*') ? 'active' : '' }}">
+    <a href="{!! route('donasi.index') !!}"><i class="fa fa-edit"></i><span>Donasi</span></a>
 </li>
 
 <li class="{{ Request::is('artikels*') ? 'active' : '' }}">

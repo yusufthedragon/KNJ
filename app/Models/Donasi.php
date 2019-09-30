@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version September 28, 2019, 3:38 pm WIB
  *
  * @property string nama
+ * @property string jenis_donasi
  * @property string bank
  * @property string tanggal_transfer
  * @property string bukti_transfer
@@ -24,20 +25,24 @@ class Donasi extends Model
     use SoftDeletes;
 
     public $table = 'donasis';
-    
 
     protected $dates = ['deleted_at'];
 
-
     public $fillable = [
         'nama',
+        'jenis_donasi',
         'bank',
         'tanggal_transfer',
         'bukti_transfer',
         'nominal',
         'no_telepon',
         'email',
-        'catatan'
+        'user_id',
+        'catatan',
+        'daftar_solia',
+        'project_id',
+        'nama_project',
+        'status_persetujuan'
     ];
 
     /**
@@ -47,6 +52,7 @@ class Donasi extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'jenis_donasi' => 'string',
         'nama' => 'string',
         'bank' => 'string',
         'tanggal_transfer' => 'date',
@@ -54,24 +60,11 @@ class Donasi extends Model
         'nominal' => 'integer',
         'no_telepon' => 'string',
         'email' => 'string',
-        'catatan' => 'string'
+        'user_id' => 'integer',
+        'catatan' => 'string',
+        'daftar_solia' => 'string',
+        'project_id' => 'integer',
+        'nama_project' => 'string',
+        'status_persetujuan' => 'integer'
     ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'nama' => 'required',
-        'bank' => 'required',
-        'tanggal_transfer' => 'required',
-        'bukti_transfer' => 'required',
-        'nominal' => 'required',
-        'no_telepon' => 'required',
-        'email' => 'required',
-        'catatan' => 'required'
-    ];
-
-    
 }

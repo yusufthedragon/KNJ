@@ -5,6 +5,8 @@
 /public/project
 /public/about_us
 /public/kepengurusan
+/public/donasi
+/public/followers
 /storage/*.key
 /vendor
 /.idea

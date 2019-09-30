@@ -18,7 +18,31 @@ class DonasiDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'donasis.datatables_actions');
+        return $dataTable->addColumn('action', function($donasi) {
+            if ($donasi->status_persetujuan == 0) {
+                return '<div class="btn-group">'.
+                            '<a href="'.route('donasi.show', $donasi->id).'" class="btn btn-default btn-xs">'.
+                                '<i class="glyphicon glyphicon-eye-open"></i>'.
+                            '</a>'.
+                        '</div>';
+            } else {
+                return '';
+            }
+        })->editColumn('status_persetujuan', function($donasi) {
+            if ($donasi->status_persetujuan == 0) {
+                return 'Butuh Persetujuan';
+            } elseif ($donasi->status_persetujuan == 1) {
+                return 'Disetujui';
+            } else {
+                return 'Ditolak';
+            }
+        })->editColumn('tanggal_transfer', function($donasi) {
+            return date('d-m-Y', strtotime($donasi->tanggal_transfer));
+        })->editColumn('nominal', function($donasi) {
+            return "Rp".number_format($donasi->nominal, 0, ',', ',');
+        })->editColumn('bukti_transfer', function ($donasi) {
+            return '<a href="'.asset('donasi/bukti/'.$donasi->bukti_transfer).'" target="_blank"><img width="50" height="50" src="'.asset('donasi/bukti/'.$donasi->bukti_transfer).'"></a>';
+        })->rawColumns(['bukti_transfer', 'action']);
     }
 
     /**
@@ -29,7 +53,7 @@ class DonasiDataTable extends DataTable
      */
     public function query(Donasi $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderBy('created_at', 'DESC');
     }
 
     /**
@@ -48,7 +72,6 @@ class DonasiDataTable extends DataTable
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 'buttons'   => [
-                    ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -66,13 +89,12 @@ class DonasiDataTable extends DataTable
     {
         return [
             'nama',
-            'bank',
+            'email',
+            'jenis_donasi',
             'tanggal_transfer',
             'bukti_transfer',
             'nominal',
-            'no_telepon',
-            'email',
-            'catatan'
+            'status_persetujuan'
         ];
     }
 
@@ -83,6 +105,6 @@ class DonasiDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'donasisdatatable_' . time();
+        return 'donasidatatable_' . time();
     }
 }

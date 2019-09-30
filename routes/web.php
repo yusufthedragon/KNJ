@@ -11,24 +11,47 @@
 |
 */
 
-Auth::routes();
+Route::group(['prefix' => 'admin'], function () {
+    Auth::routes();
 
-Route::get('/', 'HomeController@index');
+    Route::group(['middleware' => ['auth', 'admin']], function () {
+        Route::get('/', 'HomeController@index');
 
-Route::resource('users', 'UserController');
+        Route::resource('users', 'UserController');
 
-Route::resource('contacts', 'ContactController');
+        Route::resource('contacts', 'ContactController');
 
-Route::resource('divisis', 'DivisiController');
+        Route::resource('divisis', 'DivisiController');
 
-Route::resource('projects', 'ProjectController');
+        Route::resource('projects', 'ProjectController');
 
-Route::resource('about-us', 'AboutUsController');
+        Route::resource('about-us', 'AboutUsController');
 
-Route::resource('kepengurusans', 'KepengurusanController');
+        Route::resource('kepengurusans', 'KepengurusanController');
 
-Route::resource('followers', 'FollowersController');
+        Route::resource('followers', 'FollowersController');
 
-Route::resource('donasis', 'DonasiController');
+        Route::resource('artikels', 'ArtikelController');
 
-Route::resource('artikels', 'ArtikelController');
+        Route::resource('donasi', 'DonasiController');
+        Route::post('approving/{donasi_id}', 'DonasiController@approvingDonasi')->name('approving_donasi');
+    });
+});
+
+Route::get('/', 'PageController@index')->name('page');
+
+Route::post('/login', 'PageController@login')->name('login.page');
+
+Route::post('/register', 'PageController@register')->name('register.page');
+
+Route::get('/project/{project_id}', 'PageController@projectIndex')->name('project.page');
+
+Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
+
+Route::get('/profile', 'PageController@profileIndex')->name('profile.page');
+
+Route::post('/change-profile', 'PageController@changeProfileIndex')->name('change_profile.page');
+
+Route::get('/daftar-donasi', 'PageController@daftarDonasiIndex')->name('daftar_donasi.page');
+
+Route::get('/thanks', 'PageController@thanksIndex')->name('thanks.page');

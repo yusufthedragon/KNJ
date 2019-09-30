@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Donasi;
+use App\Models\User;
 use App\Repositories\BaseRepository;
 
 /**
@@ -43,5 +44,25 @@ class DonasiRepository extends BaseRepository
     public function model()
     {
         return Donasi::class;
+    }
+
+    /**
+     * Create new donatur
+     *
+     * @param  array  $data
+     */
+    public function createDonatur($data)
+    {
+        $check = User::where('email', $data['email'])->first();
+
+        if ($check === null) {
+            User::create([
+                'nama' => $data['nama'],
+                'email' => $data['email'],
+                'no_telepon' => $data['no_telepon'],
+                'role' => 'donatur',
+                'password' => ''
+            ]);
+        }
     }
 }

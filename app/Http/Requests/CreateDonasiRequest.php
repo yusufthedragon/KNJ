@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckDonasiProject;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Donasi;
 
 class CreateDonasiRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +24,15 @@ class CreateDonasiRequest extends FormRequest
      */
     public function rules()
     {
-        return Donasi::$rules;
+        return [
+            'nama' => 'required',
+            'email' => 'required',
+            'no_telepon' => 'required',
+            'tanggal_transfer' => 'required',
+            'bank' => 'required',
+            'nominal' => 'required',
+            'bukti_transfer' => 'required|max:2048|mimes:jpg,png,jpeg',
+            'nama_project' => [new CheckDonasiProject($this->jenis)]
+        ];
     }
 }
