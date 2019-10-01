@@ -60,7 +60,7 @@ class PageController extends Controller
             if (Auth::user()->role == 'admin') {
                 Auth::logout();
 
-                return redirect()->back()->with('validation', 'alert("Admin Tidak Boleh Login.");');
+                return redirect()->back()->with('validation', 'alert("Admin Tidak Boleh Login Disini.");');
             }
 
             return redirect()->back()->with('validation', 'alert("Login Berhasil.");');

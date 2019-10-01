@@ -19,7 +19,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('users', 'UserController');
 
-        Route::resource('contacts', 'ContactController');
+        Route::resource('contact', 'ContactController');
 
         Route::resource('divisis', 'DivisiController');
 
@@ -38,22 +38,24 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::get('/', 'PageController@index')->name('page');
+Route::group(['middleware' => ['visitor']], function () {
+    Route::get('/', 'PageController@index')->name('page');
 
-Route::post('/login', 'PageController@login')->name('login.page');
+    Route::post('/login', 'PageController@login')->name('login.page');
 
-Route::post('/register', 'PageController@register')->name('register.page');
+    Route::post('/register', 'PageController@register')->name('register.page');
 
-Route::get('/project/{project_id}', 'PageController@projectIndex')->name('project.page');
+    Route::get('/project/{project_id}', 'PageController@projectIndex')->name('project.page');
 
-Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
+    Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
 
-Route::post('/donasi/store', 'DonasiController@store')->name('donasi.store');
+    Route::post('/donasi/store', 'DonasiController@store')->name('donasi.store');
 
-Route::get('/profile', 'PageController@profileIndex')->name('profile.page');
+    Route::get('/profile', 'PageController@profileIndex')->name('profile.page');
 
-Route::post('/change-profile', 'PageController@changeProfileIndex')->name('change_profile.page');
+    Route::post('/change-profile', 'PageController@changeProfileIndex')->name('change_profile.page');
 
-Route::get('/daftar-donasi', 'PageController@daftarDonasiIndex')->name('daftar_donasi.page');
+    Route::get('/daftar-donasi', 'PageController@daftarDonasiIndex')->name('daftar_donasi.page');
 
-Route::get('/thanks', 'PageController@thanksIndex')->name('thanks.page');
+    Route::get('/thanks', 'PageController@thanksIndex')->name('thanks.page');
+});

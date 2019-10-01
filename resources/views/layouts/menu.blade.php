@@ -4,8 +4,8 @@
     <a href="{!! route('users.index') !!}"><i class="fa fa-edit"></i><span>User</span></a>
 </li>
 
-<li class="{{ Request::is('contacts*') ? 'active' : '' }}">
-    <a href="{!! route('contacts.index') !!}"><i class="fa fa-edit"></i><span>Contacts</span></a>
+<li class="{{ Request::is('contact*') ? 'active' : '' }}">
+    <a href="{!! route('contact.index') !!}"><i class="fa fa-edit"></i><span>Contact</span></a>
 </li>
 
 <li class="{{ Request::is('divisis*') ? 'active' : '' }}">

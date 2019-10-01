@@ -18,7 +18,7 @@ class ContactDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'contacts.datatables_actions');
+        return $dataTable->addColumn('action', 'contact.datatables_actions');
     }
 
     /**
@@ -79,6 +79,6 @@ class ContactDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'contactsdatatable_' . time();
+        return 'contactdatatable_' . time();
     }
 }
