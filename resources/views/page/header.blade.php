@@ -18,6 +18,7 @@
     <link href="{{ asset('page/css/cslider.css') }}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="ico/favicon.png" />
 </head>
 
@@ -331,6 +332,7 @@
         <script src="{{ asset('page/js/inview.js') }}"></script>
         <script src="{{ asset('page/js/jquery.number.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="{{ asset('page/js/custom.js') }}"></script>
         <script>
             $(function () {
@@ -361,6 +363,12 @@
                 let form = $(this).data('form');
                 
                 $('#form-' + form).submit();
+            });
+
+            $(document).ready( function () {
+                $('.datatable').DataTable({
+                    "bLengthChange": false
+                });
             });
 
             function checkSubmit(e) {

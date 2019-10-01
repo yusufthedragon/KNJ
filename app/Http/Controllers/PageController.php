@@ -124,7 +124,7 @@ class PageController extends Controller
 
         Auth::login($user);
 
-        return redirect()->back()->with('validation', 'alert("Register Berhasil.");');
+        return redirect('/')->with('validation', 'alert("Register Berhasil.");');
     }
 
     public function profileIndex()
@@ -148,6 +148,7 @@ class PageController extends Controller
             $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
 
             $request->file('foto')->move(public_path('followers/foto'), $fotoName);
+            File::delete('followers/foto/' . auth()->user()->foto);
         } else {
             $fotoName = auth()->user()->foto;
         }
@@ -162,6 +163,8 @@ class PageController extends Controller
             'alamat' => $request->alamat,
             'password' => auth()->user()->password
         ]);
+
+        return redirect()->back()->with('validation', 'alert("Ubah Profile Berhasil.");');
     }
 
     public function daftarDonasiIndex()

@@ -32,111 +32,36 @@
             <div class="span8">
                 <form id="form-register" action="{{ route('change_profile.page') }}" method="post" role="form" class="contactForm" enctype='multipart/form-data'>
                     {{ csrf_field() }}
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="span4 form-group">
-                            <label for="nama">
-                                Nama Anda:
-                                @if ($errors->has('nama'))
-                                    <span style="color: red;">*{{ $errors->first('nama') }}</span>
-                                @endif
-                            </label>
-                            <input type="text" class="register" name="nama" placeholder="Nama Anda" value="{{ auth()->user()->nama }}" />
-                        </div>
-                        <div class="span4 form-group">
-                            <label for="email">
-                                E-mail Anda:
-                                @if ($errors->has('email'))
-                                    <span style="color: red;">*{{ $errors->first('email') }}</span>
-                                @endif
-                            </label>
-                            <input type="email" class="register" name="email" placeholder="E-mail Anda" value="{{ auth()->user()->email }}" />
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="span4 form-group">
-                            <label for="no_telepon">
-                                No. Telepon Anda:
-                                @if ($errors->has('no_telepon'))
-                                    <span style="color: red;">*{{ $errors->first('no_telepon') }}</span>
-                                @endif
-                            </label>
-                            <input type="text" class="register" name="no_telepon" placeholder="No. Telepon Anda" value="{{ auth()->user()->no_telepon }}" />
-                        </div>
-                        <div class="span4 form-group">
-                            <label for="tanggal_lahir">
-                                Tanggal Lahir:
-                                @if ($errors->has('tanggal_lahir'))
-                                    <span style="color: red;">*{{ $errors->first('tanggal_lahir') }}</span>
-                                @endif
-                            </label>
-                            <input type="text" class="datepicker register" name="tanggal_lahir" placeholder="Tanggal Lahir" value="{{ Carbon::parse(auth()->user()->tanggal_lahir)->format('d-m-Y') }}" readonly style="background-color:white;" />
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="span4 form-group">
-                            <label for="nominal">
-                                Jenis Kelamin:
-                                @if ($errors->has('jenis_kelamin'))
-                                    <span style="color: red;">*{{ $errors->first('jenis_kelamin') }}</span>
-                                @endif
-                            </label>
-                            <select name="jenis_kelamin" class="register" style="color: black;">
-                                <option value="Laki-Laki" style="color: black;" @if (auth()->user()->jenis_kelamin == "Laki-Laki") selected @endif>Laki-Laki</option>
-                                <option value="Perempuan" style="color: black;" @if (auth()->user()->jenis_kelamin == "Perempuan") selected @endif>Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="span4 form-group">
-                            <label for="domisili">
-                                Domisili:
-                                @if ($errors->has('domisili'))
-                                    <span style="color: red;">*{{ $errors->first('domisili') }}</span>
-                                @endif
-                            </label>
-                            <select name="domisili" class="register" style="color: black;">
-                                <option value="Jakarta Barat" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Barat") selected @endif>Jakarta Barat</option>
-                                <option value="Jakarta Selatan" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Selatan") selected @endif>Jakarta Selatan</option>
-                                <option value="Jakarta Timur" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Timur") selected @endif>Jakarta Timur</option>
-                                <option value="Jakarta Utara" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Utara") selected @endif>Jakarta Utara</option>
-                                <option value="Jakarta Pusat" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Pusat") selected @endif>Jakarta Pusat</option>
-                                <option value="Luar Jakarta" style="color: black;" @if (auth()->user()->jenis_kelamin == "Luar Jakarta") selected @endif>Luar Jakarta</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="span4 form-group">
-                            <label for="foto">
-                                Foto:
-                                @if ($errors->has('foto'))
-                                    <span style="color: red;">*{{ $errors->first('foto') }}</span>
-                                @endif
-                            </label>
-                            <a href="{{ asset('followers/foto/'.auth()->user()->foto) }}" target="_blank">
-                                <img src="{{ asset('followers/foto/'.auth()->user()->foto) }}" alt="Logo" height="80" width="80" />
-                            </a>
-                            <br>
-                            <input type="file" name="foto" placeholder="Foto" />
-                        </div>
-                        <div class="span4 form-group">
-                            <label for="alamat">Alamat:</label>
-                            <textarea name="alamat" class="register" rows="3" placeholder="Alamat">{{ auth()->user()->alamat }}</textarea>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-bottom: 0px;">
-                        <div class="span4 form-group">
-                            <label for="password">
-                                Password:
-                                @if ($errors->has('password'))
-                                <span style="color: red;">*{{ $errors->first('password') }}</span>
-                                @endif
-                            </label>
-                            <input type="password" class="register" name="password" placeholder="Password" />
-                        </div>
-                        <div class="span3 form-group">
-                            <div class="text-right">
-                                <button class="btn btn-theme btn-medium margintop10" type="submit">Save Changes</button>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-striped datatable">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Tanggal Transfer</th>
+                                <th>Nominal</th>
+                                <th>Bank</th>
+                                <th>Bukti Transfer</th>
+                                <th>Jenis Donasi</th>
+                                <th>Catatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (auth()->user()->donasi as $key => $donasi)
+                            <tr>
+                                <td>{{ ++$key }}.</td>
+                                <td>{{ Carbon::parse($donasi->tanggal_transfer)->format('d-m-Y') }}</td>
+                                <td>Rp{{ number_format($donasi->nominal, 0, ',', ',') }}</td>
+                                <td>{{ $donasi->bank }}</td>
+                                <td>
+                                    <a href="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
+                                        <img src="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" alt="Logo" height="80" width="80" />
+                                    </a>
+                                </td>
+                                <td>{{ $donasi->jenis_donasi }}</td>
+                                <td>{{ $donasi->catatan }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </form>
             </div>
         </div>

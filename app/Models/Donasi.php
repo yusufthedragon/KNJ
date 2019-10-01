@@ -67,4 +67,9 @@ class Donasi extends Model
         'nama_project' => 'string',
         'status_persetujuan' => 'integer'
     ];
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project', 'project_id');
+    }
 }

@@ -65,7 +65,7 @@ class DonasiController extends AppBaseController
 
             foreach ($request->nomor_solia as $key => $solia) {
                 $daftar_solia[$key] = [
-                    'nominal' => $request->nominal_solia[$key],
+                    'nominal' => str_replace(',', '', $request->nominal_solia[$key]),
                     'nomor' => $request->nomor_solia[$key]
                 ];
             }

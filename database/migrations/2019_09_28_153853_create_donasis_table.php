@@ -23,7 +23,7 @@ class CreateDonasisTable extends Migration
             $table->string('jenis_donasi', 20);
             $table->string('no_telepon', 255);
             $table->string('email', 255);
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->text('catatan')->nullable();
             $table->text('daftar_solia')->nullable();
             $table->integer('project_id')->nullable();

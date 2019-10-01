@@ -53,10 +53,10 @@ class DonasiRepository extends BaseRepository
      */
     public function createDonatur($data)
     {
-        $check = User::where('email', $data['email'])->first();
+        $user = User::where('email', $data['email'])->first();
 
-        if ($check === null) {
-            User::create([
+        if ($user === null) {
+            $user = User::create([
                 'nama' => $data['nama'],
                 'email' => $data['email'],
                 'no_telepon' => $data['no_telepon'],
@@ -64,5 +64,7 @@ class DonasiRepository extends BaseRepository
                 'password' => ''
             ]);
         }
+
+        return $user;
     }
 }

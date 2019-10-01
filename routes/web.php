@@ -33,7 +33,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('artikels', 'ArtikelController');
 
-        Route::resource('donasi', 'DonasiController');
+        Route::resource('donasi', 'DonasiController')->only(['index', 'show']);
         Route::post('approving/{donasi_id}', 'DonasiController@approvingDonasi')->name('approving_donasi');
     });
 });
@@ -47,6 +47,8 @@ Route::post('/register', 'PageController@register')->name('register.page');
 Route::get('/project/{project_id}', 'PageController@projectIndex')->name('project.page');
 
 Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
+
+Route::post('/donasi/store', 'DonasiController@store')->name('donasi.store');
 
 Route::get('/profile', 'PageController@profileIndex')->name('profile.page');
 

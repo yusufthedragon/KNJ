@@ -135,7 +135,7 @@
                                 <div class="offset2 span4 aligncenter">
                                     <div class="input-prepend">
                                         <span class="add-on" style="min-height: 26px; padding-top: 8px;">Nominal:</span>
-                                        <input type="text" name="nominal_solia[]" style="width: 200px;" placeholder="Nominal">
+                                        <input type="text" class="numbers" name="nominal_solia[]" style="width: 200px;" placeholder="Nominal">
                                     </div>
                                 </div>
                                 <div class="span4 aligncenter">
@@ -173,7 +173,7 @@
             html += `<div class="offset2 span4 aligncenter solia_${solia_id}">` +
                 `<div class="input-prepend">` +
                     `<span class="add-on" style="min-height: 26px; padding-top: 8px;">Nominal:</span>` +
-                    `<input type="text" name="nominal_solia[]" style="width: 200px;" placeholder="Nominal">` +
+                    `<input type="text" class="numbers" name="nominal_solia[]" style="width: 200px;" placeholder="Nominal">` +
                 `</div>` +
             `</div>` +
             `<div class="span4 aligncenter solia_${solia_id}">` +
@@ -188,6 +188,8 @@
 
             $('#solias').append(html);
             solia_id++;
+
+            $(".numbers").number(true, 0);
         });
 
         $(document).on('click', '.remove_solia', function() {

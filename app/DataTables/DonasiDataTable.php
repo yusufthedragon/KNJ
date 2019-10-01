@@ -53,7 +53,7 @@ class DonasiDataTable extends DataTable
      */
     public function query(Donasi $model)
     {
-        return $model->newQuery()->orderBy('created_at', 'DESC');
+        return $model->newQuery()->orderBy('tanggal_transfer', 'DESC');
     }
 
     /**

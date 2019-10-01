@@ -84,4 +84,9 @@ class User extends Authenticatable
     {
         $this->attributes['email_verified_at'] = date('Y-m-d', strtotime($email_verified_at));
     }
+
+    public function donasi()
+    {
+        return $this->hasMany('App\Models\Donasi', 'user_id');
+    }
 }

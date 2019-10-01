@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Donasi
+            Donasi {{ $donasi->jenis_donasi }}
         </h1>
     </section>
     <div class="content">
