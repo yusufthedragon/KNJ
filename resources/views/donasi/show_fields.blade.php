@@ -76,8 +76,8 @@
         <div class="form-group">
             {!! Form::label('bukti_transfer', 'Bukti Transfer:') !!}
             <br>
-            <a href="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
-                <img src="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" style="max-width: 500px; max-height: 250px;">
+            <a href="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
+                <img src="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" style="max-width: 500px; max-height: 250px;">
             </a>
         </div>
     </div>
@@ -102,8 +102,8 @@
         <div class="form-group">
             {!! Form::label('bukti_transfer', 'Bukti Transfer:') !!}
             <br>
-            <a href="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
-                <img src="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" style="max-width: 500px; max-height: 250px;">
+            <a href="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
+                <img src="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" style="max-width: 500px; max-height: 250px;">
             </a>
         </div>
     </div>
@@ -113,8 +113,8 @@
         <div class="form-group">
             {!! Form::label('bukti_transfer', 'Bukti Transfer:') !!}
             <br>
-            <a href="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
-                <img src="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" style="max-width: 500px; max-height: 250px;">
+            <a href="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
+                <img src="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" style="max-width: 500px; max-height: 250px;">
             </a>
         </div>
     </div>

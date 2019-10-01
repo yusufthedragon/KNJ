@@ -26,13 +26,13 @@
     <script>
         $(document).ready(function() {
             $("#gambar").fileinput({
-                'initialPreview': '{{ asset('about_us/gambar/'.$aboutUs->gambar) }}',
+                'initialPreview': '{{ asset('upload/about_us/gambar/'.$aboutUs->gambar) }}',
                 'initialPreviewAsData': true,
                 'initialPreviewConfig': {
                     'type': "image",
                     'filetype': "image/png",
                     'caption': "{{ $aboutUs->judul }}",
-                    'url': "{{ asset('about_us/gambar/'.$aboutUs->gambar) }}"
+                    'url': "{{ asset('upload/about_us/gambar/'.$aboutUs->gambar) }}"
                 },
                 'initialCaption': "{{ $aboutUs->judul }}",
                 'initialPreviewFileType': 'image',

@@ -58,18 +58,18 @@ class AboutUsController extends AppBaseController
         $cover = $request->file('gambar');
         $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
 
-        if (! File::isDirectory(public_path('about_us/gambar'))) {
-            File::makeDirectory(public_path('about_us/gambar'), 0755, true);
+        if (! File::isDirectory(public_path('upload/about_us/gambar'))) {
+            File::makeDirectory(public_path('upload/about_us/gambar'), 0755, true);
         }
 
-        $request->file('gambar')->move(public_path('about_us/gambar'), $coverName);
+        $request->file('gambar')->move(public_path('upload/about_us/gambar'), $coverName);
         $input['gambar'] = $coverName;
 
         $aboutUs = $this->aboutUsRepository->create($input);
 
         Flash::success('About Us saved successfully.');
 
-        return redirect(route('about-us.index'));
+        return redirect(route('about_us.index'));
     }
 
     /**
@@ -86,7 +86,7 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('about-us.index'));
+            return redirect(route('about_us.index'));
         }
 
         return view('about_us.show')->with('aboutUs', $aboutUs);
@@ -106,7 +106,7 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('about-us.index'));
+            return redirect(route('about_us.index'));
         }
 
         return view('about_us.edit')->with('aboutUs', $aboutUs);
@@ -127,7 +127,7 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('about-us.index'));
+            return redirect(route('about_us.index'));
         }
 
         $input = $request->all();
@@ -137,15 +137,15 @@ class AboutUsController extends AppBaseController
         if ($gambar !== null) {
             $gambarName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gambar->getClientOriginalExtension();
             $input['gambar'] = $gambarName;
-            $request->file('gambar')->move(public_path('about_us/gambar/'), $gambarName);
-            File::delete('about_us/gambar/' . $aboutUs->gambar);
+            $request->file('gambar')->move(public_path('upload/about_us/gambar/'), $gambarName);
+            File::delete('upload/about_us/gambar/' . $aboutUs->gambar);
         }
 
         $aboutUs = $this->aboutUsRepository->update($input, $id);
 
         Flash::success('About Us updated successfully.');
 
-        return redirect(route('about-us.index'));
+        return redirect(route('about_us.index'));
     }
 
     /**
@@ -162,13 +162,13 @@ class AboutUsController extends AppBaseController
         if (empty($aboutUs)) {
             Flash::error('About Us not found');
 
-            return redirect(route('about-us.index'));
+            return redirect(route('about_us.index'));
         }
 
         $this->aboutUsRepository->delete($id);
 
         Flash::success('About Us deleted successfully.');
 
-        return redirect(route('about-us.index'));
+        return redirect(route('about_us.index'));
     }
 }

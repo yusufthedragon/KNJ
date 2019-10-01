@@ -58,11 +58,11 @@ class KepengurusanController extends AppBaseController
         $foto = $request->file('foto');
         $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
 
-        if (! File::isDirectory(public_path('kepengurusan/foto'))) {
-            File::makeDirectory(public_path('kepengurusan/foto'), 0755, true);
+        if (! File::isDirectory(public_path('upload/kepengurusan/foto'))) {
+            File::makeDirectory(public_path('upload/kepengurusan/foto'), 0755, true);
         }
 
-        $request->file('foto')->move(public_path('kepengurusan/foto'), $fotoName);
+        $request->file('foto')->move(public_path('upload/kepengurusan/foto'), $fotoName);
         $input['foto'] = $fotoName;
 
         $kepengurusan = $this->kepengurusanRepository->create($input);
@@ -137,8 +137,8 @@ class KepengurusanController extends AppBaseController
         if ($foto !== null) {
             $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
             $input['foto'] = $fotoName;
-            $request->file('foto')->move(public_path('kepengurusan/foto'), $fotoName);
-            File::delete('kepengurusan/foto' . $kepengurusan->gambar);
+            $request->file('foto')->move(public_path('upload/kepengurusan/foto'), $fotoName);
+            File::delete('upload/kepengurusan/foto' . $kepengurusan->gambar);
         }
 
         $kepengurusan = $this->kepengurusanRepository->update($input, $id);

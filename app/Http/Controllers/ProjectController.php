@@ -59,11 +59,11 @@ class ProjectController extends AppBaseController
         $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
         $input['cover'] = $coverName;
 
-        if (! File::isDirectory(public_path('project/cover'))) {
-            File::makeDirectory(public_path('project/cover'), 0755, true);
+        if (! File::isDirectory(public_path('upload/project/cover'))) {
+            File::makeDirectory(public_path('upload/project/cover'), 0755, true);
         }
 
-        $request->file('cover')->move(public_path('project/cover'), $coverName);
+        $request->file('cover')->move(public_path('upload/project/cover'), $coverName);
 
         $project = $this->projectRepository->create($input);
 
@@ -137,8 +137,8 @@ class ProjectController extends AppBaseController
         if ($cover !== null) {
             $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
             $input['cover'] = $coverName;
-            $request->file('cover')->move(public_path('project/cover'), $coverName);
-            File::delete('project/cover/' . $project->cover);
+            $request->file('cover')->move(public_path('upload/project/cover'), $coverName);
+            File::delete('upload/project/cover/' . $project->cover);
         }
 
         $project = $this->projectRepository->update($input, $id);

@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('projects', 'ProjectController');
 
-        Route::resource('about-us', 'AboutUsController');
+        Route::resource('about_us', 'AboutUsController');
 
         Route::resource('kepengurusans', 'KepengurusanController');
 
@@ -50,6 +50,8 @@ Route::group(['middleware' => ['visitor']], function () {
     Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
 
     Route::post('/donasi/store', 'DonasiController@store')->name('donasi.store');
+
+    Route::get('/artikel', 'PageController@artikelIndex')->name('artikel.page');
 
     Route::get('/profile', 'PageController@profileIndex')->name('profile.page');
 

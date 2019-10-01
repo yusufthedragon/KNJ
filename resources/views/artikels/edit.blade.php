@@ -28,13 +28,13 @@
 
         $(document).ready(function() {
             $("#cover").fileinput({
-                'initialPreview': '{{ asset('artikel/cover/'.$artikel->cover) }}',
+                'initialPreview': '{{ asset('upload/artikel/cover/'.$artikel->cover) }}',
                 'initialPreviewAsData': true,
                 'initialPreviewConfig': {
                     'type': "image",
                     'filetype': "image/png",
                     'caption': "{{ $artikel->judul }}",
-                    'url': "{{ asset('artikel/cover/'.$artikel->cover) }}"
+                    'url': "{{ asset('upload/artikel/cover/'.$artikel->cover) }}"
                 },
                 'initialCaption': "{{ $artikel->judul }}",
                 'initialPreviewFileType': 'image',
@@ -55,13 +55,13 @@
 
             @foreach ($galleries as $key => $gallery)
                 $("#gallery_{{ $key }}").fileinput({
-                    'initialPreview': '{{ asset('artikel/gallery/'.$gallery) }}',
+                    'initialPreview': '{{ asset('upload/artikel/gallery/'.$gallery) }}',
                     'initialPreviewAsData': true,
                     'initialPreviewConfig': {
                         'type': "image",
                         'filetype': "image/png",
                         'caption': "{{ $artikel->judul }}",
-                        'url': "{{ asset('artikel/gallery/'.$gallery) }}"
+                        'url': "{{ asset('upload/artikel/gallery/'.$gallery) }}"
                     },
                     'initialCaption': "{{ $artikel->judul }}",
                     'initialPreviewFileType': 'image',

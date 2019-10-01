@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Models\Artikel;
 use App\Models\Kepengurusan;
 use App\Models\Project;
 use App\Models\User;
@@ -20,6 +21,7 @@ class PageController extends Controller
         $projects = Project::orderBy('created_at', 'DESC')->get();
         $about_uses = AboutUs::get();
         $kepengurusans = Kepengurusan::get();
+        $artikels = Artikel::orderBy('created_at', 'DESC')->take(3)->get();
 
         return view('page.index', get_defined_vars());
     }
@@ -38,6 +40,13 @@ class PageController extends Controller
         }
 
         return view('page.donasi', get_defined_vars());
+    }
+
+    public function artikelIndex(Request $request)
+    {
+        $artikels = Artikel::orderBy('created_at', 'DESC')->paginate(12);
+
+        return view('page.artikel', get_defined_vars());
     }
 
     public function thanksIndex()
@@ -89,11 +98,11 @@ class PageController extends Controller
         $foto = $request->file('foto');
         $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
 
-        if (! File::isDirectory(public_path('followers/foto'))) {
-            File::makeDirectory(public_path('followers/foto'), 0755, true);
+        if (! File::isDirectory(public_path('upload/followers/foto'))) {
+            File::makeDirectory(public_path('upload/followers/foto'), 0755, true);
         }
 
-        $request->file('foto')->move(public_path('followers/foto'), $fotoName);
+        $request->file('foto')->move(public_path('upload/followers/foto'), $fotoName);
 
         $user = User::where('email', $request->email)->first();
 
@@ -147,8 +156,8 @@ class PageController extends Controller
             $foto = $request->file('foto');
             $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
 
-            $request->file('foto')->move(public_path('followers/foto'), $fotoName);
-            File::delete('followers/foto/' . auth()->user()->foto);
+            $request->file('foto')->move(public_path('upload/followers/foto'), $fotoName);
+            File::delete('upload/followers/foto/' . auth()->user()->foto);
         } else {
             $fotoName = auth()->user()->foto;
         }

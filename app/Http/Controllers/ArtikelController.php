@@ -58,19 +58,19 @@ class ArtikelController extends AppBaseController
         $cover = $request->file('cover');
         $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
 
-        if (! File::isDirectory(public_path('artikel/cover'))) {
-            File::makeDirectory(public_path('artikel/cover'), 0755, true);
+        if (! File::isDirectory(public_path('upload/artikel/cover'))) {
+            File::makeDirectory(public_path('upload/artikel/cover'), 0755, true);
         }
 
-        $request->file('cover')->move(public_path('artikel/cover'), $coverName);
+        $request->file('cover')->move(public_path('upload/artikel/cover'), $coverName);
 
-        if (! File::isDirectory(public_path('artikel/gallery'))) {
-            File::makeDirectory(public_path('artikel/gallery'), 0755, true);
+        if (! File::isDirectory(public_path('upload/artikel/gallery'))) {
+            File::makeDirectory(public_path('upload/artikel/gallery'), 0755, true);
         }
 
         foreach ($input['gallery'] as $key => $gallery) {
             $galleryName[$key] = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gallery->getClientOriginalExtension();
-            $gallery->move(public_path('artikel/gallery'), $galleryName[$key]);
+            $gallery->move(public_path('upload/artikel/gallery'), $galleryName[$key]);
         }
 
         $input['cover'] = $coverName;
@@ -155,9 +155,9 @@ class ArtikelController extends AppBaseController
 
             $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();
 
-            $request->file('cover')->move(public_path('artikel/cover'), $coverName);
+            $request->file('cover')->move(public_path('upload/artikel/cover'), $coverName);
             $input['cover'] = $coverName;
-            File::delete('artikel/cover/' . $artikel->cover);
+            File::delete('upload/artikel/cover/' . $artikel->cover);
         }
 
         $galleries = explode('|', $artikel->gallery);
@@ -169,7 +169,7 @@ class ArtikelController extends AppBaseController
 
             foreach ($input['gallery'] as $key => $gallery) {
                 if (isset($galleries[$key])) {
-                    File::delete('artikel/gallery/' . $galleries[$key]);
+                    File::delete('upload/artikel/gallery/' . $galleries[$key]);
                 }
 
                 $galleryName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $gallery->getClientOriginalExtension();
@@ -180,7 +180,7 @@ class ArtikelController extends AppBaseController
 
         foreach ($input['delete_gallery'] as $key => $delete_gallery) {
             if ($delete_gallery == "true" && $key > 0) {
-                File::delete('artikel/gallery/' . $galleries[$key]);
+                File::delete('upload/artikel/gallery/' . $galleries[$key]);
                 unset($galleries[$key]);
             }
         }

@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="span6 aligncenter">
-                <img src="{{ asset('project/cover/'.$project->cover) }}" class="cover-project" />
+                <img src="{{ asset('upload/project/cover/'.$project->cover) }}" class="cover-project" />
             </div>
         </div>
     </div>

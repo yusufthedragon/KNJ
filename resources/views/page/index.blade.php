@@ -1,76 +1,38 @@
 @extends('page.header')
     @section('content')
     <section id="featured">
+        <div class="camera_wrap" id="camera-slide">
+            <!-- slide 1 here -->
+            @foreach ($artikels as $key => $artikel)
+                <div data-src="{{ asset('page/img/slides/camera/slide'.(random_int(1, 2)).'/img1'.'.jpg') }}">
+                    <div class="camera_caption fadeFromLeft">
+                        <div class="container">
+                            <div class="row">
+                                <div class="span6">
+                                    <h2 class="animated fadeInDown"><strong><span class="colored">{{ $artikel->judul }}</span></strong></h2>
+                                    @php
+                                        $count = strlen($artikel->deskripsi);
 
-      <!-- slideshow start here -->
-
-      <div class="camera_wrap" id="camera-slide">
-        <!-- slide 1 here -->
-        <div data-src="page/img/slides/camera/slide1/img1.jpg">
-          <div class="camera_caption fadeFromLeft">
-            <div class="container">
-              <div class="row">
-                <div class="span6">
-                  <h2 class="animated fadeInDown"><strong>Great template for <span class="colored">multi usage</span></strong></h2>
-                  <p class="animated fadeInUp"> Vim porro dicam reprehendunt te, populo quodsi dissentiet cum ad. Ne natum deseruisse vis. Iisque deseruisse sententiae mel ne, dolores appetere vim ut. Sea no tamquam reprimique.</p>
-                  <a href="#" class="btn btn-success btn-large animated fadeInUp">
-											<i class="icon-link"></i> Read more
-										</a>
-                  <a href="#" class="btn btn-theme btn-large animated fadeInUp">
-											<i class="icon-download"></i> Download
-										</a>
-                </div>
-                <div class="span6">
-                  <img src="page/img/slides/camera/slide1/screen.png" alt="" class="animated bounceInDown delay1" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- slide 2 here -->
-        <div data-src="page/img/slides/camera/slide2/img1.jpg">
-          <div class="camera_caption fadeFromLeft">
-            <div class="container">
-              <div class="row">
-                <div class="span6">
-                  <img src="page/img/slides/camera/slide2/iMac.png" alt="" />
-                </div>
-                <div class="span6">
-                  <h2 class="animated fadeInDown"><strong>Put your <span class="colored">Opt in form</span></strong></h2>
-                  <p class="animated fadeInUp"> Vim porro dicam reprehendunt te, populo quodsi dissentiet cum ad. Ne natum deseruisse vis. Iisque deseruisse sententiae mel ne, dolores appetere vim ut. Sea no tamquam reprimique.</p>
-                  <form>
-                    <div class="input-append">
-                      <input class="span3 input-large" type="text">
-                      <button class="btn btn-theme btn-large" type="submit">Subscribe</button>
+                                        if ($count > 180) {
+                                            $text = substr($artikel->deskripsi, 0, 180) . '...';
+                                        } else {
+                                            $text = $artikel->deskripsi;
+                                        }
+                                    @endphp
+                                    <p class="animated fadeInUp" style="text-align: justify;">{{ $text }}</p>
+                                    <a href="#" class="btn btn-success btn-large animated fadeInUp">
+                                        <i class="icon-link"></i> Read more
+                                    </a>
+                                </div>
+                                <div class="span6">
+                                    <img src="{{ asset('upload/artikel/cover/'.$artikel->cover) }}" style="width: 570px; height: 250px;" class="animated bounceInDown delay1" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </form>
                 </div>
-
-              </div>
-            </div>
-          </div>
+            @endforeach
         </div>
-
-        <!-- slide 3 here -->
-        <div data-src="page/img/slides/camera/slide2/img1.jpg">
-          <div class="camera_caption fadeFromLeft">
-            <div class="container">
-              <div class="row">
-                <div class="span12 aligncenter">
-                  <h2 class="animated fadeInDown"><strong><span class="colored">Responsive</span> and <span class="colored">cross broswer</span> compatibility</strong></h2>
-                  <p class="animated fadeInUp">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
-                  <img src="page/img/slides/camera/slide3/browsers.png" alt="" class="animated bounceInDown delay1" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- slideshow end here -->
-
     </section>
     <section id="content">
         <div class="container">
@@ -87,7 +49,7 @@
                         <div class="span6">
                             <div class="box @if ($key % 2 == 1) flyLeft @else flyRight @endif">
                                 <div class="icon">
-                                    <img src="{{ asset('about_us/gambar/'.$about_us->gambar) }}" class="gambar-about-us" />
+                                    <img src="{{ asset('upload/about_us/gambar/'.$about_us->gambar) }}" class="gambar-about-us" />
                                 </div>
                                 <div class="text about-us">
                                     <h4><strong>{{ $about_us->judul }}</strong></h4>
@@ -124,7 +86,7 @@
                             @foreach ($kepengurusans as $key => $kepengurusan)
                             <div class="item @if ($key == 0)active @endif">
                                 <div class="team-box thumbnail">
-                                    <img src="{{ asset('kepengurusan/foto/'.$kepengurusan->foto) }}" class="foto-kepengurusan" />
+                                    <img src="{{ asset('upload/kepengurusan/foto/'.$kepengurusan->foto) }}" class="foto-kepengurusan" />
                                     <div class="caption">
                                         <h5>{{ $kepengurusan->nama }}</h5>
                                         <p>
@@ -148,7 +110,7 @@
                     <div class="solidline"></div>
                 </div>
             </div>
-
+{{-- 
         <div class="row">
           <div class="span12">
             <div class="row">
@@ -317,12 +279,10 @@
             </ul>
 
           </div>
+        </div> --}}
+
         </div>
-
-      </div>
     </section>
-
-
     <section>
         <div class="container">
             <div class="row">
@@ -335,15 +295,15 @@
                             @php
                                 $count = strlen($project->deskripsi);
 
-                                if ($count > 180) {
-                                    $text = substr($project->deskripsi, 0, 180) . '...';
+                                if ($count > 200) {
+                                    $text = substr($project->deskripsi, 0, 200) . '...';
                                 } else {
                                     $text = $project->deskripsi;
                                 }
                             @endphp
                             <p style="text-align: justify;">{{ $text }}</p>
                             <a href="{{ route('project.page', $project->id) }}" class="btn btn-theme btn-large da-link">Read more</a>
-                            <div class="da-img"><img src="{{ asset('project/cover/'.$project->cover) }}" class="cover-project" /></div>
+                            <div class="da-img"><img src="{{ asset('upload/project/cover/'.$project->cover) }}" class="cover-project" /></div>
                         </div>
                         <nav class="da-arrows">
                             <span class="da-arrows-prev"></span>

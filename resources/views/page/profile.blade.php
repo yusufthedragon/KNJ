@@ -90,10 +90,10 @@
                                 @endif
                             </label>
                             <select name="domisili" class="register" style="color: black;">
-                                <option value="Jakarta Barat" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Barat") selected @endif>Jakarta Barat</option>
-                                <option value="Jakarta Selatan" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Selatan") selected @endif>Jakarta Selatan</option>
-                                <option value="Jakarta Timur" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Timur") selected @endif>Jakarta Timur</option>
                                 <option value="Jakarta Utara" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Utara") selected @endif>Jakarta Utara</option>
+                                <option value="Jakarta Timur" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Timur") selected @endif>Jakarta Timur</option>
+                                <option value="Jakarta Selatan" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Selatan") selected @endif>Jakarta Selatan</option>
+                                <option value="Jakarta Barat" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Barat") selected @endif>Jakarta Barat</option>
                                 <option value="Jakarta Pusat" style="color: black;" @if (auth()->user()->jenis_kelamin == "Jakarta Pusat") selected @endif>Jakarta Pusat</option>
                                 <option value="Luar Jakarta" style="color: black;" @if (auth()->user()->jenis_kelamin == "Luar Jakarta") selected @endif>Luar Jakarta</option>
                             </select>
@@ -107,8 +107,8 @@
                                     <span style="color: red;">*{{ $errors->first('foto') }}</span>
                                 @endif
                             </label>
-                            <a href="{{ asset('followers/foto/'.auth()->user()->foto) }}" target="_blank">
-                                <img src="{{ asset('followers/foto/'.auth()->user()->foto) }}" alt="Logo" height="80" width="80" />
+                            <a href="{{ asset('upload/followers/foto/'.auth()->user()->foto) }}" target="_blank">
+                                <img src="{{ asset('upload/followers/foto/'.auth()->user()->foto) }}" alt="Logo" height="80" width="80" />
                             </a>
                             <br>
                             <input type="file" name="foto" placeholder="Foto" />

@@ -26,13 +26,13 @@
     <script>
         $(document).ready(function() {
             $("#cover").fileinput({
-                'initialPreview': '{{ asset('project/cover/'.$project->cover) }}',
+                'initialPreview': '{{ asset('upload/project/cover/'.$project->cover) }}',
                 'initialPreviewAsData': true,
                 'initialPreviewConfig': {
                     'type': "image",
                     'filetype': "image/png",
                     'caption': "{{ $project->judul }}",
-                    'url': "{{ asset('project/cover/'.$project->cover) }}"
+                    'url': "{{ asset('upload/project/cover/'.$project->cover) }}"
                 },
                 'initialCaption': "{{ $project->judul }}",
                 'initialPreviewFileType': 'image',

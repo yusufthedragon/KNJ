@@ -52,8 +52,8 @@
                                 <td>Rp{{ number_format($donasi->nominal, 0, ',', ',') }}</td>
                                 <td>{{ $donasi->bank }}</td>
                                 <td>
-                                    <a href="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
-                                        <img src="{{ asset('donasi/bukti/'.$donasi->bukti_transfer) }}" alt="Logo" height="80" width="80" />
+                                    <a href="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" target="_blank">
+                                        <img src="{{ asset('upload/donasi/bukti/'.$donasi->bukti_transfer) }}" alt="Logo" height="80" width="80" />
                                     </a>
                                 </td>
                                 <td>{{ $donasi->jenis_donasi }}</td>

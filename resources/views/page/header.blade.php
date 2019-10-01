@@ -57,7 +57,7 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="icon-file-text-alt"></i> Artikel</a>
+                                            <a href="{{ route('artikel.page') }}"><i class="icon-file-text-alt"></i> Artikel</a>
                                         </li>
                                         @if (! auth()->check())
                                             <li>
@@ -86,7 +86,7 @@
         </header>
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" style="margin-bottom: 0px;">
                     <div class="col-lg-12">
                         @yield('content')
                         @php
@@ -265,10 +265,10 @@
                                                 @endif
                                             </label>
                                             <select name="domisili" class="register" style="color: black;">
-                                                <option value="Jakarta Barat" style="color: black;">Jakarta Barat</option>
-                                                <option value="Jakarta Selatan" style="color: black;">Jakarta Selatan</option>
-                                                <option value="Jakarta Timur" style="color: black;">Jakarta Timur</option>
                                                 <option value="Jakarta Utara" style="color: black;">Jakarta Utara</option>
+                                                <option value="Jakarta Timur" style="color: black;">Jakarta Timur</option>
+                                                <option value="Jakarta Selatan" style="color: black;">Jakarta Selatan</option>
+                                                <option value="Jakarta Barat" style="color: black;">Jakarta Barat</option>
                                                 <option value="Jakarta Pusat" style="color: black;">Jakarta Pusat</option>
                                                 <option value="Luar Jakarta" style="color: black;">Luar Jakarta</option>
                                             </select>

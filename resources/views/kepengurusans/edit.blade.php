@@ -26,13 +26,13 @@
     <script>
         $(document).ready(function() {
             $("#foto").fileinput({
-                'initialPreview': '{{ asset('kepengurusan/foto/'.$kepengurusan->foto) }}',
+                'initialPreview': '{{ asset('upload/kepengurusan/foto/'.$kepengurusan->foto) }}',
                 'initialPreviewAsData': true,
                 'initialPreviewConfig': {
                     'type': "image",
                     'filetype': "image/png",
                     'caption': "{{ $kepengurusan->nama }}",
-                    'url': "{{ asset('kepengurusan/foto/'.$kepengurusan->foto) }}"
+                    'url': "{{ asset('upload/kepengurusan/foto/'.$kepengurusan->foto) }}"
                 },
                 'initialCaption': "{{ $kepengurusan->nama }}",
                 'initialPreviewFileType': 'image',

@@ -47,11 +47,11 @@ class DonasiController extends AppBaseController
         $bukti = $request->file('bukti_transfer');
         $buktiName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $bukti->getClientOriginalExtension();
 
-        if (! File::isDirectory(public_path('donasi/bukti'))) {
-            File::makeDirectory(public_path('donasi/bukti'), 0755, true);
+        if (! File::isDirectory(public_path('upload/donasi/bukti'))) {
+            File::makeDirectory(public_path('upload/donasi/bukti'), 0755, true);
         }
 
-        $request->file('bukti_transfer')->move(public_path('donasi/bukti'), $buktiName);
+        $request->file('bukti_transfer')->move(public_path('upload/donasi/bukti'), $buktiName);
 
         $input['bukti_transfer'] = $buktiName;
         $input['tanggal_transfer'] = Carbon::parse($request->tanggal_transfer)->format('Y-m-d');

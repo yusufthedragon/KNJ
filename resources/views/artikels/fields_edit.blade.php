@@ -14,9 +14,10 @@
 <div class="form-group col-sm-6">
     {!! Form::label('wilayah', 'Wilayah:') !!}
     {!! Form::select('wilayah', [
-        'Jakarta Barat' => 'Jakarta Barat',
-        'Jakarta Selatan' => 'Jakarta Selatan',
+        'Jakarta Utara' => 'Jakarta Utara',
         'Jakarta Timur' => 'Jakarta Timur',
+        'Jakarta Selatan' => 'Jakarta Selatan',
+        'Jakarta Barat' => 'Jakarta Barat',
         'Jakarta Pusat' => 'Jakarta Pusat',
         'Luar Jakarta' => 'Luar Jakarta'
     ], null, ['class' => 'form-control']) !!}
