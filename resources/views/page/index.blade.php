@@ -20,7 +20,7 @@
                                         }
                                     @endphp
                                     <p class="animated fadeInUp" style="text-align: justify;">{{ $text }}</p>
-                                    <a href="#" class="btn btn-success btn-large animated fadeInUp">
+                                    <a href="{{ route('artikel_detail.page', Str::slug($artikel->judul)) }}" class="btn btn-success btn-large animated fadeInUp">
                                         <i class="icon-link"></i> Read more
                                     </a>
                                 </div>
@@ -302,7 +302,7 @@
                                 }
                             @endphp
                             <p style="text-align: justify;">{{ $text }}</p>
-                            <a href="{{ route('project.page', Str::slug($project->judul)) }}" class="btn btn-theme btn-large da-link">Read more</a>
+                            <a href="{{ route('project_detail.page', Str::slug($project->judul)) }}" class="btn btn-theme btn-large da-link">Read more</a>
                             <div class="da-img"><img src="{{ asset('upload/project/cover/'.$project->cover) }}" class="cover-project" /></div>
                         </div>
                         <nav class="da-arrows">

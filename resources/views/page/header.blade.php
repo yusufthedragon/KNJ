@@ -59,6 +59,9 @@
                                         <li>
                                             <a href="{{ route('artikel.page') }}"><i class="icon-file-text-alt"></i> Artikel</a>
                                         </li>
+                                        <li>
+                                            <a href="{{ route('project.page') }}"><i class="icon-file-text"></i> Project</a>
+                                        </li>
                                         @if (! auth()->check())
                                             <li>
                                                 <a href="#modal-login" role="button" class="login-button" data-toggle="modal"><i class="icon-key"></i> Login</a>

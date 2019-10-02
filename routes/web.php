@@ -45,7 +45,9 @@ Route::group(['middleware' => ['visitor']], function () {
 
     Route::post('/register', 'PageController@register')->name('register.page');
 
-    Route::get('/project/{slug}', 'PageController@projectIndex')->name('project.page');
+    Route::get('/project', 'PageController@projectIndex')->name('project.page');
+
+    Route::get('/project/{slug}', 'PageController@projectDetailIndex')->name('project_detail.page');
 
     Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
 

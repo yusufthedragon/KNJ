@@ -33,7 +33,7 @@
                         <section id="team">
                             <ul id="thumbs" class="team">
                                 @foreach ($artikels as $key => $artikel)
-                                    <li class="item-thumbs span3 {{ Str::slug($artikel->wilayah) }}" data-id="id-0" data-type="{{ Str::slug($artikel->wilayah) }}">
+                                    <li class="item-thumbs span3 {{ Str::slug($artikel->wilayah) }}" data-id="id-{{ $key }}" data-type="{{ Str::slug($artikel->wilayah) }}">
                                         <div class="team-box thumbnail">
                                             <img src="{{ asset('upload/artikel/cover/'.$artikel->cover) }}" style="height: 171px; width: 228px;" />
                                             <div class="caption">

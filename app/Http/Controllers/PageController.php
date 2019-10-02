@@ -18,7 +18,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $projects = Project::orderBy('created_at', 'DESC')->get();
+        $projects = Project::orderBy('created_at', 'DESC')->take(5)->get();
         $about_uses = AboutUs::get();
         $kepengurusans = Kepengurusan::get();
         $artikels = Artikel::orderBy('created_at', 'DESC')->take(3)->get();
@@ -26,12 +26,19 @@ class PageController extends Controller
         return view('page.index', get_defined_vars());
     }
 
-    public function projectIndex($slug)
+    public function projectIndex()
+    {
+        $projects = Project::orderBy('created_at', 'DESC')->paginate(12);
+
+        return view('page.project', get_defined_vars());
+    }
+
+    public function projectDetailIndex($slug)
     {
         $title = ucwords(str_replace('-', ' ', $slug));
         $project = Project::where('judul', $title)->firstOrFail();
 
-        return view('page.project', get_defined_vars());
+        return view('page.project_detail', get_defined_vars());
     }
 
     public function donasiIndex($jenis)
