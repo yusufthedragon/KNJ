@@ -302,7 +302,7 @@
                                 }
                             @endphp
                             <p style="text-align: justify;">{{ $text }}</p>
-                            <a href="{{ route('project.page', $project->id) }}" class="btn btn-theme btn-large da-link">Read more</a>
+                            <a href="{{ route('project.page', Str::slug($project->judul)) }}" class="btn btn-theme btn-large da-link">Read more</a>
                             <div class="da-img"><img src="{{ asset('upload/project/cover/'.$project->cover) }}" class="cover-project" /></div>
                         </div>
                         <nav class="da-arrows">

@@ -2949,8 +2949,8 @@ ul.the-icons {
 }
 
 .cover-project {
-    height: 253px; 
-    width: 405px;
+    height: 253px !important;
+    width: 405px !important;
 }
 
 .detail-project-button {
@@ -2979,7 +2979,8 @@ ul.the-icons {
 }
 
 .gambar-about-us {
-    width: 100px;
+    width: 100px !important;
+    height: 100px !important;
 }
 
 .box .text.about-us {

@@ -24,7 +24,7 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => 'required',
+            'judul' => 'required|unique:project,judul',
             'deskripsi' => 'required',
             'cover' => 'required|max:2048|mimes:jpg,png,jpeg',
             'kode_donasi' => 'max:100',

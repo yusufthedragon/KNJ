@@ -45,13 +45,15 @@ Route::group(['middleware' => ['visitor']], function () {
 
     Route::post('/register', 'PageController@register')->name('register.page');
 
-    Route::get('/project/{project_id}', 'PageController@projectIndex')->name('project.page');
+    Route::get('/project/{slug}', 'PageController@projectIndex')->name('project.page');
 
     Route::get('/donasi/{jenis}', 'PageController@donasiIndex')->name('donasi.page');
 
     Route::post('/donasi/store', 'DonasiController@store')->name('donasi.store');
 
     Route::get('/artikel', 'PageController@artikelIndex')->name('artikel.page');
+
+    Route::get('/artikel/{slug}', 'PageController@artikelDetail')->name('artikel_detail.page');
 
     Route::get('/profile', 'PageController@profileIndex')->name('profile.page');
 

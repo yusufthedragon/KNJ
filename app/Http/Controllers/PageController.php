@@ -26,9 +26,10 @@ class PageController extends Controller
         return view('page.index', get_defined_vars());
     }
 
-    public function projectIndex($project_id)
+    public function projectIndex($slug)
     {
-        $project = Project::findOrFail($project_id);
+        $title = ucwords(str_replace('-', ' ', $slug));
+        $project = Project::where('judul', $title)->firstOrFail();
 
         return view('page.project', get_defined_vars());
     }
@@ -42,11 +43,19 @@ class PageController extends Controller
         return view('page.donasi', get_defined_vars());
     }
 
-    public function artikelIndex(Request $request)
+    public function artikelIndex()
     {
         $artikels = Artikel::orderBy('created_at', 'DESC')->paginate(12);
 
         return view('page.artikel', get_defined_vars());
+    }
+
+    public function artikelDetail($slug)
+    {
+        $title = ucwords(str_replace('-', ' ', $slug));
+        $artikel = Artikel::where('judul', $title)->firstOrFail();
+
+        return view('page.artikel_detail', get_defined_vars());
     }
 
     public function thanksIndex()

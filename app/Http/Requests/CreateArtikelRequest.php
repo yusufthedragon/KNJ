@@ -24,7 +24,7 @@ class CreateArtikelRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => 'required',
+            'judul' => 'required|unique:artikels,judul',
             'deskripsi' => 'required',
             'wilayah' => 'required',
             'cover' => 'required|max:2048|mimes:jpg,png,jpeg',

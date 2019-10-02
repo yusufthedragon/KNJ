@@ -30,8 +30,8 @@
                     <div class="span6">
                         <div class="logo">
                             <a href="{{ url('/') }}" class="logo"><img src="{{ asset('page/img/logo.jpg') }}" alt="Logo" height="80" width="80" /></a>
-                            <h4 class="text-logo">KETIMBANG NGEMIS JAKARTA</h4>
-                            <h6 class="text-logo-2">Say No To Ngemis</h6>
+                            <h4 class="text-logo"><a href="{{ url('/') }}" style="color:inherit; text-decoration: none;">KETIMBANG NGEMIS JAKARTA</a></h4>
+                            <h6 class="text-logo-2"><a href="{{ url('/') }}" style="color:inherit; text-decoration: none;">Say No To Ngemis</a></h6>
                         </div>
                     </div>
                     <div class="span6">

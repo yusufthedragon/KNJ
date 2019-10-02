@@ -50,7 +50,7 @@
                                                 <p style="text-align: justify;">
                                                     {{ $text }}
                                                 </p>
-                                                <a href="#" class="btn btn-success btn-medium">
+                                                <a href="{{ route('artikel_detail.page', Str::slug($artikel->judul)) }}" class="btn btn-success btn-medium">
                                                     <i class="icon-link"></i> Read more
                                                 </a>
                                             </div>
