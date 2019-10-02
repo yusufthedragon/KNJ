@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'about-us.store', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'about_us.store', 'enctype' => 'multipart/form-data']) !!}
 
                         @include('about_us.fields')
 

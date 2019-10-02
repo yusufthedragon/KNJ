@@ -31,7 +31,7 @@ class KepengurusanController extends AppBaseController
      */
     public function index(KepengurusanDataTable $kepengurusanDataTable)
     {
-        return $kepengurusanDataTable->render('kepengurusans.index');
+        return $kepengurusanDataTable->render('kepengurusan.index');
     }
 
     /**
@@ -41,7 +41,7 @@ class KepengurusanController extends AppBaseController
      */
     public function create()
     {
-        return view('kepengurusans.create');
+        return view('kepengurusan.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class KepengurusanController extends AppBaseController
 
         Flash::success('Kepengurusan saved successfully.');
 
-        return redirect(route('kepengurusans.index'));
+        return redirect(route('kepengurusan.index'));
     }
 
     /**
@@ -86,10 +86,10 @@ class KepengurusanController extends AppBaseController
         if (empty($kepengurusan)) {
             Flash::error('Kepengurusan not found');
 
-            return redirect(route('kepengurusans.index'));
+            return redirect(route('kepengurusan.index'));
         }
 
-        return view('kepengurusans.show')->with('kepengurusan', $kepengurusan);
+        return view('kepengurusan.show')->with('kepengurusan', $kepengurusan);
     }
 
     /**
@@ -106,10 +106,10 @@ class KepengurusanController extends AppBaseController
         if (empty($kepengurusan)) {
             Flash::error('Kepengurusan not found');
 
-            return redirect(route('kepengurusans.index'));
+            return redirect(route('kepengurusan.index'));
         }
 
-        return view('kepengurusans.edit')->with('kepengurusan', $kepengurusan);
+        return view('kepengurusan.edit')->with('kepengurusan', $kepengurusan);
     }
 
     /**
@@ -127,7 +127,7 @@ class KepengurusanController extends AppBaseController
         if (empty($kepengurusan)) {
             Flash::error('Kepengurusan not found');
 
-            return redirect(route('kepengurusans.index'));
+            return redirect(route('kepengurusan.index'));
         }
 
         $input = $request->all();
@@ -145,7 +145,7 @@ class KepengurusanController extends AppBaseController
 
         Flash::success('Kepengurusan updated successfully.');
 
-        return redirect(route('kepengurusans.index'));
+        return redirect(route('kepengurusan.index'));
     }
 
     /**
@@ -162,13 +162,13 @@ class KepengurusanController extends AppBaseController
         if (empty($kepengurusan)) {
             Flash::error('Kepengurusan not found');
 
-            return redirect(route('kepengurusans.index'));
+            return redirect(route('kepengurusan.index'));
         }
 
         $this->kepengurusanRepository->delete($id);
 
         Flash::success('Kepengurusan deleted successfully.');
 
-        return redirect(route('kepengurusans.index'));
+        return redirect(route('kepengurusan.index'));
     }
 }

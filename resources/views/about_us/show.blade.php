@@ -11,7 +11,7 @@
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     @include('about_us.show_fields')
-                    <a href="{!! route('about-us.index') !!}" class="btn btn-default">Back</a>
+                    <a href="{!! route('about_us.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

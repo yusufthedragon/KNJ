@@ -29,7 +29,7 @@ class DivisiController extends AppBaseController
      */
     public function index(DivisiDataTable $divisiDataTable)
     {
-        return $divisiDataTable->render('divisis.index');
+        return $divisiDataTable->render('divisi.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class DivisiController extends AppBaseController
      */
     public function create()
     {
-        return view('divisis.create');
+        return view('divisi.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class DivisiController extends AppBaseController
 
         Flash::success('Divisi saved successfully.');
 
-        return redirect(route('divisis.index'));
+        return redirect(route('divisi.index'));
     }
 
     /**
@@ -74,10 +74,10 @@ class DivisiController extends AppBaseController
         if (empty($divisi)) {
             Flash::error('Divisi not found');
 
-            return redirect(route('divisis.index'));
+            return redirect(route('divisi.index'));
         }
 
-        return view('divisis.show')->with('divisi', $divisi);
+        return view('divisi.show')->with('divisi', $divisi);
     }
 
     /**
@@ -94,10 +94,10 @@ class DivisiController extends AppBaseController
         if (empty($divisi)) {
             Flash::error('Divisi not found');
 
-            return redirect(route('divisis.index'));
+            return redirect(route('divisi.index'));
         }
 
-        return view('divisis.edit')->with('divisi', $divisi);
+        return view('divisi.edit')->with('divisi', $divisi);
     }
 
     /**
@@ -115,14 +115,14 @@ class DivisiController extends AppBaseController
         if (empty($divisi)) {
             Flash::error('Divisi not found');
 
-            return redirect(route('divisis.index'));
+            return redirect(route('divisi.index'));
         }
 
         $divisi = $this->divisiRepository->update($request->all(), $id);
 
         Flash::success('Divisi updated successfully.');
 
-        return redirect(route('divisis.index'));
+        return redirect(route('divisi.index'));
     }
 
     /**
@@ -139,13 +139,13 @@ class DivisiController extends AppBaseController
         if (empty($divisi)) {
             Flash::error('Divisi not found');
 
-            return redirect(route('divisis.index'));
+            return redirect(route('divisi.index'));
         }
 
         $this->divisiRepository->delete($id);
 
         Flash::success('Divisi deleted successfully.');
 
-        return redirect(route('divisis.index'));
+        return redirect(route('divisi.index'));
     }
 }

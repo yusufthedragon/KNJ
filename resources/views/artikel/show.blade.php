@@ -3,20 +3,15 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Divisi
+            Artikel
         </h1>
     </section>
     <div class="content">
-        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
-
             <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'divisis.store']) !!}
-
-                        @include('divisis.fields')
-
-                    {!! Form::close() !!}
+                <div class="row" style="padding-left: 20px">
+                    @include('artikel.show_fields')
+                    <a href="{!! route('artikel.index') !!}" class="btn btn-default">Back</a>
                 </div>
             </div>
         </div>

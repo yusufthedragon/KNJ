@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($aboutUs, ['route' => ['about-us.update', $aboutUs->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
+                   {!! Form::model($aboutUs, ['route' => ['about_us.update', $aboutUs->id], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
                         @include('about_us.fields')
 

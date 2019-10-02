@@ -18,7 +18,7 @@ class KepengurusanDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'kepengurusans.datatables_actions')
+        return $dataTable->addColumn('action', 'kepengurusan.datatables_actions')
         ->editColumn('foto', function ($kepengurusan) {
             return '<a href="'.asset('kepengurusan/foto/'.$kepengurusan->foto).'" target="_blank"><img width="50" height="50" src="'.asset('kepengurusan/foto/'.$kepengurusan->foto).'"></a>';
         })->rawColumns(['foto', 'action']);
@@ -82,6 +82,6 @@ class KepengurusanDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'kepengurusansdatatable_' . time();
+        return 'kepengurusandatatable_' . time();
     }
 }

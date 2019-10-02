@@ -31,7 +31,7 @@ class ArtikelController extends AppBaseController
      */
     public function index(ArtikelDataTable $artikelDataTable)
     {
-        return $artikelDataTable->render('artikels.index');
+        return $artikelDataTable->render('artikel.index');
     }
 
     /**
@@ -41,7 +41,7 @@ class ArtikelController extends AppBaseController
      */
     public function create()
     {
-        return view('artikels.create');
+        return view('artikel.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class ArtikelController extends AppBaseController
 
         Flash::success('Artikel saved successfully.');
 
-        return redirect(route('artikels.index'));
+        return redirect(route('artikel.index'));
     }
 
     /**
@@ -98,10 +98,10 @@ class ArtikelController extends AppBaseController
         if (empty($artikel)) {
             Flash::error('Artikel not found');
 
-            return redirect(route('artikels.index'));
+            return redirect(route('artikel.index'));
         }
 
-        return view('artikels.show')->with('artikel', $artikel);
+        return view('artikel.show')->with('artikel', $artikel);
     }
 
     /**
@@ -118,12 +118,12 @@ class ArtikelController extends AppBaseController
         if (empty($artikel)) {
             Flash::error('Artikel not found');
 
-            return redirect(route('artikels.index'));
+            return redirect(route('artikel.index'));
         }
 
         $galleries = explode('|', $artikel->gallery);
 
-        return view('artikels.edit', get_defined_vars());
+        return view('artikel.edit', get_defined_vars());
     }
 
     /**
@@ -141,7 +141,7 @@ class ArtikelController extends AppBaseController
         if (empty($artikel)) {
             Flash::error('Artikel not found');
 
-            return redirect(route('artikels.index'));
+            return redirect(route('artikel.index'));
         }
 
         $input = $request->all();
@@ -192,7 +192,7 @@ class ArtikelController extends AppBaseController
 
         Flash::success('Artikel updated successfully.');
 
-        return redirect(route('artikels.index'));
+        return redirect(route('artikel.index'));
     }
 
     /**
@@ -209,13 +209,13 @@ class ArtikelController extends AppBaseController
         if (empty($artikel)) {
             Flash::error('Artikel not found');
 
-            return redirect(route('artikels.index'));
+            return redirect(route('artikel.index'));
         }
 
         $this->artikelRepository->delete($id);
 
         Flash::success('Artikel deleted successfully.');
 
-        return redirect(route('artikels.index'));
+        return redirect(route('artikel.index'));
     }
 }

@@ -31,7 +31,7 @@ class ProjectController extends AppBaseController
      */
     public function index(ProjectDataTable $projectDataTable)
     {
-        return $projectDataTable->render('projects.index');
+        return $projectDataTable->render('project.index');
     }
 
     /**
@@ -41,7 +41,7 @@ class ProjectController extends AppBaseController
      */
     public function create()
     {
-        return view('projects.create');
+        return view('project.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class ProjectController extends AppBaseController
 
         Flash::success('Project saved successfully.');
 
-        return redirect(route('projects.index'));
+        return redirect(route('project.index'));
     }
 
     /**
@@ -86,10 +86,10 @@ class ProjectController extends AppBaseController
         if (empty($project)) {
             Flash::error('Project not found');
 
-            return redirect(route('projects.index'));
+            return redirect(route('project.index'));
         }
 
-        return view('projects.show')->with('project', $project);
+        return view('project.show')->with('project', $project);
     }
 
     /**
@@ -106,10 +106,10 @@ class ProjectController extends AppBaseController
         if (empty($project)) {
             Flash::error('Project not found');
 
-            return redirect(route('projects.index'));
+            return redirect(route('project.index'));
         }
 
-        return view('projects.edit')->with('project', $project);
+        return view('project.edit')->with('project', $project);
     }
 
     /**
@@ -127,7 +127,7 @@ class ProjectController extends AppBaseController
         if (empty($project)) {
             Flash::error('Project not found');
 
-            return redirect(route('projects.index'));
+            return redirect(route('project.index'));
         }
 
         $input = $request->all();
@@ -145,7 +145,7 @@ class ProjectController extends AppBaseController
 
         Flash::success('Project updated successfully.');
 
-        return redirect(route('projects.index'));
+        return redirect(route('project.index'));
     }
 
     /**
@@ -162,13 +162,13 @@ class ProjectController extends AppBaseController
         if (empty($project)) {
             Flash::error('Project not found');
 
-            return redirect(route('projects.index'));
+            return redirect(route('project.index'));
         }
 
         $this->projectRepository->delete($id);
 
         Flash::success('Project deleted successfully.');
 
-        return redirect(route('projects.index'));
+        return redirect(route('project.index'));
     }
 }

@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($divisi, ['route' => ['divisis.update', $divisi->id], 'method' => 'patch']) !!}
+                   {!! Form::model($divisi, ['route' => ['divisi.update', $divisi->id], 'method' => 'patch']) !!}
 
-                        @include('divisis.fields')
+                        @include('divisi.fields')
 
                    {!! Form::close() !!}
                </div>

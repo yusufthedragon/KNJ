@@ -18,7 +18,7 @@ class DivisiDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'divisis.datatables_actions');
+        return $dataTable->addColumn('action', 'divisi.datatables_actions');
     }
 
     /**
@@ -76,6 +76,6 @@ class DivisiDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'divisisdatatable_' . time();
+        return 'divisidatatable_' . time();
     }
 }

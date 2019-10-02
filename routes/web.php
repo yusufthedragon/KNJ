@@ -21,17 +21,17 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('contact', 'ContactController');
 
-        Route::resource('divisis', 'DivisiController');
+        Route::resource('divisi', 'DivisiController');
 
-        Route::resource('projects', 'ProjectController');
+        Route::resource('project', 'ProjectController');
 
         Route::resource('about_us', 'AboutUsController');
 
-        Route::resource('kepengurusans', 'KepengurusanController');
+        Route::resource('kepengurusan', 'KepengurusanController');
 
         Route::resource('followers', 'FollowersController');
 
-        Route::resource('artikels', 'ArtikelController');
+        Route::resource('artikel', 'ArtikelController');
 
         Route::resource('donasi', 'DonasiController')->only(['index', 'show']);
         Route::post('approving/{donasi_id}', 'DonasiController@approvingDonasi')->name('approving_donasi');

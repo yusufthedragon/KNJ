@@ -8,20 +8,20 @@
     <a href="{!! route('contact.index') !!}"><i class="fa fa-edit"></i><span>Contact</span></a>
 </li>
 
-<li class="{{ Request::is('divisis*') ? 'active' : '' }}">
-    <a href="{!! route('divisis.index') !!}"><i class="fa fa-edit"></i><span>Divisis</span></a>
+<li class="{{ Request::is('divisi*') ? 'active' : '' }}">
+    <a href="{!! route('divisi.index') !!}"><i class="fa fa-edit"></i><span>Divisi</span></a>
 </li>
 
-<li class="{{ Request::is('projects*') ? 'active' : '' }}">
-    <a href="{!! route('projects.index') !!}"><i class="fa fa-edit"></i><span>Projects</span></a>
+<li class="{{ Request::is('project*') ? 'active' : '' }}">
+    <a href="{!! route('project.index') !!}"><i class="fa fa-edit"></i><span>Project</span></a>
 </li>
 
-<li class="{{ Request::is('about-us*') ? 'active' : '' }}">
-    <a href="{!! route('about-us.index') !!}"><i class="fa fa-edit"></i><span>About Us</span></a>
+<li class="{{ Request::is('about_us*') ? 'active' : '' }}">
+    <a href="{!! route('about_us.index') !!}"><i class="fa fa-edit"></i><span>About Us</span></a>
 </li>
 
-<li class="{{ Request::is('kepengurusans*') ? 'active' : '' }}">
-    <a href="{!! route('kepengurusans.index') !!}"><i class="fa fa-edit"></i><span>Kepengurusans</span></a>
+<li class="{{ Request::is('kepengurusan*') ? 'active' : '' }}">
+    <a href="{!! route('kepengurusan.index') !!}"><i class="fa fa-edit"></i><span>Kepengurusan</span></a>
 </li>
 
 <li class="{{ Request::is('followers*') ? 'active' : '' }}">
@@ -32,7 +32,7 @@
     <a href="{!! route('donasi.index') !!}"><i class="fa fa-edit"></i><span>Donasi</span></a>
 </li>
 
-<li class="{{ Request::is('artikels*') ? 'active' : '' }}">
-    <a href="{!! route('artikels.index') !!}"><i class="fa fa-edit"></i><span>Artikels</span></a>
+<li class="{{ Request::is('artikel*') ? 'active' : '' }}">
+    <a href="{!! route('artikel.index') !!}"><i class="fa fa-edit"></i><span>Artikel</span></a>
 </li>
 

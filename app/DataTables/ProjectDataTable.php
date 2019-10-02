@@ -18,7 +18,7 @@ class ProjectDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'projects.datatables_actions')
+        return $dataTable->addColumn('action', 'project.datatables_actions')
         ->editColumn('cover', function ($project) {
             return '<a href="'.asset('project/cover/'.$project->cover).'" target="_blank"><img width="50" height="50" src="'.asset('project/cover/'.$project->cover).'"></a>';
         })->rawColumns(['cover', 'action']);
@@ -84,6 +84,6 @@ class ProjectDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'projectsdatatable_' . time();
+        return 'projectdatatable_' . time();
     }
 }

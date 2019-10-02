@@ -18,7 +18,7 @@ class ArtikelDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'artikels.datatables_actions')
+        return $dataTable->addColumn('action', 'artikel.datatables_actions')
         ->editColumn('cover', function ($artikel) {
             return '<a href="'.asset('artikel/cover/'.$artikel->cover).'" target="_blank"><img width="50" height="50" src="'.asset('artikel/cover/'.$artikel->cover).'"></a>';
         })->rawColumns(['cover', 'action']);
@@ -82,6 +82,6 @@ class ArtikelDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'artikelsdatatable_' . time();
+        return 'artikeldatatable_' . time();
     }
 }
