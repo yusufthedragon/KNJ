@@ -20,7 +20,7 @@ class AboutUsDataTable extends DataTable
 
         return $dataTable->addColumn('action', 'about_us.datatables_actions')
         ->editColumn('gambar', function ($aboutUs) {
-            return '<a href="'.asset('about_us/gambar/'.$aboutUs->gambar).'" target="_blank"><img width="50" height="50" src="'.asset('about_us/gambar/'.$aboutUs->gambar).'"></a>';
+            return '<a href="'.asset('upload/about_us/gambar/'.$aboutUs->gambar).'" target="_blank"><img width="50" height="50" src="'.asset('upload/about_us/gambar/'.$aboutUs->gambar).'"></a>';
         })->rawColumns(['gambar', 'action']);
     }
 

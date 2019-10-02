@@ -20,7 +20,7 @@ class ArtikelDataTable extends DataTable
 
         return $dataTable->addColumn('action', 'artikel.datatables_actions')
         ->editColumn('cover', function ($artikel) {
-            return '<a href="'.asset('artikel/cover/'.$artikel->cover).'" target="_blank"><img width="50" height="50" src="'.asset('artikel/cover/'.$artikel->cover).'"></a>';
+            return '<a href="'.asset('upload/artikel/cover/'.$artikel->cover).'" target="_blank"><img width="50" height="50" src="'.asset('upload/artikel/cover/'.$artikel->cover).'"></a>';
         })->rawColumns(['cover', 'action']);
     }
 

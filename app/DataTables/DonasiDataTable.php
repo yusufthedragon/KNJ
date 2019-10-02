@@ -41,7 +41,7 @@ class DonasiDataTable extends DataTable
         })->editColumn('nominal', function($donasi) {
             return "Rp".number_format($donasi->nominal, 0, ',', ',');
         })->editColumn('bukti_transfer', function ($donasi) {
-            return '<a href="'.asset('donasi/bukti/'.$donasi->bukti_transfer).'" target="_blank"><img width="50" height="50" src="'.asset('donasi/bukti/'.$donasi->bukti_transfer).'"></a>';
+            return '<a href="'.asset('upload/donasi/bukti/'.$donasi->bukti_transfer).'" target="_blank"><img width="50" height="50" src="'.asset('upload/donasi/bukti/'.$donasi->bukti_transfer).'"></a>';
         })->rawColumns(['bukti_transfer', 'action']);
     }
 

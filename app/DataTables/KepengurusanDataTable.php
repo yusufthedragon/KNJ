@@ -20,7 +20,7 @@ class KepengurusanDataTable extends DataTable
 
         return $dataTable->addColumn('action', 'kepengurusan.datatables_actions')
         ->editColumn('foto', function ($kepengurusan) {
-            return '<a href="'.asset('kepengurusan/foto/'.$kepengurusan->foto).'" target="_blank"><img width="50" height="50" src="'.asset('kepengurusan/foto/'.$kepengurusan->foto).'"></a>';
+            return '<a href="'.asset('upload/kepengurusan/foto/'.$kepengurusan->foto).'" target="_blank"><img width="50" height="50" src="'.asset('upload/kepengurusan/foto/'.$kepengurusan->foto).'"></a>';
         })->rawColumns(['foto', 'action']);
     }
 

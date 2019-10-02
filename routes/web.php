@@ -29,7 +29,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::resource('kepengurusan', 'KepengurusanController');
 
-        Route::resource('followers', 'FollowersController');
+        Route::resource('followers', 'FollowersController')->only(['index', 'show']);
 
         Route::resource('artikel', 'ArtikelController');
 

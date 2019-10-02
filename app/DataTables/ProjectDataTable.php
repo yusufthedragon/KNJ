@@ -20,7 +20,7 @@ class ProjectDataTable extends DataTable
 
         return $dataTable->addColumn('action', 'project.datatables_actions')
         ->editColumn('cover', function ($project) {
-            return '<a href="'.asset('project/cover/'.$project->cover).'" target="_blank"><img width="50" height="50" src="'.asset('project/cover/'.$project->cover).'"></a>';
+            return '<a href="'.asset('upload/project/cover/'.$project->cover).'" target="_blank"><img width="50" height="50" src="'.asset('upload/project/cover/'.$project->cover).'"></a>';
         })->rawColumns(['cover', 'action']);
     }
 

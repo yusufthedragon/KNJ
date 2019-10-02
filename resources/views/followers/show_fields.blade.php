@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $followers->id !!}</p>
-</div>
-
 <!-- Nama Field -->
 <div class="form-group">
     {!! Form::label('nama', 'Nama:') !!}
@@ -24,7 +18,7 @@
 
 <!-- No Telepon Field -->
 <div class="form-group">
-    {!! Form::label('no_telepon', 'No Telepon:') !!}
+    {!! Form::label('no_telepon', 'No. Telepon:') !!}
     <p>{!! $followers->no_telepon !!}</p>
 </div>
 
@@ -34,40 +28,19 @@
     <p>{!! $followers->email !!}</p>
 </div>
 
-<!-- Password Field -->
-<div class="form-group">
-    {!! Form::label('password', 'Password:') !!}
-    <p>{!! $followers->password !!}</p>
-</div>
-
-<!-- Status Member Field -->
-<div class="form-group">
-    {!! Form::label('status_member', 'Status Member:') !!}
-    <p>{!! $followers->status_member !!}</p>
-</div>
-
 <!-- Foto Field -->
 <div class="form-group">
     {!! Form::label('foto', 'Foto:') !!}
-    <p>{!! $followers->foto !!}</p>
-</div>
-
-<!-- Divisi Id Field -->
-<div class="form-group">
-    {!! Form::label('divisi_id', 'Divisi Id:') !!}
-    <p>{!! $followers->divisi_id !!}</p>
-</div>
-
-<!-- Nama Divisi Field -->
-<div class="form-group">
-    {!! Form::label('nama_divisi', 'Nama Divisi:') !!}
-    <p>{!! $followers->nama_divisi !!}</p>
+    <br>
+    <a href="{{ asset('upload/followers/foto/'.$followers->foto) }}" target="_blank">
+        <img width="100" height="100" src="{{ asset('upload/followers/foto/'.$followers->foto) }}">
+    </a>
 </div>
 
 <!-- Tanggal Lahir Field -->
 <div class="form-group">
     {!! Form::label('tanggal_lahir', 'Tanggal Lahir:') !!}
-    <p>{!! $followers->tanggal_lahir !!}</p>
+    <p>{!! Carbon::parse($followers->tanggal_lahir)->format('d-m-Y') !!}</p>
 </div>
 
 <!-- Alamat Field -->

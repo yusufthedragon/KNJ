@@ -18,7 +18,10 @@ class FollowersDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'followers.datatables_actions');
+        return $dataTable->addColumn('action', 'followers.datatables_actions')
+        ->editColumn('foto', function ($followers) {
+            return '<a href="'.asset('upload/followers/foto/'.$followers->foto).'" target="_blank"><img width="50" height="50" src="'.asset('upload/followers/foto/'.$followers->foto).'"></a>';
+        })->rawColumns(['foto', 'action']);
     }
 
     /**
