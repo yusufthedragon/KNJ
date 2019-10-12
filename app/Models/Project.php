@@ -22,10 +22,8 @@ class Project extends Model
     use SoftDeletes;
 
     public $table = 'projects';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'judul',

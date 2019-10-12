@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $artikel->id !!}</p>
-</div>
-
 <!-- Judul Field -->
 <div class="form-group">
     {!! Form::label('judul', 'Judul:') !!}
@@ -13,7 +7,7 @@
 <!-- Deskripsi Field -->
 <div class="form-group">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    <p>{!! $artikel->deskripsi !!}</p>
+    <p>{!! nl2br(e($artikel->deskripsi)) !!}</p>
 </div>
 
 <!-- Wilayah Field -->
@@ -25,13 +19,26 @@
 <!-- Cover Field -->
 <div class="form-group">
     {!! Form::label('cover', 'Cover:') !!}
-    <p>{!! $artikel->cover !!}</p>
+    <p>
+        <a href="{{ asset('upload/artikel/cover/'.$artikel->cover) }}" target="_blank">
+            <img width="150" height="100" src="{{ asset('upload/artikel/cover/'.$artikel->cover) }}">
+        </a>
+    </p>
 </div>
 
 <!-- Gallery Field -->
 <div class="form-group">
     {!! Form::label('gallery', 'Gallery:') !!}
-    <p>{!! $artikel->gallery !!}</p>
+    <p>
+        @php
+            $galleries = explode('|', $artikel->gallery);
+        @endphp
+        @foreach ($galleries as $gallery)
+        <a href="{{ asset('upload/artikel/gallery/'.$gallery) }}" target="_blank">
+            <img src="{{ asset('upload/artikel/gallery/'.$gallery) }}" width="150" height="100" />
+        </a>
+        @endforeach
+    </p>
 </div>
 
 <!-- Nama Solia Field -->
@@ -61,12 +68,12 @@
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $artikel->created_at !!}</p>
+    <p>{!! Carbon::parse($artikel->created_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $artikel->updated_at !!}</p>
+    <p>{!! Carbon::parse($artikel->updated_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 

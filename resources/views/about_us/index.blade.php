@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">About Us</h1>
+        <h1 class="pull-left">Tentang Kami</h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>

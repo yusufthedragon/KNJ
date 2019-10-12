@@ -20,10 +20,8 @@ class Kepengurusan extends Model
     use SoftDeletes;
 
     public $table = 'kepengurusans';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nama',
@@ -56,6 +54,4 @@ class Kepengurusan extends Model
         'pendapat' => 'required',
         'foto' => 'required|max:2048|mimes:jpg,png,jpeg'
     ];
-
-    
 }

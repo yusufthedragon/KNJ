@@ -67,7 +67,7 @@ class AboutUsController extends AppBaseController
 
         $aboutUs = $this->aboutUsRepository->create($input);
 
-        Flash::success('About Us saved successfully.');
+        Flash::success('Tentang Kami saved successfully.');
 
         return redirect(route('about_us.index'));
     }
@@ -84,7 +84,7 @@ class AboutUsController extends AppBaseController
         $aboutUs = $this->aboutUsRepository->find($id);
 
         if (empty($aboutUs)) {
-            Flash::error('About Us not found');
+            Flash::error('Tentang Kami not found');
 
             return redirect(route('about_us.index'));
         }
@@ -104,7 +104,7 @@ class AboutUsController extends AppBaseController
         $aboutUs = $this->aboutUsRepository->find($id);
 
         if (empty($aboutUs)) {
-            Flash::error('About Us not found');
+            Flash::error('Tentang Kami not found');
 
             return redirect(route('about_us.index'));
         }
@@ -125,7 +125,7 @@ class AboutUsController extends AppBaseController
         $aboutUs = $this->aboutUsRepository->find($id);
 
         if (empty($aboutUs)) {
-            Flash::error('About Us not found');
+            Flash::error('Tentang Kami not found');
 
             return redirect(route('about_us.index'));
         }
@@ -143,7 +143,7 @@ class AboutUsController extends AppBaseController
 
         $aboutUs = $this->aboutUsRepository->update($input, $id);
 
-        Flash::success('About Us updated successfully.');
+        Flash::success('Tentang Kami updated successfully.');
 
         return redirect(route('about_us.index'));
     }
@@ -160,14 +160,14 @@ class AboutUsController extends AppBaseController
         $aboutUs = $this->aboutUsRepository->find($id);
 
         if (empty($aboutUs)) {
-            Flash::error('About Us not found');
+            Flash::error('Tentang Kami not found');
 
             return redirect(route('about_us.index'));
         }
 
         $this->aboutUsRepository->delete($id);
 
-        Flash::success('About Us deleted successfully.');
+        Flash::success('Tentang Kami deleted successfully.');
 
         return redirect(route('about_us.index'));
     }

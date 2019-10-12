@@ -2,12 +2,22 @@
 
 namespace App\DataTables;
 
+use App\Exports\ArtikelExport;
 use App\Models\Artikel;
-use Yajra\DataTables\Services\DataTable;
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class ArtikelDataTable extends DataTable
 {
+    /**
+     * Overload default action method from DataTable.
+     *
+     * @var array
+     */
+    protected $actions = ['create', 'print', 'reset', 'reload', 'excel', 'pdf'];
+
     /**
      * Build DataTable class.
      *
@@ -47,16 +57,20 @@ class ArtikelDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'dom' => 'Bfrtip',
                 'stateSave' => true,
-                'order'     => [[0, 'desc']],
-                'buttons'   => [
+                'order' => [[0, 'desc']],
+                'buttons' => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    [
+                        'extend' => 'collection',
+                        'text' => '<i class="fa fa-download"></i> Export&nbsp;<span class="caret"></span>',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'buttons' => ['excel', 'pdf']
+                    ],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
-                ],
+                ]
             ]);
     }
 
@@ -83,5 +97,36 @@ class ArtikelDataTable extends DataTable
     protected function filename()
     {
         return 'artikeldatatable_' . time();
+    }
+
+    /**
+     * Export results to Excel file.
+     *
+     * @return void
+     */
+    public function excel()
+    {
+        ob_end_clean();
+        ob_start();
+
+        $artikels = Artikel::get();
+
+        return Excel::download(new ArtikelExport($artikels), $this->filename().'.xlsx');
+    }
+
+    /**
+     * Export results to PDF file.
+     *
+     * @return void
+     */
+    public function pdf()
+    {
+        ob_end_clean();
+        ob_start();
+
+        $artikels = Artikel::get();
+        $pdf = PDF::loadView('artikel.pdf', get_defined_vars());
+
+        return $pdf->download($this->filename().'.pdf');
     }
 }

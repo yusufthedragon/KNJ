@@ -17,10 +17,8 @@ class Divisi extends Model
     use SoftDeletes;
 
     public $table = 'divisis';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nama'
@@ -44,6 +42,4 @@ class Divisi extends Model
     public static $rules = [
         'nama' => 'required'
     ];
-
-    
 }

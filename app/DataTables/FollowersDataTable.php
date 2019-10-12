@@ -2,12 +2,22 @@
 
 namespace App\DataTables;
 
+use App\Exports\FollowersExport;
 use App\Models\User;
-use Yajra\DataTables\Services\DataTable;
+use Barryvdh\DomPDF\Facade as PDF;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 class FollowersDataTable extends DataTable
 {
+    /**
+     * Overload default action method from DataTable.
+     *
+     * @var array
+     */
+    protected $actions = ['print', 'reset', 'reload', 'excel', 'pdf', 'csv'];
+
     /**
      * Build DataTable class.
      *
@@ -47,13 +57,17 @@ class FollowersDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'dom' => 'Bfrtip',
                 'stateSave' => true,
-                'order'     => [[0, 'desc']],
-                'buttons'   => [
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                'order' => [[0, 'desc']],
+                'buttons' => [
+                    [
+                        'extend' => 'collection',
+                        'text' => '<i class="fa fa-download"></i> Export&nbsp;<span class="caret"></span>',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'buttons' => ['excel', 'pdf']
+                    ],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
             ]);
@@ -69,7 +83,7 @@ class FollowersDataTable extends DataTable
         return [
             'nama',
             'email',
-            'nama_divisi',
+            'no_telepon',
             'domisili',
             'foto'
         ];
@@ -83,5 +97,36 @@ class FollowersDataTable extends DataTable
     protected function filename()
     {
         return 'followersdatatable_' . time();
+    }
+
+    /**
+     * Export results to Excel file.
+     *
+     * @return void
+     */
+    public function excel()
+    {
+        ob_end_clean();
+        ob_start();
+
+        $followers = User::where('role', 'followers')->get();
+
+        return Excel::download(new FollowersExport($followers), $this->filename().'.xlsx');
+    }
+
+    /**
+     * Export results to PDF file.
+     *
+     * @return void
+     */
+    public function pdf()
+    {
+        ob_end_clean();
+        ob_start();
+
+        $followers = User::where('role', 'followers')->get();
+        $pdf = PDF::loadView('followers.pdf', get_defined_vars());
+
+        return $pdf->download($this->filename().'.pdf');
     }
 }

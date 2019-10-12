@@ -75,16 +75,22 @@ class User extends Authenticatable
         'alamat' => 'string'
     ];
 
+    /**
+     * Encrypt User's password.
+     *
+     * @param  string  $password
+     * @return void
+     */
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function setEmailVerifiedAtAttribute($email_verified_at)
-    {
-        $this->attributes['email_verified_at'] = date('Y-m-d', strtotime($email_verified_at));
-    }
-
+    /**
+     * Get the donasi record associated with the user.
+     *
+     * @return void
+     */
     public function donasi()
     {
         return $this->hasMany('App\Models\Donasi', 'user_id');

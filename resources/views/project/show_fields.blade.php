@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $project->id !!}</p>
-</div>
-
 <!-- Judul Field -->
 <div class="form-group">
     {!! Form::label('judul', 'Judul:') !!}
@@ -13,13 +7,17 @@
 <!-- Deskripsi Field -->
 <div class="form-group">
     {!! Form::label('deskripsi', 'Deskripsi:') !!}
-    <p>{!! $project->deskripsi !!}</p>
+    <p>{!! nl2br(e($project->deskripsi)) !!}</p>
 </div>
 
 <!-- Cover Field -->
 <div class="form-group">
     {!! Form::label('cover', 'Cover:') !!}
-    <p>{!! $project->cover !!}</p>
+    <p>
+        <a href="{{ asset('upload/project/cover/'.$project->cover) }}" target="_blank">
+            <img src="{{ asset('upload/project/cover/'.$project->cover) }}" alt="Logo" height="100" width="150" />
+        </a>
+    </p>
 </div>
 
 <!-- Kode Donasi Field -->
@@ -31,24 +29,24 @@
 <!-- Daftar Solia Field -->
 <div class="form-group">
     {!! Form::label('daftar_solia', 'Daftar Solia:') !!}
-    <p>{!! $project->daftar_solia !!}</p>
+    <p>{!! nl2br(e($project->daftar_solia)) !!}</p>
 </div>
 
 <!-- Timeline Field -->
 <div class="form-group">
     {!! Form::label('timeline', 'Timeline:') !!}
-    <p>{!! $project->timeline !!}</p>
+    <p>{!! nl2br(e($project->timeline)) !!}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $project->created_at !!}</p>
+    <p>{!! Carbon::parse($project->created_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $project->updated_at !!}</p>
+    <p>{!! Carbon::parse($project->updated_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 

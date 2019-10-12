@@ -25,10 +25,8 @@ class Artikel extends Model
     use SoftDeletes;
 
     public $table = 'artikels';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'judul',

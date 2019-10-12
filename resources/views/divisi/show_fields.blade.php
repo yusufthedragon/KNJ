@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $divisi->id !!}</p>
-</div>
-
 <!-- Nama Field -->
 <div class="form-group">
     {!! Form::label('nama', 'Nama:') !!}
@@ -13,12 +7,12 @@
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $divisi->created_at !!}</p>
+    <p>{!! Carbon::parse($divisi->created_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $divisi->updated_at !!}</p>
+    <p>{!! Carbon::parse($divisi->updated_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 

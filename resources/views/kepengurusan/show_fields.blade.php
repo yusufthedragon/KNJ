@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $kepengurusan->id !!}</p>
-</div>
-
 <!-- Nama Field -->
 <div class="form-group">
     {!! Form::label('nama', 'Nama:') !!}
@@ -19,24 +13,28 @@
 <!-- Pendapat Field -->
 <div class="form-group">
     {!! Form::label('pendapat', 'Pendapat:') !!}
-    <p>{!! $kepengurusan->pendapat !!}</p>
+    <p>{!! nl2br(e($kepengurusan->pendapat)) !!}</p>
 </div>
 
 <!-- Foto Field -->
 <div class="form-group">
     {!! Form::label('foto', 'Foto:') !!}
-    <p>{!! $kepengurusan->foto !!}</p>
+    <p>
+        <a href="{{ asset('upload/kepengurusan/foto/'.$kepengurusan->foto) }}" target="_blank">
+            <img width="150" height="100" src="{{ asset('upload/kepengurusan/foto/'.$kepengurusan->foto) }}">
+        </a>
+    </p>
 </div>
 
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $kepengurusan->created_at !!}</p>
+    <p>{!! Carbon::parse($kepengurusan->created_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $kepengurusan->updated_at !!}</p>
+    <p>{!! Carbon::parse($kepengurusan->updated_at)->format('d-m-Y H:i:s') !!}</p>
 </div>
 

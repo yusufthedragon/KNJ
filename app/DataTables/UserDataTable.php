@@ -3,11 +3,19 @@
 namespace App\DataTables;
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
 class UserDataTable extends DataTable
 {
+    /**
+     * Overload default action method from DataTable.
+     *
+     * @var array
+     */
+    protected $actions = ['create', 'print', 'reset', 'reload', 'excel', 'pdf'];
+
     /**
      * Build DataTable class.
      *
@@ -47,13 +55,17 @@ class UserDataTable extends DataTable
                 'dom'       => 'Bfrtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                'buttons'   => [
+                'buttons' => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
+                    [
+                        'extend' => 'collection', 
+                        'text' => '<i class="fa fa-download"></i> Export&nbsp;<span class="caret"></span>', 
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'buttons' => ['excel', 'pdf']
+                    ],
                     ['extend' => 'print', 'className' => 'btn btn-default btn-sm no-corner',],
-                    ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
-                ],
+                ]
             ]);
     }
 
@@ -78,5 +90,21 @@ class UserDataTable extends DataTable
     protected function filename()
     {
         return 'usersdatatable_' . time();
+    }
+
+    /**
+     * Export results to PDF file.
+     *
+     * @return void
+     */
+    public function pdf()
+    {
+        ob_end_clean();
+        ob_start();
+
+        $users = User::where('role', 'admin')->get();
+        $pdf = PDF::loadView('users.pdf', get_defined_vars());
+
+        return $pdf->download($this->filename().'.pdf');
     }
 }

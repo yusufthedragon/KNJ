@@ -68,6 +68,11 @@ class Donasi extends Model
         'status_persetujuan' => 'integer'
     ];
 
+    /**
+     * Get the project that owns the donasi.
+     *
+     * @return void
+     */
     public function project()
     {
         return $this->belongsTo('App\Models\Project', 'project_id');

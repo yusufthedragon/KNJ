@@ -48,7 +48,7 @@
                                                     {{ $deskripsi }}
                                                 </p>
                                                 <a href="{{ route('project_detail.page', Str::slug($project->judul)) }}" class="btn btn-success btn-medium">
-                                                    <i class="icon-link"></i> Read more
+                                                    Lihat Selengkapnya
                                                 </a>
                                             </div>
                                         </div>

@@ -51,7 +51,7 @@
                                                     {{ $text }}
                                                 </p>
                                                 <a href="{{ route('artikel_detail.page', Str::slug($artikel->judul)) }}" class="btn btn-success btn-medium">
-                                                    <i class="icon-link"></i> Read more
+                                                    Lihat Selengkapnya
                                                 </a>
                                             </div>
                                         </div>

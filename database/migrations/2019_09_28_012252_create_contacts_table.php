@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->string('nama', 100);
             $table->string('jenis', 100);
             $table->text('contact');
-            $table->string('keterangan', 50);
+            $table->string('keterangan', 50)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

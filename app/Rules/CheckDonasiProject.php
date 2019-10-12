@@ -44,6 +44,6 @@ class CheckDonasiProject implements Rule
      */
     public function message()
     {
-        return 'The nama project is invalid.';
+        return 'Nama Project invalid.';
     }
 }
