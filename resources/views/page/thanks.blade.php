@@ -8,9 +8,9 @@
                     <i class="icon-circled icon-bgsuccess icon-check icon-4x"></i>
                 </div>
                 <div class="blankline30"></div>
-                <h3 class="aligncenter">Buat Donasi Berhasil!</h3>
+                <h3 class="aligncenter">Konfirmasi Donasi Anda Berhasil</h3>
                 <p class="aligncenter">
-                    Makasih ya udah mau donasi sama kita. Uangnya nanti kita pake foya foya.
+                    Terima kasih atas donasi yang diberikan. Semoga rezeki anda dilancarkan selalu. Salam berbagi...
                 </p>
             </div>
         </div>

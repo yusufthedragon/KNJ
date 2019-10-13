@@ -29,7 +29,7 @@
 </li>
 
 <li class="{{ Request::is('donasi*') ? 'active' : '' }}">
-    <a href="{!! route('donasi.index') !!}"><i class="fa fa-dollar"></i><span>Donasi</span></a>
+    <a href="{!! route('donasi.index') !!}"><i class="fa fa-money"></i><span>Donasi</span></a>
 </li>
 
 <li class="{{ Request::is('artikel*') ? 'active' : '' }}">

@@ -9,14 +9,14 @@
                         <li><a href="{{ route('page') }}">Home</a> <i class="icon-angle-right"></i></li>
                         <li class="active">Donasi {{ $jenis }}</li>
                     </ul>
-                    <h2>Donasi {{ $jenis }}</h2>
-                    <p>
+                    <h2>Konfirmasi Donasi {{ $jenis }}</h2>
+                    <p style="text-align: justify;">
                         @if ($jenis == 'Biasa')
-                            Donasi biasa, ya donasi biasa. bukan donasi luar biasa
+                            Donasi biasa merupakan donasi yang bisa kalian kirimkan kapanpun melalui nomor rekening kami tanpa ada batas waktu. Donasi tersebut akan diberikan kepada solia saat eksekusi (pemberian donasi).
                         @elseif ($jenis == 'Amanah')
-                            Donasi amanah, ya donasi amanah. donasi yang diamanahkan
+                            Donasi yang diberikan khusus untuk sosok mulia yang di inginkan oleh Donatur.
                         @elseif ($jenis == 'Project')
-                            Donasi project, ya donasi project. donasi cuma buat seru-seruan
+                            Donasi yang diberikan khusus untuk project yang sedang membuka open donasi.
                         @endif
                     </p>
                 </div>

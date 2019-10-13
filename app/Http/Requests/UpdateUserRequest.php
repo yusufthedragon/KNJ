@@ -26,8 +26,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'nama' => 'required',
-            'email' => 'required|unique:users,email,'.request()->route()->parameter('user'),
-            'password' => 'required'
+            'email' => 'required|unique:users,email,'.request()->route()->parameter('user')
         ];
     }
 }

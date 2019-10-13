@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckJenisContact;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Contact;
 
 class CreateContactRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +24,11 @@ class CreateContactRequest extends FormRequest
      */
     public function rules()
     {
-        return Contact::$rules;
+        return [
+            'nama' => 'required|max:100',
+            'jenis' => ['required', 'max:100', new CheckJenisContact()],
+            'contact' => 'required',
+            'keterangan' => 'max:50'
+        ];
     }
 }

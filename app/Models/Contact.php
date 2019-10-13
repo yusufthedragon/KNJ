@@ -42,16 +42,4 @@ class Contact extends Model
         'contact' => 'string',
         'keterangan' => 'string'
     ];
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'nama' => 'required|max:100',
-        'jenis' => 'required|max:100',
-        'contact' => 'required',
-        'keterangan' => 'max:50'
-    ];
 }

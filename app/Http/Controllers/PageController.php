@@ -72,14 +72,13 @@ class PageController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users',
-            'password' => 'required'
+        $this->validate($request, [
+            'email_login' => 'required|email|exists:users',
+            'password_login' => 'required'
+        ], [], [
+            'email_login' => 'E-mail',
+            'password_login' => 'Password'
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->with('validation', 'alert("'.$validator->errors()->first().'");');
-        }
 
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             if (Auth::user()->role == 'admin') {
@@ -96,20 +95,25 @@ class PageController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'nama' => 'required',
             'email' => ['required', new CheckEmailRegister()],
             'no_telepon' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-            'domisili' => 'required|in:Jakarta Barat, Jakarta Selatan, Jakarta Timur, Jakarta Utara, Jakarta Pusat, Luar Jakarta',
+            'domisili' => 'required|in:Jakarta Barat,Jakarta Selatan,Jakarta Timur,Jakarta Utara,Jakarta Pusat,Luar Jakarta',
             'foto' => 'required|max:2048|mimes:jpg,png,jpeg',
             'password' => 'required'
+        ], [], [
+            'nama' => 'Nama',
+            'email' => 'E-mail',
+            'no_telepon' => 'No. Telepon',
+            'tanggal_lahir' => 'Tanggal Lahir',
+            'jenis_kelamin' => 'Jenis Kelamin',
+            'domisili' => 'Domisili',
+            'foto' => 'Foto',
+            'password' => 'Password'
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->with('validation', 'alert("'.$validator->errors()->first().'");');
-        }
 
         $foto = $request->file('foto');
         $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
@@ -164,7 +168,7 @@ class PageController extends Controller
             'no_telepon' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-            'domisili' => 'required|in:Jakarta Barat, Jakarta Selatan, Jakarta Timur, Jakarta Utara, Jakarta Pusat, Luar Jakarta',
+            'domisili' => 'required|in:Jakarta Barat,Jakarta Selatan,Jakarta Timur,Jakarta Utara,Jakarta Pusat,Luar Jakarta',
             'foto' => 'max:2048|mimes:jpg,png,jpeg',
         ]);
 

@@ -1,6 +1,6 @@
 <!-- Name Field -->
 <div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('nama', 'Nama:') !!}
     <p>{!! $user->nama !!}</p>
 </div>
 

@@ -27,7 +27,7 @@ class CreateUserRequest extends FormRequest
         return [
             'nama' => 'required',
             'email' => 'required|unique:users,email',
-            'password' => 'required'
+            'password' => 'min:8|required'
         ];
     }
 }

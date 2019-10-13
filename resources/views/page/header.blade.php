@@ -39,11 +39,11 @@
                             <div class="navigation">
                                 <nav>
                                     <ul class="nav topnav">
-                                        <li class="active">
+                                        <li class="{{ Request::is('/') ? 'active' : '' }}">
                                             <a href="{{ url('/') }}"><i class="icon-home"></i> Home</a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#"><i class="icon-dollar"></i> Donasi</a>
+                                        <li class="dropdown {{ Request::is('donasi*') ? 'active' : '' }}">
+                                            <a href="#"><i class="icon-money"></i> Donasi</a>
                                             <ul class="dropdown-menu donasi">
                                                 <li>
                                                     <a href="{{ route('donasi.page', 'Biasa') }}">Biasa</a>
@@ -56,10 +56,10 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li>
+                                        <li class="{{ Request::is('artikel*') ? 'active' : '' }}">
                                             <a href="{{ route('artikel.page') }}"><i class="icon-file-text-alt"></i> Artikel</a>
                                         </li>
-                                        <li>
+                                        <li class="{{ Request::is('project*') ? 'active' : '' }}">
                                             <a href="{{ route('project.page') }}"><i class="icon-file-text"></i> Project</a>
                                         </li>
                                         @if (! auth()->check())
@@ -139,12 +139,12 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="span2 offset1">
+                                    <div class="span3" style="margin-left: 30px;">
                                         <div class="widget">
                                             <h5 class="widgetheading">E-Mail</h5>
                                             <p>
                                                 @foreach ($contacts->where('jenis', 'E-mail') as $contact)
-                                                <i class="icon-envelope-alt"></i>&ensp;{{ $contact->contact }}
+                                                <i class="icon-envelope-alt"></i>&ensp;{{ $contact->contact }}<br>
                                                 @endforeach
                                             </p>
                                         </div>
@@ -184,20 +184,22 @@
                                 <div class="span3 form-group" style="width: 250px;">
                                     <label for="nama">
                                         E-mail Anda:
-                                        @if ($errors->has('email'))
-                                            <span style="color: red;">*{{ $errors->first('email') }}</span>
+                                        @if ($errors->has('email_login'))
+                                            <br>
+                                            <span style="color: red;">*{{ $errors->first('email_login') }}</span>
                                         @endif
                                     </label>
-                                    <input type="email" class="register" name="email" placeholder="E-mail Anda" value="{{ old('email') }}" />
+                                    <input type="email" class="register" name="email_login" placeholder="E-mail Anda" value="{{ old('email_login') }}" />
                                 </div>
                                 <div class="span3 form-group" style="width: 250px;">
                                     <label for="password">
                                         Password:
-                                        @if ($errors->has('password'))
-                                            <span style="color: red;">*{{ $errors->first('password') }}</span>
+                                        @if ($errors->has('password_login'))
+                                            <br>
+                                            <span style="color: red;">*{{ $errors->first('password_login') }}</span>
                                         @endif
                                     </label>
-                                    <input type="password" class="register" name="password" placeholder="Password Anda" value="{{ old('password') }}" />
+                                    <input type="password" class="register" name="password_login" placeholder="Password Anda" />
                                 </div>
                             </div>
                         </form>
@@ -212,6 +214,7 @@
                                             <label for="nama">
                                                 Nama Anda:
                                                 @if ($errors->has('nama'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('nama') }}</span>
                                                 @endif
                                             </label>
@@ -221,6 +224,7 @@
                                             <label for="email">
                                                 E-mail Anda:
                                                 @if ($errors->has('email'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('email') }}</span>
                                                 @endif
                                             </label>
@@ -232,6 +236,7 @@
                                             <label for="no_telepon">
                                                 No. Telepon Anda:
                                                 @if ($errors->has('no_telepon'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('no_telepon') }}</span>
                                                 @endif
                                             </label>
@@ -241,6 +246,7 @@
                                             <label for="tanggal_lahir">
                                                 Tanggal Lahir:
                                                 @if ($errors->has('tanggal_lahir'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('tanggal_lahir') }}</span>
                                                 @endif
                                             </label>
@@ -252,28 +258,46 @@
                                             <label for="nominal">
                                                 Jenis Kelamin:
                                                 @if ($errors->has('jenis_kelamin'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('jenis_kelamin') }}</span>
                                                 @endif
                                             </label>
                                             <select name="jenis_kelamin" class="register" style="color: black;">
-                                                <option value="Laki-Laki" style="color: black;">Laki-Laki</option>
-                                                <option value="Perempuan" style="color: black;">Perempuan</option>
+                                                <option value="Laki-Laki" style="color: black;" @if (old('jenis_kelamin') == 'Laki-Laki') selected @endif>
+                                                    Laki-Laki
+                                                </option>
+                                                <option value="Perempuan" style="color: black;" @if (old('jenis_kelamin') == 'Perempuan') selected @endif>
+                                                    Perempuan
+                                                </option>
                                             </select>
                                         </div>
                                         <div class="span3 form-group">
                                             <label for="domisili">
                                                 Domisili:
                                                 @if ($errors->has('domisili'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('domisili') }}</span>
                                                 @endif
                                             </label>
                                             <select name="domisili" class="register" style="color: black;">
-                                                <option value="Jakarta Utara" style="color: black;">Jakarta Utara</option>
-                                                <option value="Jakarta Timur" style="color: black;">Jakarta Timur</option>
-                                                <option value="Jakarta Selatan" style="color: black;">Jakarta Selatan</option>
-                                                <option value="Jakarta Barat" style="color: black;">Jakarta Barat</option>
-                                                <option value="Jakarta Pusat" style="color: black;">Jakarta Pusat</option>
-                                                <option value="Luar Jakarta" style="color: black;">Luar Jakarta</option>
+                                                <option value="Jakarta Utara" style="color: black;" @if (old('domisili') == 'Jakarta Utara') selected @endif>
+                                                    Jakarta Utara
+                                                </option>
+                                                <option value="Jakarta Timur" style="color: black;" @if (old('domisili') == 'Jakarta Timur') selected @endif>
+                                                    Jakarta Timur
+                                                </option>
+                                                <option value="Jakarta Selatan" style="color: black;" @if (old('domisili') == 'Jakarta Selatan') selected @endif>
+                                                    Jakarta Selatan
+                                                </option>
+                                                <option value="Jakarta Barat" style="color: black;" @if (old('domisili') == 'Jakarta Barat') selected @endif>
+                                                    Jakarta Barat
+                                                </option>
+                                                <option value="Jakarta Pusat" style="color: black;" @if (old('domisili') == 'Jakarta Pusat') selected @endif>
+                                                    Jakarta Pusat
+                                                </option>
+                                                <option value="Luar Jakarta" style="color: black;" @if (old('domisili') == 'Luar Jakarta') selected @endif>
+                                                    Luar Jakarta
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
@@ -282,6 +306,7 @@
                                             <label for="foto">
                                                 Foto:
                                                 @if ($errors->has('foto'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('foto') }}</span>
                                                 @endif
                                             </label>
@@ -291,6 +316,7 @@
                                             <label for="password">
                                                 Password:
                                                 @if ($errors->has('password'))
+                                                    <br>
                                                     <span style="color: red;">*{{ $errors->first('password') }}</span>
                                                 @endif
                                             </label>
@@ -310,8 +336,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button class="btn btn-theme" data-form="login" id="submit-login">Submit</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                <button class="btn btn-theme" data-form="login" id="submit-login">Login</button>
             </div>
         </div>
         <script src="{{ asset('page/js/jquery.js') }}"></script>
@@ -360,6 +386,7 @@
                 let id = $(this).data('id');
                 
                 $('#submit-login').attr('data-form', id);
+                $('#submit-login').html(id.substr(0, 1).toUpperCase() + id.substr(1));
             });
 
             $('#submit-login').on('click', function() {
@@ -372,6 +399,14 @@
                 $('.datatable').DataTable({
                     "bLengthChange": false
                 });
+
+                @if (count($errors) > 0)
+                    $('.login-button').trigger('click');
+
+                    @if (! $errors->has('email_login') && ! $errors->has('password_login'))
+                        $('#tabLogin a').trigger('click');
+                    @endif
+                @endif
             });
 
             function checkSubmit(e) {
