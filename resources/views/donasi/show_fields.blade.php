@@ -67,7 +67,7 @@
     <div class="col-md-6">
         <div class="form-group">
             {!! Form::label('Nama Project', 'Nama Project:') !!}
-            <p>{!! $donasi->project->judul !!}</p>
+            <p>{!! $donasi->project->judul ?? '' !!}</p>
         </div>
     </div>
 
@@ -87,12 +87,16 @@
         <div class="form-group">
             {!! Form::label('Daftar Solia', 'Daftar Solia:') !!}
             <p>
-                @php
-                    $daftar_solia = json_decode($donasi->daftar_solia);
-                @endphp
-                @foreach ($daftar_solia as $key => $solia)
-                    {{ ++$key }}. Nominal: Rp{{ number_format($solia->nominal, 0, ',', ',') }} - Untuk Solia Ke: {{ $solia->nomor }}<br>
-                @endforeach
+                @if ($donasi->pemberian_donasi != "Semua Solia")
+                    @php
+                        $daftar_solia = json_decode($donasi->daftar_solia);
+                    @endphp
+                    @foreach ($daftar_solia as $key => $solia)
+                        {{ ++$key }}. Nominal: Rp{{ number_format((int) $solia->nominal, 0, ',', ',') }} - Untuk Solia Ke: {{ $solia->nomor }}<br>
+                    @endforeach
+                @else
+                    Semua Solia
+                @endif
             </p>
         </div>
     </div>

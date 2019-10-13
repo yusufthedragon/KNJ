@@ -46,13 +46,13 @@
                                             <a href="#"><i class="icon-money"></i> Donasi</a>
                                             <ul class="dropdown-menu donasi">
                                                 <li>
-                                                    <a href="{{ route('donasi.page', 'Biasa') }}">Biasa</a>
+                                                    <a href="{{ route('donasi.page', 'biasa') }}">Biasa</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('donasi.page', 'Amanah') }}">Amanah</a>
+                                                    <a href="{{ route('donasi.page', 'amanah') }}">Amanah</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('donasi.page', 'Project') }}">Project</a>
+                                                    <a href="{{ route('donasi.page', 'project') }}">Project</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -400,10 +400,10 @@
                     "bLengthChange": false
                 });
 
-                @if (count($errors) > 0)
+                @if (session('type'))
                     $('.login-button').trigger('click');
 
-                    @if (! $errors->has('email_login') && ! $errors->has('password_login'))
+                    @if (session('type') == "register")
                         $('#tabLogin a').trigger('click');
                     @endif
                 @endif

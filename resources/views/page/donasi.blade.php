@@ -7,15 +7,15 @@
                 <div class="inner-heading">
                     <ul class="breadcrumb">
                         <li><a href="{{ route('page') }}">Home</a> <i class="icon-angle-right"></i></li>
-                        <li class="active">Donasi {{ $jenis }}</li>
+                        <li class="active">Donasi {{ ucwords($jenis) }}</li>
                     </ul>
-                    <h2>Konfirmasi Donasi {{ $jenis }}</h2>
+                    <h2>Konfirmasi Donasi {{ ucwords($jenis) }}</h2>
                     <p style="text-align: justify;">
-                        @if ($jenis == 'Biasa')
+                        @if ($jenis == 'biasa')
                             Donasi biasa merupakan donasi yang bisa kalian kirimkan kapanpun melalui nomor rekening kami tanpa ada batas waktu. Donasi tersebut akan diberikan kepada solia saat eksekusi (pemberian donasi).
-                        @elseif ($jenis == 'Amanah')
+                        @elseif ($jenis == 'amanah')
                             Donasi yang diberikan khusus untuk sosok mulia yang di inginkan oleh Donatur.
-                        @elseif ($jenis == 'Project')
+                        @elseif ($jenis == 'project')
                             Donasi yang diberikan khusus untuk project yang sedang membuka open donasi.
                         @endif
                     </p>
@@ -30,7 +30,7 @@
             <div class="span12">
                 <form action="{{ route('donasi.store') }}" method="post" role="form" class="contactForm" enctype='multipart/form-data'>
                     {{ csrf_field() }}
-                    <input type="hidden" name="jenis_donasi" value="{{ $jenis }}">
+                    <input type="hidden" name="jenis_donasi" value="{{ ucwords($jenis) }}">
                     <div class="row">
                         <div class="span6 form-group">
                             <label for="nama">
@@ -86,7 +86,7 @@
                             </label>
                             <input type="text" name="nominal" placeholder="Nominal" value="{{ old('nominal') }}" class="numbers" />
                         </div>
-                        @if ($jenis == 'Project')
+                        @if ($jenis == 'project')
                         <div class="span6 form-group">
                             <label for="project_id">
                                 Nama Project:
@@ -110,7 +110,7 @@
                             <input type="file" name="bukti_transfer" placeholder="Bukti Transfer" />
                         </div>
                         @else
-                        <div class="span12 form-group">
+                        <div class="span6 form-group">
                             <label for="bukti_transfer">
                                 Bukti Transfer:
                                 @if ($errors->has('bukti_transfer'))
@@ -119,19 +119,37 @@
                             </label>
                             <input type="file" name="bukti_transfer" placeholder="Bukti Transfer" />
                         </div>
+                        @if ($jenis == 'amanah')
+                            <div class="span6 form-group">
+                                <label for="bukti_transfer">
+                                    Donasi akan diberikan kepada:
+                                    @if ($errors->has('bukti_transfer'))
+                                        <span style="color: red;">*{{ $errors->first('bukti_transfer') }}</span>
+                                    @endif
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" name="pemberian_donasi" id="semua_solia" value="Semua Solia" checked>
+                                    Semua Solia
+                                </label>
+                                <label class="radio inline">
+                                    <input type="radio" name="pemberian_donasi" id="beberapa_solia" value="Beberapa Solia">
+                                    Beberapa Solia
+                                </label>
+                            </div>
+                        @endif
                         @endif
                         <div class="span12 form-group">
                             <label for="catatan">Catatan:</label>
                             <textarea name="catatan" rows="3" placeholder="Catatan">{{ old('catatan') }}</textarea>
                         </div>
-                        @if ($jenis == 'Amanah')
-                            <div class="span12 form-group">
+                        @if ($jenis == 'amanah')
+                            <div class="span12 form-group daftar_solia" hidden>
                                 <div class="solidline"></div>
                                 <p>
                                     Silahkan isi nomor urut solia beserta nominal donasi yang ingin di berikan.
                                 </p>
                             </div>
-                            <div id="solias">
+                            <div id="solias" class="daftar_solia" hidden>
                                 <div class="offset2 span4 aligncenter">
                                     <div class="input-prepend">
                                         <span class="add-on" style="min-height: 26px; padding-top: 8px;">Nominal:</span>
@@ -196,6 +214,14 @@
             let id = $(this).data('id');
 
             $('.solia_' + id).remove();
+        });
+
+        $(document).on('change', "input[name='pemberian_donasi']", function() {
+            if ($(this).val() == "semua_solia") {
+                $(".daftar_solia").hide();
+            } else {
+                $(".daftar_solia").show();
+            }
         });
     </script>
 @endsection

@@ -43,7 +43,7 @@ class PageController extends Controller
 
     public function donasiIndex($jenis)
     {
-        if ($jenis == 'Project') {
+        if ($jenis == 'project') {
             $projects = Project::orderBy('created_at', 'DESC')->get();
         }
 
@@ -72,13 +72,17 @@ class PageController extends Controller
 
     public function login(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'email_login' => 'required|email|exists:users',
             'password_login' => 'required'
         ], [], [
             'email_login' => 'E-mail',
             'password_login' => 'Password'
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('type', 'login');
+        }
 
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             if (Auth::user()->role == 'admin') {
@@ -95,7 +99,7 @@ class PageController extends Controller
 
     public function register(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'email' => ['required', new CheckEmailRegister()],
             'no_telepon' => 'required',
@@ -114,6 +118,10 @@ class PageController extends Controller
             'foto' => 'Foto',
             'password' => 'Password'
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('type', 'register');
+        }
 
         $foto = $request->file('foto');
         $fotoName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $foto->getClientOriginalExtension();
@@ -169,7 +177,14 @@ class PageController extends Controller
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
             'domisili' => 'required|in:Jakarta Barat,Jakarta Selatan,Jakarta Timur,Jakarta Utara,Jakarta Pusat,Luar Jakarta',
-            'foto' => 'max:2048|mimes:jpg,png,jpeg',
+            'foto' => 'max:2048|mimes:jpg,png,jpeg'
+        ], [], [
+            'nama' => 'Nama',
+            'no_telepon' => 'No. Telepon',
+            'tanggal_lahir' => 'Tanggal Lahir',
+            'jenis_kelamin' => 'Jenis Kelamin',
+            'domisili' => 'Domisili',
+            'foto' => 'Foto'
         ]);
 
         if ($request->file('foto')) {

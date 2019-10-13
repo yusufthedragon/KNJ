@@ -35,4 +35,23 @@ class CreateDonasiRequest extends FormRequest
             'nama_project' => [new CheckDonasiProject($this->jenis)]
         ];
     }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'nama' => 'Nama',
+            'email' => 'E-mail',
+            'no_telepon' => 'No. Telepon',
+            'tanggal_transfer' => 'Tanggal Transfer',
+            'bank' => 'Bank',
+            'nominal' => 'Nominal',
+            'bukti_transfer' => 'Bukti Transfer',
+            'nama_project' => 'Nama Project'
+        ];
+    }
 }
