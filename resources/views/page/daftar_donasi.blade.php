@@ -19,7 +19,7 @@
 <section id="content">
     <div class="container">
         <div class="row">
-            <div class="span4">
+            <div class="span2">
                 <aside class="left-sidebar">
                     <div class="widget">
                         <ul class="cat">
@@ -29,7 +29,7 @@
                     </div>
                 </aside>
             </div>
-            <div class="span8">
+            <div class="span10">
                 <form id="form-register" action="{{ route('change_profile.page') }}" method="post" role="form" class="contactForm" enctype='multipart/form-data'>
                     {{ csrf_field() }}
                     <table class="table table-striped datatable">

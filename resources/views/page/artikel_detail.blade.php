@@ -59,7 +59,7 @@
                 @foreach ($galleries as $gallery)
                     <div class="span2" style="padding-bottom: 15px;">
                         <a href="{{ asset('upload/artikel/gallery/'.$gallery) }}" target="_blank">
-                            <img src="{{ asset('upload/artikel/gallery/'.$gallery) }}" class="cover-project" />
+                            <img src="{{ asset('upload/artikel/gallery/'.$gallery) }}" />
                         </a>
                     </div>
                 @endforeach

@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="span12">
                             <div class="aligncenter">
-                                <h3>Tentang <strong>Kami</strong></h3>
+                                <h3><strong>Tentang Kami</strong></h3>
                                 <br>
                             </div>
                         </div>

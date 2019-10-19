@@ -1,6 +1,6 @@
 @extends('page.header')
 @section('content')
-<section id="inner-headline">
+<section id="inner-headline" style="margin-bottom: -25px;">
     <div class="container">
         <div class="row">
             <div class="span12">
@@ -19,6 +19,10 @@
                             Donasi yang diberikan khusus untuk project yang sedang membuka open donasi.
                         @endif
                     </p>
+                    <br>
+                    @if (Auth::user() === null)
+                        Sudah punya akun? Silahkan <a style="font-weight: bold; cursor: pointer;" href="#modal-login" data-toggle="modal">login</a>.
+                    @endif
                 </div>
             </div>
         </div>
@@ -216,8 +220,8 @@
             $('.solia_' + id).remove();
         });
 
-        $(document).on('change', "input[name='pemberian_donasi']", function() {
-            if ($(this).val() == "semua_solia") {
+        $(document).on('click', "input[name='pemberian_donasi']", function() {
+            if ($(this).val() == "Semua Solia") {
                 $(".daftar_solia").hide();
             } else {
                 $(".daftar_solia").show();

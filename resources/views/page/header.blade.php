@@ -67,7 +67,7 @@
                                                 <a href="#modal-login" role="button" class="login-button" data-toggle="modal"><i class="icon-key"></i> Login</a>
                                             </li>
                                         @else
-                                            <li>
+                                            <li class="{{ Request::is('profile*') ? 'active' : '' }}">
                                                 <a href="{{ route('profile.page') }}"><i class="fas fa-user"></i> Profil</a>
                                             </li>
                                             <li>

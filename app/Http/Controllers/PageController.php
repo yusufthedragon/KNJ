@@ -73,7 +73,7 @@ class PageController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email_login' => 'required|email|exists:users',
+            'email_login' => 'required|email|exists:users,email',
             'password_login' => 'required'
         ], [], [
             'email_login' => 'E-mail',
@@ -84,7 +84,7 @@ class PageController extends Controller
             return redirect()->back()->withErrors($validator)->withInput()->with('type', 'login');
         }
 
-        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+        if (Auth::attempt(['email' => request('email_login'), 'password' => request('password_login')])) {
             if (Auth::user()->role == 'admin') {
                 Auth::logout();
 
