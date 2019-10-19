@@ -19,7 +19,35 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="ico/favicon.png" />
+    <link rel="icon" href="{{ asset('page/img/logo.png') }}">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "{{ env('ONESIGNAL_APPID') }}",
+                notifyButton: {
+                    enable: true,
+                    displayPredicate: function() {
+                        return OneSignal.isPushNotificationsEnabled()
+                        .then(function(isPushEnabled) {
+                            return !isPushEnabled;
+                        });
+                    },
+                },
+                allowLocalhostAsSecureOrigin: true,
+                promptOptions: {
+                    actionMessage: "Aktifkan notifikasi untuk mendapat notifikasi mengenai artikel & project terbaru.",
+                    acceptButtonText: "Aktifkan",
+                    cancelButtonText: "Jangan Aktifkan"
+                },
+                welcomeNotification: {
+                    "title": "Terima Kasih",
+                    "message": "Terima kasih telah mengaktifkan notifikasi!",
+                }
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -29,7 +57,7 @@
                 <div class="row nomargin">
                     <div class="span6">
                         <div class="logo">
-                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('page/img/logo.jpg') }}" alt="Logo" height="80" width="80" /></a>
+                            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('page/img/logo.png') }}" alt="Logo" height="80" width="80" /></a>
                             <h4 class="text-logo"><a href="{{ url('/') }}" style="color:inherit; text-decoration: none;">KETIMBANG NGEMIS JAKARTA</a></h4>
                             <h6 class="text-logo-2"><a href="{{ url('/') }}" style="color:inherit; text-decoration: none;">Say No To Ngemis</a></h6>
                         </div>
@@ -414,6 +442,12 @@
                     $('#submit-login').trigger('click');
                 }
             }
+
+            $(document).ready(function() {
+                OneSignal.push(function() {
+                    OneSignal.showSlidedownPrompt();
+                });
+            });
         </script>
         @yield('scripts')
         <script>

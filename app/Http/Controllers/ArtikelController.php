@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ArtikelDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateArtikelRequest;
 use App\Http\Requests\UpdateArtikelRequest;
 use App\Repositories\ArtikelRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 use Carbon\Carbon;
+use Flash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Response;
 
 class ArtikelController extends AppBaseController
 {
@@ -78,6 +77,8 @@ class ArtikelController extends AppBaseController
         $input['usia'] = intval($request->usia);
 
         $artikel = $this->artikelRepository->create($input);
+        
+        $this->sendPushNotification('Ada artikel baru.', 'Silakan baca artikel terbaru: '.$artikel->judul, route('artikel_detail.page', Str::slug($artikel->judul)));
 
         Flash::success('Artikel saved successfully.');
 

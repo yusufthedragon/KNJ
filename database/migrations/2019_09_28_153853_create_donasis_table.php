@@ -25,6 +25,7 @@ class CreateDonasisTable extends Migration
             $table->string('email', 255);
             $table->integer('user_id')->nullable();
             $table->text('catatan')->nullable();
+            $table->text('pemberian_donasi')->nullable();
             $table->text('daftar_solia')->nullable();
             $table->integer('project_id')->nullable();
             $table->text('nama_project')->nullable();

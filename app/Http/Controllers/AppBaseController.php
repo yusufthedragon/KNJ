@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use InfyOm\Generator\Utils\ResponseUtil;
 use Response;
+use Berkayk\OneSignal\OneSignalFacade;
 
 /**
  * @SWG\Swagger(
@@ -26,5 +27,18 @@ class AppBaseController extends Controller
     public function sendError($error, $code = 404)
     {
         return Response::json(ResponseUtil::makeError($error), $code);
+    }
+
+    public function sendPushNotification($title, $message, $url)
+    {
+        OneSignalFacade::sendNotificationToAll(
+            $message,
+            $url,
+            $data = null, 
+            $buttons = null, 
+            $schedule = null, 
+            $title, 
+            $subtitle = null
+        );
     }
 }

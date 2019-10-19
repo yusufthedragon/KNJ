@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ProjectDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Repositories\ProjectRepository;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\File;
 use Flash;
-use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Response;
 
 class ProjectController extends AppBaseController
@@ -66,6 +65,8 @@ class ProjectController extends AppBaseController
         $request->file('cover')->move(public_path('upload/project/cover'), $coverName);
 
         $project = $this->projectRepository->create($input);
+
+        $this->sendPushNotification('Ada project baru.', 'Silakan baca project terbaru: '.$project->judul, route('project_detail.page', Str::slug($project->judul)));
 
         Flash::success('Project saved successfully.');
 

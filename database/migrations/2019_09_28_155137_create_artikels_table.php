@@ -20,10 +20,10 @@ class CreateArtikelsTable extends Migration
             $table->string('wilayah', 200);
             $table->text('cover');
             $table->text('gallery');
-            $table->string('nama_solia', 255);
-            $table->integer('usia');
-            $table->string('pekerjaan', 255);
-            $table->text('alamat');
+            $table->string('nama_solia', 255)->nullable();
+            $table->integer('usia')->nullable();
+            $table->string('pekerjaan', 255)->nullable();
+            $table->text('alamat')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

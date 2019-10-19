@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "barryvdh/laravel-dompdf": "^0.8.4",
+        "berkayk/onesignal-laravel": "^1.0",
         "doctrine/dbal": "~2.3",
         "fideloper/proxy": "^4.0",
         "infyomlabs/adminlte-templates": "6.0.x-dev",
