@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Berkayk\OneSignal\OneSignalFacade;
 use InfyOm\Generator\Utils\ResponseUtil;
 use Response;
-use Berkayk\OneSignal\OneSignalFacade;
 
 /**
  * @SWG\Swagger(
@@ -31,14 +31,16 @@ class AppBaseController extends Controller
 
     public function sendPushNotification($title, $message, $url)
     {
-        OneSignalFacade::sendNotificationToAll(
-            $message,
-            $url,
-            $data = null, 
-            $buttons = null, 
-            $schedule = null, 
-            $title, 
-            $subtitle = null
-        );
+        if (url("/") == "http://localhost:8000") {
+            OneSignalFacade::sendNotificationToAll(
+                $message,
+                $url,
+                $data = null,
+                $buttons = null,
+                $schedule = null,
+                $title,
+                $subtitle = null
+            );
+        }
     }
 }
