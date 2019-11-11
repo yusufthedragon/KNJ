@@ -24,7 +24,7 @@ class UpdateArtikelRequest extends FormRequest
     public function rules()
     {
         return [
-            'judul' => 'required|unique:artikel,judul,'.request()->instance()->id,
+            'judul' => 'required|unique:artikels,judul,'.request()->instance()->id,
             'deskripsi' => 'required',
             'wilayah' => 'required'
         ];
