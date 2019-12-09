@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class User extends Authenticatable
 {
+    use Notifiable;
+
     use SoftDeletes;
 
     public $table = 'users';

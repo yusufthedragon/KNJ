@@ -170,6 +170,11 @@
                                     <button type="button" class="btn btn-primary" id="add_solia">+</button>
                                 </div>
                             </div>
+                            @if ($artikel !== null)
+                                <div class="span12 form-group">
+                                    <p>{{ $artikel->deskripsi }}</p>
+                                </div>
+                            @endif
                         @endif
                         <div class="span12">
                             <div class="solidline"></div>

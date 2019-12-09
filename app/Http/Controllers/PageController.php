@@ -45,6 +45,8 @@ class PageController extends Controller
     {
         if ($jenis == 'project') {
             $projects = Project::orderBy('created_at', 'DESC')->get();
+        } elseif ($jenis == 'amanah') {
+            $artikel = Artikel::where('id', 3)->first();
         }
 
         return view('page.donasi', get_defined_vars());

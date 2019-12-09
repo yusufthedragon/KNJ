@@ -80,6 +80,7 @@
                 <!-- /.col -->
             </div>
         </form>
+        <a href="{{ url('/admin/password/reset') }}">I forgot my password</a><br>
     </div>
     <!-- /.login-box-body -->
 </div>
