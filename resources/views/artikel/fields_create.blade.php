@@ -56,14 +56,21 @@
 
 <!-- Gallery Field -->
 <div id="galleries">
-    <div class="form-group col-sm-10">
+    <div class="form-group col-sm-5">
         {!! Form::label('gallery', 'Gallery:') !!}
         {!! Form::file('gallery[]', ['id' => 'gallery_0']) !!}
     </div>
-    <div class="col-sm-2" style="margin-top: 25px;">
+    <div class="col-sm-1" style="margin-top: 25px;">
         <button type="button" id="add_gallery" class="btn btn-primary">Tambah</button>
     </div>
 </div>
+
+<!-- Highlight Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('alamat', 'Highlight') !!}
+    &emsp;{!! Form::checkbox('highlight', '1') !!}
+</div>
+
 <div class="clearfix"></div>
 
 <!-- Submit Field -->

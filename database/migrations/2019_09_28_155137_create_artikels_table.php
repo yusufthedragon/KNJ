@@ -24,6 +24,7 @@ class CreateArtikelsTable extends Migration
             $table->integer('usia')->nullable();
             $table->string('pekerjaan', 255)->nullable();
             $table->text('alamat')->nullable();
+            $table->integer('highlight')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

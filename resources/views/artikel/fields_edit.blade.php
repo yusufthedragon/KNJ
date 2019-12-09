@@ -75,6 +75,13 @@
         @endif
     @endforeach
 </div>
+
+<!-- Highlight Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('alamat', 'Highlight') !!}
+    &emsp;{!! Form::checkbox('highlight', '1', ($artikel->highlight == 1 ? true : false)) !!}
+</div>
+
 <div class="clearfix"></div>
 
 <!-- Submit Field -->

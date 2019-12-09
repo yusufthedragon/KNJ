@@ -53,6 +53,8 @@ class ArtikelController extends AppBaseController
     public function store(CreateArtikelRequest $request)
     {
         $input = $request->all();
+        
+        $input['highlight'] = (isset($input['highlight']) ? 1 : 0);
 
         $cover = $request->file('cover');
         $coverName = Carbon::now()->timestamp . '_' . uniqid() . '.' . $cover->getClientOriginalExtension();

@@ -37,7 +37,8 @@ class Artikel extends Model
         'nama_solia',
         'usia',
         'pekerjaan',
-        'alamat'
+        'alamat',
+        'highlight'
     ];
 
     /**
@@ -55,6 +56,7 @@ class Artikel extends Model
         'nama_solia' => 'string',
         'usia' => 'integer',
         'pekerjaan' => 'string',
-        'alamat' => 'string'
+        'alamat' => 'string',
+        'highlight' => 'string'
     ];
 }

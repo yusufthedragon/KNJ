@@ -65,6 +65,12 @@
     <p>{!! $artikel->alamat !!}</p>
 </div>
 
+<!-- Highlight Field -->
+<div class="form-group">
+    {!! Form::label('highlight', 'Highlight:') !!}
+    <p>{!! $artikel->highlight == 1 ? 'True' : 'False' !!}</p>
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}

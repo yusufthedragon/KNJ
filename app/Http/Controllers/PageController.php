@@ -21,7 +21,7 @@ class PageController extends Controller
         $projects = Project::orderBy('created_at', 'DESC')->take(5)->get();
         $about_uses = AboutUs::get();
         $kepengurusans = Kepengurusan::get();
-        $artikels = Artikel::orderBy('created_at', 'DESC')->take(3)->get();
+        $artikels = Artikel::where('highlight', 1)->orderBy('created_at', 'DESC')->get();
 
         return view('page.index', get_defined_vars());
     }

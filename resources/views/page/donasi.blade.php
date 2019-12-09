@@ -43,7 +43,7 @@
                                     <span style="color: red;">*{{ $errors->first('nama') }}</span>
                                 @endif
                             </label>
-                            <input type="text" name="nama" placeholder="Nama Anda" value="{{ old('nama') }}" />
+                            <input type="text" name="nama" placeholder="Nama Anda" value="{{ Auth::user() !== null ? Auth::user()->nama : old('nama') }}" />
                         </div>
                         <div class="span6 form-group">
                             <label for="email">
@@ -52,7 +52,7 @@
                                     <span style="color: red;">*{{ $errors->first('email') }}</span>
                                 @endif
                             </label>
-                            <input type="email" name="email" placeholder="E-mail Anda" value="{{ old('email') }}" />
+                            <input type="email" name="email" placeholder="E-mail Anda" value="{{ Auth::user() !== null ? Auth::user()->email : old('email') }}" />
                         </div>
                         <div class="span6 form-group">
                             <label for="no_telepon">
@@ -61,7 +61,7 @@
                                     <span style="color: red;">*{{ $errors->first('no_telepon') }}</span>
                                 @endif
                             </label>
-                            <input type="text" name="no_telepon" placeholder="No. Telepon Anda" value="{{ old('no_telepon') }}" />
+                            <input type="text" name="no_telepon" placeholder="No. Telepon Anda" value="{{ Auth::user() !== null ? Auth::user()->no_telepon : old('no_telepon') }}" />
                         </div>
                         <div class="span6 form-group">
                             <label for="tanggal_transfer">
