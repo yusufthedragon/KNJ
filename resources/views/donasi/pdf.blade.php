@@ -36,7 +36,7 @@
                     <td style="border: 1px solid black; padding: 3px;">
                         @if ($value->status_persetujuan == 0)
                             Butuh Persetujuan
-                        @elseif ($donasi->status_persetujuan == 1)
+                        @elseif ($value->status_persetujuan == 1)
                             Disetujui
                         @else
                             Ditolak
