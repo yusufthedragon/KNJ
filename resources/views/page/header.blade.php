@@ -401,6 +401,13 @@
                     format: 'dd-mm-yyyy',
                     autoclose: true
                 });
+
+                var dateToday = new Date();
+                $('.datepicker2').datepicker({
+                    format: 'dd-mm-yyyy',
+                    autoclose: true,
+                    startDate: '-0m'
+                });
             });
 
             $(function () {

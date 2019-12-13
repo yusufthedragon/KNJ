@@ -31,8 +31,8 @@
                                                     $count_judul = strlen($project->judul);
                                                     $count_deskripsi = strlen($project->deskripsi);
 
-                                                    if ($count_judul > 13) {
-                                                        $judul = substr($project->judul, 0, 13) . '...';
+                                                    if ($count_judul > 20) {
+                                                        $judul = substr($project->judul, 0, 20) . '...';
                                                     } else {
                                                         $judul = $project->judul;
                                                     }

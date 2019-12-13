@@ -52,7 +52,7 @@
                                     <span style="color: red;">*{{ $errors->first('email') }}</span>
                                 @endif
                             </label>
-                            <input type="email" name="email" placeholder="E-mail Anda" value="{{ Auth::user() !== null ? Auth::user()->email : old('email') }}" />
+                            <input type="email" name="email" placeholder="E-mail Anda" value="{{ Auth::user() !== null ? Auth::user()->email : old('email') }}" {{ Auth::user() !== null ? 'readonly' : '' }} />
                         </div>
                         <div class="span6 form-group">
                             <label for="no_telepon">
@@ -70,7 +70,7 @@
                                     <span style="color: red;">*{{ $errors->first('tanggal_transfer') }}</span>
                                 @endif
                             </label>
-                        <input type="text" class="datepicker" name="tanggal_transfer" placeholder="Tanggal Transfer" value="{{ old('tanggal_transfer') }}" readonly style="background-color:white;" />
+                        <input type="text" class="datepicker2" name="tanggal_transfer" placeholder="Tanggal Transfer" value="{{ old('tanggal_transfer') }}" readonly style="background-color:white;" />
                         </div>
                         <div class="span6 form-group">
                             <label for="bank">
@@ -88,7 +88,7 @@
                                     <span style="color: red;">*{{ $errors->first('nominal') }}</span>
                                 @endif
                             </label>
-                            <input type="text" name="nominal" placeholder="Nominal" value="{{ old('nominal') }}" class="numbers" />
+                            <input type="text" id="total_nominal" name="nominal" placeholder="Nominal" value="{{ old('nominal') }}" class="numbers" />
                         </div>
                         @if ($jenis == 'project')
                         <div class="span6 form-group">
@@ -172,7 +172,7 @@
                             </div>
                             @if ($artikel !== null)
                                 <div class="span12 form-group">
-                                    <p>{{ $artikel->deskripsi }}</p>
+                                    <p>{{ nl2br(e($artikel->deskripsi)) }}</p>
                                 </div>
                             @endif
                         @endif
@@ -223,14 +223,35 @@
             let id = $(this).data('id');
 
             $('.solia_' + id).remove();
+
+            let total_nominal = 0;
+
+            $("input[name='nominal_solia[]']").each(function(index, element) {
+                total_nominal += parseInt($(this).val());
+            });
+
+            $("#total_nominal").val(total_nominal);
         });
 
         $(document).on('click', "input[name='pemberian_donasi']", function() {
             if ($(this).val() == "Semua Solia") {
                 $(".daftar_solia").hide();
+                $("#total_nominal").removeAttr('readonly');
             } else {
                 $(".daftar_solia").show();
+                $("#total_nominal").attr('readonly', true);
+                $("#total_nominal").val('0');
             }
+        });
+
+        $(document).on('keyup', "input[name='nominal_solia[]']", function() {
+            let total_nominal = 0;
+
+            $("input[name='nominal_solia[]']").each(function(index, element) {
+                total_nominal += parseInt($(this).val());
+            });
+
+            $("#total_nominal").val(total_nominal);
         });
     </script>
 @endsection

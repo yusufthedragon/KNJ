@@ -28,7 +28,7 @@
                     <td style="vertical-align: top;">
                         @if ($value->status_persetujuan == 0)
                             Butuh Persetujuan
-                        @elseif ($donasi->status_persetujuan == 1)
+                        @elseif ($value->status_persetujuan == 1)
                             Disetujui
                         @else
                             Ditolak

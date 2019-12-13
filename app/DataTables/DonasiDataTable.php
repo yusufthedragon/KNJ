@@ -40,11 +40,11 @@ class DonasiDataTable extends DataTable
             }
         })->editColumn('status_persetujuan', function ($donasi) {
             if ($donasi->status_persetujuan == 0) {
-                return 'Butuh Persetujuan';
+                return 'Belum Verifikasi';
             } elseif ($donasi->status_persetujuan == 1) {
-                return 'Disetujui';
+                return 'Sesuai';
             } else {
-                return 'Ditolak';
+                return 'Tidak Sesuai';
             }
         })->editColumn('tanggal_transfer', function ($donasi) {
             return date('d-m-Y', strtotime($donasi->tanggal_transfer));
@@ -104,6 +104,7 @@ class DonasiDataTable extends DataTable
         return [
             'nama',
             'email',
+            'no_telepon',
             'jenis_donasi',
             'tanggal_transfer',
             'bukti_transfer',
