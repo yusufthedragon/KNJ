@@ -18,8 +18,8 @@
                         <form id="form-approve" action="{{ route('approving_donasi', $donasi->id) }}" method="post">
                             {{ csrf_field() }}
                             <input type="hidden" name="status" id="status">
-                            <button type="button" class="btn btn-primary" onclick="approve()">Setuju</button>
-                            <button type="button" class="btn btn-danger" onclick="reject()">Tolak</button>
+                            <button type="button" class="btn btn-primary" onclick="approve()">Sesuai</button>
+                            <button type="button" class="btn btn-danger" onclick="reject()">Tidak Sesuai</button>
                         </form>
                     </div>
                 </div>

@@ -230,6 +230,11 @@
                                     <input type="password" class="register" name="password_login" placeholder="Password Anda" />
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="span12">
+                                    <a id="btn-reset-password" style="color: #0088cc; cursor: pointer;">Lupa Password</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="tab-pane" id="register">
@@ -368,6 +373,33 @@
                 <button class="btn btn-theme" data-form="login" id="submit-login">Login</button>
             </div>
         </div>
+        <div id="modal-reset-password" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalResetPassword" aria-hidden="true">
+            <form id="form-reset-password" action="{{ route('password.email') }}" method="post" role="form" class="contactForm">
+                <div class="modal-body">
+                    {{ csrf_field() }}
+                    @if (session('status_reset_password'))
+                        <div class="alert alert-success">
+                            E-mail Reset Password telah dikirimkan ke alamat e-mail anda.
+                        </div>
+                    @endif
+                    <div class="row" style="margin-bottom: 0px;" onkeypress="checkSubmit(event)">
+                        <div class="span3 form-group" style="width: 250px;">
+                            <label for="nama">
+                                Masukkan Alamat E-mail Anda:
+                                @if ($errors->has('email_reset_password'))
+                                    <br>
+                                    <span style="color: red;">*{{ $errors->first('email_reset_password') }}</span>
+                                @endif
+                            </label>
+                            <input type="email" class="register" name="email" placeholder="E-mail Anda" value="{{ old('email') }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-theme" data-form="login" id="submit-login">Submit</button>
+                </div>
+            </form>
+        </div>
         <script src="{{ asset('page/js/jquery.js') }}"></script>
         <script src="{{ asset('page/js/jquery.easing.1.3.js') }}"></script>
         <script src="{{ asset('page/js/bootstrap.js') }}"></script>
@@ -406,7 +438,7 @@
                 $('.datepicker2').datepicker({
                     format: 'dd-mm-yyyy',
                     autoclose: true,
-                    startDate: '-0m'
+                    endDate: '0m'
                 });
             });
 
@@ -441,6 +473,8 @@
                     @if (session('type') == "register")
                         $('#tabLogin a').trigger('click');
                     @endif
+                @elseif (session('status_reset_password') || $errors->has('email_reset_password'))
+                    $("#btn-reset-password").trigger('click');
                 @endif
             });
 
@@ -454,6 +488,11 @@
                 OneSignal.push(function() {
                     OneSignal.showSlidedownPrompt();
                 });
+            });
+
+            $("#btn-reset-password").click(function() {
+                $("#modal-login").modal('hide');
+                $("#modal-reset-password").modal('show');
             });
         </script>
         @yield('scripts')

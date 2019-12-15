@@ -29,7 +29,7 @@
             <div class="span12">
                 <h4>Deskripsi</h4>
                 <p style="text-align: justify;">
-                    {{ $project->deskripsi }}
+                    {!! nl2br($project->deskripsi) !!}
                 </p>
             </div>
         </div>

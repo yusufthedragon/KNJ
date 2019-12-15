@@ -172,7 +172,7 @@
                             </div>
                             @if ($artikel !== null)
                                 <div class="span12 form-group">
-                                    <p>{{ nl2br(e($artikel->deskripsi)) }}</p>
+                                    <p>{!! nl2br($artikel->deskripsi) !!}</p>
                                 </div>
                             @endif
                         @endif

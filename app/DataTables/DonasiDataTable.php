@@ -28,7 +28,7 @@ class DonasiDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', function ($donasi) {
+        return $dataTable->addIndexColumn()->addColumn('action', function ($donasi) {
             if ($donasi->status_persetujuan == 0) {
                 return '<div class="btn-group">'.
                             '<a href="'.route('donasi.show', $donasi->id).'" class="btn btn-default btn-xs">'.
@@ -102,6 +102,13 @@ class DonasiDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            [
+                'data' => 'DT_RowIndex',
+                'name' => 'DT_RowIndex',
+                'title' => 'No.',
+                'orderable' => false,
+                'searchable' => false
+            ],
             'nama',
             'email',
             'no_telepon',
