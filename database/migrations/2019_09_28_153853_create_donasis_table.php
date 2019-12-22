@@ -30,6 +30,7 @@ class CreateDonasisTable extends Migration
             $table->integer('project_id')->nullable();
             $table->text('nama_project')->nullable();
             $table->integer('status_persetujuan')->default(0);
+            $table->integer('disetujui_oleh')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -21,9 +21,7 @@
                     <td style="vertical-align: top;">{{ $value->jenis_donasi }}</td>
                     <td style="vertical-align: top;">{{ Carbon::parse($value->tanggal_transfer) }}</td>
                     <td style="vertical-align: top;">{{ $value->bank }}</td>
-                    <td>
-                        <img width="100" height="100" src="{!! public_path('upload/donasi/bukti/'.$value->bukti_transfer) !!}">
-                    </td>
+                    <td style="vertical-align: top;">{{ asset('upload/donasi/bukti/'.$value->bukti_transfer) }}</td>
                     <td style="vertical-align: top;">{{ $value->nominal }}</td>
                     <td style="vertical-align: top;">
                         @if ($value->status_persetujuan == 0)

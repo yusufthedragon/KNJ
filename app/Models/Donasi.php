@@ -43,7 +43,8 @@ class Donasi extends Model
         'daftar_solia',
         'project_id',
         'nama_project',
-        'status_persetujuan'
+        'status_persetujuan',
+        'disetujui_oleh'
     ];
 
     /**
@@ -67,7 +68,8 @@ class Donasi extends Model
         'daftar_solia' => 'string',
         'project_id' => 'integer',
         'nama_project' => 'string',
-        'status_persetujuan' => 'integer'
+        'status_persetujuan' => 'integer',
+        'disetujui_oleh' => 'integer'
     ];
 
     /**
@@ -78,5 +80,15 @@ class Donasi extends Model
     public function project()
     {
         return $this->belongsTo('App\Models\Project', 'project_id');
+    }
+
+    /**
+     * Get the admin that approves the donasi.
+     *
+     * @return void
+     */
+    public function admin()
+    {
+        return $this->belongsTo('App\Models\User', 'disetujui_oleh');
     }
 }

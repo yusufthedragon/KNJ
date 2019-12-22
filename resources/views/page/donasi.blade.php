@@ -172,7 +172,16 @@
                             </div>
                             @if ($artikel !== null)
                                 <div class="span12 form-group">
-                                    <p>{!! nl2br($artikel->deskripsi) !!}</p>
+                                    @php
+                                        $deskripsi = $artikel->deskripsi;
+                                        $urls = preg_match_all('~[a-z]+://\S+~', $artikel->deskripsi, $match);
+                                        
+                                        foreach ($match[0] as $url) {
+                                            $anchor = "<a href='$url' target='_blank'>$url</a>";
+                                            $deskripsi = str_replace($url, $anchor, $deskripsi);
+                                        }
+                                    @endphp
+                                    <p>{!! nl2br($deskripsi) !!}</p>
                                 </div>
                             @endif
                         @endif

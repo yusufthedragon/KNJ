@@ -42,9 +42,9 @@ class DonasiDataTable extends DataTable
             if ($donasi->status_persetujuan == 0) {
                 return 'Belum Verifikasi';
             } elseif ($donasi->status_persetujuan == 1) {
-                return 'Sesuai';
+                return 'Sesuai ('.$donasi->admin->nama.')';
             } else {
-                return 'Tidak Sesuai';
+                return 'Tidak Sesuai ('.$donasi->admin->nama.')';
             }
         })->editColumn('tanggal_transfer', function ($donasi) {
             return date('d-m-Y', strtotime($donasi->tanggal_transfer));
@@ -63,7 +63,7 @@ class DonasiDataTable extends DataTable
      */
     public function query(Donasi $model)
     {
-        return $model->newQuery()->orderBy('tanggal_transfer', 'DESC');
+        return $model->newQuery();
     }
 
     /**
@@ -80,7 +80,7 @@ class DonasiDataTable extends DataTable
             ->parameters([
                 'dom' => 'Bfrtip',
                 'stateSave' => true,
-                'order' => [[0, 'desc']],
+                'order' => [[5, 'desc']],
                 'buttons' => [
                     [
                         'extend' => 'collection',

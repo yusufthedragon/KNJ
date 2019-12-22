@@ -120,6 +120,7 @@ class DonasiController extends AppBaseController
         }
 
         $update['status_persetujuan'] = $request->status;
+        $update['disetujui_oleh'] = auth()->user()->id;
 
         $donasi = $this->donasiRepository->update($update, $id);
 
