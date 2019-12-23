@@ -42,9 +42,9 @@ class DonasiDataTable extends DataTable
             if ($donasi->status_persetujuan == 0) {
                 return 'Belum Verifikasi';
             } elseif ($donasi->status_persetujuan == 1) {
-                return 'Sesuai ('.$donasi->admin->nama.')';
+                return 'Sesuai ('.($donasi->admin->nama ?? '').')';
             } else {
-                return 'Tidak Sesuai ('.$donasi->admin->nama.')';
+                return 'Tidak Sesuai ('.($donasi->admin->nama ?? '').')';
             }
         })->editColumn('tanggal_transfer', function ($donasi) {
             return date('d-m-Y', strtotime($donasi->tanggal_transfer));
