@@ -52,7 +52,26 @@ class DonasiDataTable extends DataTable
             return "Rp".number_format($donasi->nominal, 0, ',', ',');
         })->editColumn('bukti_transfer', function ($donasi) {
             return '<a href="'.asset('upload/donasi/bukti/'.$donasi->bukti_transfer).'" target="_blank"><img width="50" height="50" src="'.asset('upload/donasi/bukti/'.$donasi->bukti_transfer).'"></a>';
-        })->rawColumns(['bukti_transfer', 'action']);
+        })->addColumn('project', function($donasi) {
+            if ($donasi->jenis_donasi === 'Project') {
+                return $donasi->project->judul;
+            } else {
+                return '-';
+            }
+        })->addColumn('solia', function($donasi) {
+            if ($donasi->jenis_donasi === 'Amanah') {
+                $solias = json_decode($donasi->daftar_solia);
+                $string = '';
+
+                foreach ($solias as $key => $value) {
+                    $string .= $value->nomor."<br />";
+                }
+
+                return $string;
+            } else {
+                return '-';
+            }
+        })->rawColumns(['bukti_transfer', 'solia', 'action']);
     }
 
     /**
@@ -80,7 +99,7 @@ class DonasiDataTable extends DataTable
             ->parameters([
                 'dom' => 'Bfrtip',
                 'stateSave' => true,
-                'order' => [[5, 'desc']],
+                'order' => [[7, 'desc']],
                 'buttons' => [
                     [
                         'extend' => 'collection',
@@ -113,6 +132,18 @@ class DonasiDataTable extends DataTable
             'email',
             'no_telepon',
             'jenis_donasi',
+            [
+                'data' => 'project',
+                'title' => 'Nama Project',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'solia',
+                'title' => 'Daftar Solia',
+                'orderable' => false,
+                'searchable' => false
+            ],
             'tanggal_transfer',
             'bukti_transfer',
             'nominal',

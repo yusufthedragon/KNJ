@@ -34,7 +34,7 @@
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="#" class="logo">
+            <a href="{{ url('/admin') }}" class="logo">
                 <b>KNJ</b>
             </a>
 

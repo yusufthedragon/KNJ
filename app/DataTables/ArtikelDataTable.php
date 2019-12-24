@@ -84,6 +84,7 @@ class ArtikelDataTable extends DataTable
         return [
             'judul',
             'deskripsi',
+            'nama_solia',
             'wilayah',
             'cover'
         ];

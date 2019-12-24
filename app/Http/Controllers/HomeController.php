@@ -28,7 +28,7 @@ class HomeController extends Controller
         $biasa = Donasi::where('jenis_donasi', 'Biasa')->where('status_persetujuan', 1)->sum('nominal');
         $amanah = Donasi::where('jenis_donasi', 'Amanah')->where('status_persetujuan', 1)->sum('nominal');
         $project = Donasi::where('jenis_donasi', 'Project')->where('status_persetujuan', 1)->sum('nominal');
-        $unverified = Donasi::where('status_persetujuan', '-1')->sum('nominal');
+        $unverified = Donasi::where('status_persetujuan', '0')->sum('nominal');
 
         return view('home', get_defined_vars());
     }
